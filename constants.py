@@ -3,6 +3,9 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 
 """
 from enum import Enum
+import random
+import time
+import numpy
 
 
 class Gender(Enum):
@@ -18,13 +21,16 @@ class Age(Enum):
     YOUTH = 12
     HS = 17
     COLLEGE = 23
-    @classmethod
-    def getAgeRange(cls):
-        if 
+    # @classmethod
+    # def getAgeRange(cls):
+
 
 
 # metrics - linear acceleration (g), angular acceleration (m/s^2)
+# https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5384819/
 
+LA_GENERIC = 100.0
+AA_GENERIC = 3000.0
 
 LA_YOUTH_ICE_HOCKEY = 31.80
 LA_COLLEGE_ICE_HOCKEY = 44.07

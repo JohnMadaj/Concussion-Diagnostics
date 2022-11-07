@@ -5,7 +5,7 @@ Athlete - extends Participant, adds sport
 """
 import Participant
 
-class Athlete(Participant):
-    def __init__(self, age, height, weight, sex, sport):
-        self.sport = sport
-
+# class Athlete(Participant):
+#     def __init__(self, age, height, weight, sex, sport):
+#         self.sport = sport
+#
