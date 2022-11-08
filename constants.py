@@ -7,8 +7,13 @@ import random
 import time
 import numpy
 
+TIME_CONSTANT = 0.2
 
-class Gender(Enum):
+AA_UNIT = "rad/s^2"
+LA_UNIT = "m/s^2"
+
+
+class Sex(Enum):
     MALE = 0
     FEMALE = 1
 
@@ -16,6 +21,7 @@ class Gender(Enum):
 class Sport(Enum):
     FOOTBALL = 0
     ICE_HOCKEY = 1
+
 
 class Age(Enum):
     YOUTH = 12
@@ -25,9 +31,9 @@ class Age(Enum):
     # def getAgeRange(cls):
 
 
-
 # metrics - linear acceleration (g), angular acceleration (m/s^2)
 # https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5384819/
+
 
 LA_GENERIC = 100.0
 AA_GENERIC = 3000.0

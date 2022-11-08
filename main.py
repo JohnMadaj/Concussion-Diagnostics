@@ -6,7 +6,7 @@ import random
 import time
 import numpy
 
-import constants
+from constants import *
 from Diagnostic import areTheyConcussed
 from Participant import Participant
 
@@ -21,8 +21,8 @@ if __name__ == '__main__':
     age = "20"
     height = "180"
     weight = "90"
-    sex = "MALE"
-    
+    sex = Sex(0)
+
     p1 = Participant(dummyName, age, height, weight, sex)
 
     # print(p1.concussedBool())
@@ -32,10 +32,10 @@ if __name__ == '__main__':
 
         LA = numpy.random.normal(60.0, 20)
         AA = numpy.random.normal(1800, 1000)
-        print("LA: %f m/s^2" % (LA), "\nAA: %f rad/s" % (AA))
+        print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA)
         print("\n")
 
-        if areTheyConcussed(constants.LA_GENERIC, constants.AA_GENERIC, LA, AA):
+        if areTheyConcussed(LA_GENERIC, AA_GENERIC, LA, AA):
             p1.concussion()
 
         # print(p1.concussedBool())
