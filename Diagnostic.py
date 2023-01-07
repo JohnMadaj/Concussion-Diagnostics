@@ -29,6 +29,6 @@ def areTheyConcussed(LAthreshold, AAthreshold, LA, AA):
 
     """
 
-    if LA > LAthreshold or AA>AAthreshold:
+    if LA > LAthreshold or AA > AAthreshold:
         return True
     return False

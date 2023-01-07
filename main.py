@@ -100,8 +100,6 @@ if __name__ == '__main__':
 
         AA, LA = dummyValues()
 
-
-
         print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA)
         print("\n")
 
