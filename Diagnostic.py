@@ -1,8 +1,3 @@
-import constants
-import Participant
-import Athlete
-
-
 def areTheyConcussed(LAthreshold, AAthreshold, LA, AA):
     # code
 

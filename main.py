@@ -2,17 +2,11 @@
 Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvodich, Justin Murphy
 
 """
-import random
-import time
-import numpy
 
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import numpy as np
 
-from constants import *
 from Diagnostic import areTheyConcussed
-from Participant import Participant
+from Participants.Participant import Participant
 from window import *
 from Figure import Figure
 
