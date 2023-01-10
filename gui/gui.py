@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 
 class GUI:
 
-    def __init__(self):
+    def __init__(self, numrows):
         self.num = 1
         self.root = tk.Tk()
 
@@ -45,24 +45,36 @@ class GUI:
         # self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         buttonframe = tk.Frame(self.root)
+
         buttonframe.columnconfigure(0, weight=1)
-        buttonframe.columnconfigure(1, weight=2)
+        buttonframe.columnconfigure(1, weight=3)
 
         sidemenu = []
-        for i in range(20):
+        for i in range(numrows):
             sidemenu.append(tk.Button(buttonframe, text="sidebutton", font=1))
             sidemenu[-1].grid(row=i, sticky="nswe")
 
-        # self.panel = Panel(buttonframe)
-        # self.panel.root.grid(row=0, column=1, sticky="news")
+        submenu = tk.Frame(buttonframe)
+        submenu.grid(row=0, column=1, sticky="news", rowspan=numrows)
+        submenu.config(background="pink")
 
-        # btn2 = tk.Button(buttonframe, text="dos", font=font1)
-        # btn2.grid(row=0, column=1, sticky="we")  # we = west, east (acronym)
-        #
-        # btn5 = tk.Button(buttonframe, text="more", font=font1)
-        # btn5.grid(row=1, column=1, sticky="we")  # we = west, east (acronym)
+        for i in range(3):
+            submenu.columnconfigure(i, weight=1)
 
+        submenu.rowconfigure(1, weight=1)
+        tk.Label(submenu, text='Top left').grid(row=0, column=0, sticky='w')
+        tk.Label(submenu, text='Top center').grid(row=0, column=1)
+        tk.Label(submenu, text='Top right').grid(row=0, column=2, sticky='e')
+        tk.Label(submenu, text='center').grid(row=1, column=1)
+        tk.Label(submenu, text='Bottom left').grid(row=2, column=0, sticky='w')
+        tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
+        tk.Label(submenu, text='Bottom right').grid(row=2, column=2, sticky='e')
         buttonframe.pack(pady=50, fill='x')
+
+        c = tk.Canvas(submenu, bg='white', width=100, height=100)
+        c.grid(row=1, column=0, sticky="news")
+        for i in range(25):
+            c.create_oval(5 + (4 * i), 5 + (3 * i), (5 * i) + 60, (i) + 60, fill='gray70')
 
         self.root.mainloop()
 
@@ -93,4 +105,4 @@ class GUI:
 
 
 if __name__ == "__main__":
-    gui = GUI()
+    gui = GUI(10)
