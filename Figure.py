@@ -45,8 +45,8 @@ class Figure:
             # Add x and y to lists
             self.xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
             # fig2.xs = self.xs
-            self.ys.append(LA)
-            # self.ys.append(np.random.normal(60, 20))
+            # self.ys.append(LA)
+            self.ys.append(np.random.normal(60, 20))
             # fig2.ys.append(np.random.normal(1800, 1000))
 
             # Limit x and y lists to 20 items
