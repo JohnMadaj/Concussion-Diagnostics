@@ -78,7 +78,6 @@ class GUI:
 
         self.root.mainloop()
 
-
     # def show_message(self):
     #     if self.check_var.get():
     #         messagebox.showinfo(title="Message", message="hitler had some good points")

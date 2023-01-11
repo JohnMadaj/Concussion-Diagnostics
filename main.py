@@ -21,7 +21,6 @@ def dummyValues():
 if __name__ == '__main__':
 
     fig1 = Figure()
-    fig1.runLoop(1)
 
     dummyName = "Dummy"
     age = "20"
@@ -35,6 +34,7 @@ if __name__ == '__main__':
         time.sleep(.1)
 
         AA, LA = dummyValues()
+        fig1.runLoop(LA)
 
         print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA)
         print("\n")
