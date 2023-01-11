@@ -5,44 +5,52 @@ from panel import Panel
 from PIL import Image, ImageTk
 
 
-
 class GUI:
 
     def __init__(self, numrows):
         self.num = 1
         self.root = tk.Tk()
 
-        font1 = ("Arial", 18)
-        font2 = ("Times New Roman", 12)
-        font3 = font.Font(family="Helvetica", size=32, weight="bold")
+        self.font1 = ("Arial", 18)
+        self.font2 = ("Times New Roman", 12)
+        self.font3 = font.Font(family="Helvetica", size=32, weight="bold")
 
         self.root.geometry("800x500")
         self.root.title("GUI")
         self.root.attributes('-fullscreen', True)
         self.root.configure(background='light gray')
 
-        self.closebtn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
+        self.closebtn = tk.Button(self.root, text="Close", font=self.font2, command=self.on_closing)
         # # passing show_message as function hence no parenthesis
         self.closebtn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
 
-        self.root.toplabel = tk.Label(text="Concussion Diagnostics Software", font=font3)
+        self.root.toplabel = tk.Label(text="Concussion Diagnostics Software", font=self.font3)
         self.root.toplabel.pack(padx=10, pady=10)
 
-        self.menubar = tk.Menu(self.root)
-        self.filemenu = tk.Menu(self.menubar, tearoff=0)
-        self.filemenu.add_command(label="Open", font=font2)
-        self.filemenu.add_separator()
-        self.filemenu.add_command(label="Close", font=font2, command=exit)
+        self.create_menubar()
+        self.create_frame(numrows)
 
-        self.actionmenu = tk.Menu(self.menubar, tearoff=0)
-        self.actionmenu.add_command(label="This button doesnt do anything")
+        self.root.mainloop()
 
-        self.menubar.add_cascade(menu=self.filemenu, label="File")
-        self.menubar.add_cascade(menu=self.actionmenu, label="Action")
+    def create_menubar(self):
 
-        self.root.config(menu=self.menubar)
+        menubar = tk.Menu(self.root)
+        filemenu = tk.Menu(menubar, tearoff=0)
+        filemenu.add_command(label="Open", font=self.font2)
+        filemenu.add_separator()
+        filemenu.add_command(label="Close", font=self.font2, command=exit)
+
+        actionmenu = tk.Menu(menubar, tearoff=0)
+        actionmenu.add_command(label="This button doesnt do anything")
+
+        menubar.add_cascade(menu=filemenu, label="File")
+        menubar.add_cascade(menu=actionmenu, label="Action")
+
+        self.root.config(menu=menubar)
 
         # self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def create_frame(self, numrows):
 
         buttonframe = tk.Frame(self.root)
 
@@ -51,7 +59,7 @@ class GUI:
 
         sidemenu = []
         for i in range(numrows):
-            sidemenu.append(tk.Button(buttonframe, text="sidebutton", font=1))
+            sidemenu.append(tk.Button(buttonframe, text="sidebutton", font=self.font1))
             sidemenu[-1].grid(row=i, sticky="nswe")
 
         submenu = tk.Frame(buttonframe)
@@ -70,13 +78,6 @@ class GUI:
         tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
         tk.Label(submenu, text='Bottom right').grid(row=2, column=2, sticky='e')
         buttonframe.pack(pady=50, fill='x')
-
-        c = tk.Canvas(submenu, bg='white', width=100, height=100)
-        c.grid(row=1, column=0, sticky="news")
-        for i in range(25):
-            c.create_oval(5 + (4 * i), 5 + (3 * i), (5 * i) + 60, (i) + 60, fill='gray70')
-
-        self.root.mainloop()
 
     # def show_message(self):
     #     if self.check_var.get():
@@ -98,6 +99,7 @@ class GUI:
         # if messagebox.askyesno(title="Are u sure?", message="???? are you?"):
         print("Goodbye, come again!")
         self.root.destroy()
+
     #
     # def openfun(self):
     #     messagebox.showinfo(title="Open", message="You fucking idiot theres nothing to open this isnt a real program")

@@ -4,7 +4,6 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 """
 
 import numpy as np
-
 from Diagnostic import areTheyConcussed
 from Participants.Participant import Participant
 from constants import *
