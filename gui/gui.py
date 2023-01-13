@@ -1,11 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox
+# from tkinter import messagebox
 import tkinter.font as font
-import tkinter.ttk as ttk
-from ttkthemes import ThemedTk, THEMES
-
-# from panel import Panel
-# from PIL import Image, ImageTk
+# import tkinter.ttk as ttk
+# from ttkthemes import ThemedTk, THEMES
 
 
 class GUI:
@@ -38,9 +35,9 @@ class GUI:
 
     def mainwindow(self, numrows):
         self.num = 1
-        # self.root = tk.Tk()
-        self.root = ThemedTk(themebg = True)
-        self.root.set_theme('blue')
+        self.root = tk.Tk()
+        # self.root = ThemedTk(themebg = True)
+        # self.root.set_theme('blue')
         self.font1 = ("Arial", 18)
         self.font2 = ("Times New Roman", 12)
         self.font3 = font.Font(family="Helvetica", size=40, weight="bold")
@@ -60,7 +57,7 @@ class GUI:
 
         self.create_menubar()
         self.create_frame(numrows)
-        self.create_themebox()
+        # self.create_themebox()
 
         self.root.mainloop()
 
@@ -132,17 +129,17 @@ class GUI:
         print("Goodbye, come again!")
         self.root.destroy()
 
-    def create_themebox(self):
-        tc = ttk.Combobox(self.root, values=THEMES)
-        tc.pack(anchor="sw", side=tk.LEFT)
-        tc.set("Change theme")
-        tc.bind("<<ComboboxSelected>>", lambda e: change_theme(tc.get()))
-
-        def change_theme(theme, e=None):
-            try:
-                self.root.set_theme(theme)
-            except:
-                pass
+    # def create_themebox(self):
+    #     tc = ttk.Combobox(self.root, values=THEMES)
+    #     tc.pack(anchor="sw", side=tk.LEFT)
+    #     tc.set("Change theme")
+    #     tc.bind("<<ComboboxSelected>>", lambda e: change_theme(tc.get()))
+    #
+    #     def change_theme(theme, e=None):
+    #         try:
+    #             self.root.set_theme(theme)
+    #         except:
+    #             pass
 
 
 if __name__ == "__main__":

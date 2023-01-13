@@ -1,5 +1,4 @@
 import tkinter as tk
-from gui import GUI
 
 
 class Popup:
@@ -26,7 +25,6 @@ class Popup:
         box = str(self.textbox.get('1.0', tk.END))
         if int(box) > 0:
             self.root.destroy()
-            GUI(box)
 
 
 if __name__ == "__main__":
