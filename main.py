@@ -3,23 +3,31 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 
 """
 
-import numpy as np
+# import numpy as np
 from Diagnostic import areTheyConcussed
 from Participants.Participant import Participant
 from constants import *
 from Figure import Figure
-import matplotlib.pyplot as plt
-import datetime as dt
-from matplotlib import animation
+import names
+# import matplotlib.pyplot as plt
+# import datetime as dt
+# from matplotlib import animation
 
 
 def dummyValues():
     return numpy.random.normal(1800, 1000), numpy.random.normal(60.0, 20)
 
 
+def namegenerator(num):
+    nameslist = []
+    for i in range(num):
+        nameslist.append(names.get_full_name())
+    return nameslist
+
+
 if __name__ == '__main__':
 
-    fig1 = Figure()
+    # fig1 = Figure()
 
     dummyName = "Dummy"
     age = "20"
@@ -33,7 +41,7 @@ if __name__ == '__main__':
         time.sleep(.1)
 
         AA, LA = dummyValues()
-        fig1.runLoop(LA)
+        # fig1.runLoop(LA)
 
         print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA)
         print("\n")

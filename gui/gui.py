@@ -3,7 +3,13 @@ import tkinter as tk
 import tkinter.font as font
 # import tkinter.ttk as ttk
 # from ttkthemes import ThemedTk, THEMES
+import names
 
+def namegenerator(num):
+    nameslist = []
+    for i in range(num):
+        nameslist.append(names.get_full_name())
+    return nameslist
 
 class GUI:
     def __init__(self):
@@ -55,8 +61,10 @@ class GUI:
         self.root.toplabel.config(background="light gray")
         self.root.toplabel.pack(padx=10, pady=10)
 
+        nameslist = namegenerator(numrows)
+
         self.create_menubar()
-        self.create_frame(numrows)
+        self.create_frame(nameslist)
         # self.create_themebox()
 
         self.root.mainloop()
@@ -79,7 +87,7 @@ class GUI:
 
         # self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
-    def create_frame(self, numrows):
+    def create_frame(self, nameslist):
 
         buttonframe = tk.Frame(self.root)
 
@@ -87,12 +95,12 @@ class GUI:
         buttonframe.columnconfigure(1, weight=3)
 
         sidemenu = []
-        for i in range(numrows):
-            sidemenu.append(tk.Button(buttonframe, text="sidebutton", font=self.font1))
+        for i, name in enumerate(nameslist):
+            sidemenu.append(tk.Button(buttonframe, text=name, font=self.font1))
             sidemenu[-1].grid(row=i, sticky="nswe")
 
         submenu = tk.Frame(buttonframe)
-        submenu.grid(row=0, column=1, sticky="news", rowspan=numrows)
+        submenu.grid(row=0, column=1, sticky="new", rowspan=16)
         submenu.config(background="pink")
 
         for i in range(3):
