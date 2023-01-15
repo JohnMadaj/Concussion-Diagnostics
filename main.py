@@ -27,8 +27,6 @@ def namegenerator(num):
 
 if __name__ == '__main__':
 
-    # fig1 = Figure()
-
     dummyName = "Dummy"
     age = "20"
     height = "180"
@@ -41,12 +39,13 @@ if __name__ == '__main__':
         time.sleep(.1)
 
         AA, LA = dummyValues()
-        # fig1.runLoop(LA)
 
-        print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA)
+        temp_concussbool, temp_status = areTheyConcussed(LA_GENERIC, AA_GENERIC, LA, AA)
+
+        print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA, "STATUS:", temp_status)
         print("\n")
 
-        if areTheyConcussed(LA_GENERIC, AA_GENERIC, LA, AA):
+        if temp_concussbool:
             p1.concussion()
 
         # print(p1.concussedBool())

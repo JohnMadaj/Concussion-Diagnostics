@@ -13,6 +13,16 @@ AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
 
 
+class Status(Enum):
+    GREEN = 0
+    YELLOW = 1
+    RED = 2
+
+
+yellow_intensity = 0.5
+red_intensity = 0.8
+
+
 class Sex(Enum):
     MALE = 0
     FEMALE = 1

@@ -4,11 +4,13 @@ import tkinter.ttk as ttk
 from ttkthemes import ThemedTk, THEMES
 import names
 
+
 def namegenerator(num):
     nameslist = []
     for i in range(num):
         nameslist.append(names.get_full_name())
     return nameslist
+
 
 class GUI:
     def __init__(self):
