@@ -1,5 +1,3 @@
-from statistics import mean
-
 from constants import *
 
 
@@ -30,7 +28,7 @@ def areTheyConcussed(LAthreshold, AAthreshold, LA, AA):
     LAratio = LA / LAthreshold
     AAratio = AA / AAthreshold
 
-    currentStatus = mean([LAratio, AAratio])
+    currentStatus = max([LAratio, AAratio])
     if LA > LAthreshold or AA > AAthreshold:
         return True, getStatus(currentStatus)
     return False, getStatus(currentStatus)
