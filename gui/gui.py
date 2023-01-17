@@ -31,31 +31,6 @@ class GUI:
 
         self.root.mainloop()
 
-        self.root.tk.Tk()
-        self.root.geometry("300x150")
-        self.root.title("Participants Information")
-
-        label1 = tk.Label(self.root, text='First Name').grid(row=0)
-        # label1.pack(padx=1, pady=1)
-        # self.textbox = tk.Text(self.root, height=1)
-        # self.textbox.bind("<KeyPress>", self.shortcut)
-        # self.textbox.pack(padx=10, pady=50, anchor="center")
-        label2 = tk.Label(self.root, text='Last Name').grid(row=1)
-        label3 = tk.Label(self.root, text='Sex').grid(row=2)
-        label4 = tk.Label(self.root, text='Age').grid(row=3)
-        label5 = tk.Label(self.root, text='Weight').grid(row=4)
-
-        e1 = tk.Entry(self.root).grid(row=0, column=1)
-        e2 = tk.Entry(self.root).grid(row=1, column=1)
-        e3 = tk.Entry(self.root).grid(row=2, column=1)
-        e4 = tk.Entry(self.root).grid(row=3, column=1)
-        e5 = tk.Entry(self.root).grid(row=4, column=1)
-
-        button = tk.Button(self.root, text="Add", bd='5', command=self.root.destroy)
-
-        button.grid(row=5, column=1)
-
-        self.root.mainloop()
 
 
     def userinfo(self):
