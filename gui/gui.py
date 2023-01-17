@@ -38,7 +38,9 @@ class GUI:
         box = int(self.textbox.get('1.0', tk.END))
         if int(box) > 0:
             self.root.destroy()
+            self.root.userinfo()
             self.mainwindow(box)
+
 
     def mainwindow(self, numrows):
         self.num = 1
@@ -88,6 +90,7 @@ class GUI:
 
         # self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
+
     def create_frame(self, nameslist):
 
         buttonframe = tk.Frame(self.root)
@@ -95,22 +98,56 @@ class GUI:
         buttonframe.columnconfigure(0, weight=1)
         buttonframe.columnconfigure(1, weight=3)
 
+
+
         sidemenu = []
         for i, name in enumerate(nameslist):
-            sidemenu.append(tk.Button(buttonframe, text=name, font=self.font1))
+            #display = tk.Label(submenu, text='Top left').grid(row=0, column=0, sticky='w')
+            #need a command output below for button
+            sidemenu.append(tk.Button(buttonframe, text=name, font=self.font1, bg = '#ffffff', activebackground = '#4444ff'))
+
+            #sidemenu[-1].configure(bg="red")
             sidemenu[-1].grid(row=i, sticky="nswe")
 
         submenu = tk.Frame(buttonframe)
         submenu.grid(row=0, column=1, sticky="news", rowspan=16)
-        submenu.config(background="pink")
+        submenu.config(background="grey")
 
         for i in range(3):
             submenu.columnconfigure(i, weight=1)
 
+#######################################################################
+
+#        lst = [(1, 'Raj', 'Mumbai', 19),
+##               (2, 'Aaryan', 'Pune', 18),
+#               (3, 'Vaishnavi', 'Mumbai', 20),
+#               (4, 'Rachna', 'Mumbai', 21),
+##               (5, 'Shubham', 'Delhi', 21)]
+#        total_rows = len(lst)
+#        total_columns = len(lst[0])
+#
+ #       for i in range(total_rows):
+#            for j in range(total_columns):
+ #               e = Entry(tk(), width=20, fg='blue',
+  #                             font=('Arial', 16, 'bold'))
+   #             submenu.append(
+    #                tk.Button(buttonframe, text=e, font=self.font1, bg='#ffffff', activebackground='#4444ff'))
+     #           e.grid(row=i, column=j)
+      #          e.insert(0, lst[i][j])
+
+        # find total number of rows and
+        # columns in list
+
+
+        # create root window
+
+
+
+
         submenu.rowconfigure(1, weight=1)
         tk.Label(submenu, text='Top left').grid(row=0, column=0, sticky='w')
         tk.Label(submenu, text='Top center').grid(row=0, column=1)
-        tk.Label(submenu, text='Top right').grid(row=0, column=2, sticky='e')
+        tk.Label(submenu, text='Participant name',font=self.font1).grid(row=0, column=2, sticky='e')
         tk.Label(submenu, text='center').grid(row=1, column=1)
         tk.Label(submenu, text='Bottom left').grid(row=2, column=0, sticky='w')
         tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
@@ -132,6 +169,7 @@ class GUI:
     #         self.show_message()
     #     if event.keysym == "q":
     #         self.on_closing()
+
 
     def on_closing(self):
         # if messagebox.askyesno(title="Are u sure?", message="???? are you?"):
