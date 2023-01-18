@@ -5,11 +5,6 @@ Participant - base class
 """
 import constants
 
-from tkinter import *
-
-
-
-
 class Participant:
     def __init__(self, name, age, height, weight, sex):
         self.name = name
@@ -18,13 +13,15 @@ class Participant:
         self.weight = weight
         self.sex = sex
 
+        self.status = constants.Status.GREEN
         self.concussed = False
 
     def concussedBool(self):
         return self.concussed
 
-    def concussion(self):
-        self.concussed = True
+    def updateStatus(self, concussbool, newstatus):
+        self.concussed = concussbool
+        self.status = newstatus
 
     def __str__(self):
         if self.concussed:
