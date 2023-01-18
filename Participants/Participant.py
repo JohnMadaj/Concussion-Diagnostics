@@ -5,6 +5,10 @@ Participant - base class
 """
 import constants
 
+from tkinter import *
+
+
+
 
 class Participant:
     def __init__(self, name, age, height, weight, sex):
