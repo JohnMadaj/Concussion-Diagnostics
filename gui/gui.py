@@ -5,6 +5,11 @@ from ttkthemes import ThemedTk, THEMES
 import names
 from tkinter import *
 
+def namegenerator(num):
+    nameslist = []
+    for i in range(num):
+        nameslist.append(names.get_full_name())
+    return nameslist
 
 class GUI:
     def __init__(self):
@@ -58,7 +63,7 @@ class GUI:
         if int(box) > 0:
             self.root.destroy()
             self.userinfo()
-            self.mainwindow(box)
+            self.mainwindow(box, namegenerator(box))
 
 
     def mainwindow(self, numrows, nameslist):
@@ -83,10 +88,10 @@ class GUI:
         self.root.toplabel.config(background="light gray")
         self.root.toplabel.pack(padx=10, pady=10)
 
-        # self.create_menubar()
-        # self.create_frame(nameslist)
-        # self.create_themebox()
-        # self.root.mainloop()
+        self.create_menubar()
+        self.create_frame(nameslist)
+        self.create_themebox()
+        self.root.mainloop()
 
     def create_menubar(self):
 

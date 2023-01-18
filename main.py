@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     org = Organizer(createListOfDummyParticipants(5))
 
-    # gui = GUI()
+    gui = GUI()
     # gui.create_menubar()
     # gui.create_frame(namegenerator(5))
     # gui.create_themebox()
