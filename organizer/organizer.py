@@ -5,7 +5,10 @@ class Organizer:
 
     def __init__(self, participantList):
         self.participantList = participantList
-        self.selected_participant = participantList[0]
+        if len(self.participantList):
+            self.selected_participant = participantList[0]
+        else:
+            self.selected_participant = 0
 
     def select_new_participant(self, index):
         self.selected_participant = self.participantList[index]

@@ -14,6 +14,7 @@ from constants import *
 
 import names
 from gui.gui import GUI
+from gui.popup import Popup
 from organizer.organizer import Organizer
 
 
@@ -38,21 +39,13 @@ def createListOfDummyParticipants(num):
 
 if __name__ == '__main__':
 
-    org = Organizer(createListOfDummyParticipants(5))
+    p = Popup()
+    org = Organizer(createListOfDummyParticipants(p.output))
 
-    gui = GUI()
-    # gui.create_menubar()
-    # gui.create_frame(namegenerator(5))
-    # gui.create_themebox()
-    # gui.root.mainloop()
+    if not org.participantList:
+        quit()
+    gui = GUI(org.participantList)
     print(org.__str__())
-
-    # dummyName = "Dummy"
-    # age = "20"
-    # height = "180"
-    # weight = "90"
-    # sex = Sex(0)
-    # p1 = Participant(dummyName, age, height, weight, sex)
 
     while True:
 
