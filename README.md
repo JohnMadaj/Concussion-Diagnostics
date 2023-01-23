@@ -11,3 +11,5 @@ Athlete.py - extends Participant on assumption that participant is playing a spo
 Diagnostic.py - where all functions that diagnose concussion belong
 
 main.py - ***currently*** holds a system loop that can be used to generate dummy values for testing Diagnostic
+
+gui/ - holds all user software gui classes
