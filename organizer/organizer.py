@@ -13,6 +13,9 @@ class Organizer:
     def select_new_participant(self, index):
         self.selected_participant = self.participantList[index]
 
+    def get_selected_index(self):
+        return self.participantList[self.selected_participant]
+
     def __str__(self):
         prstr = ""
         for part in self.participantList:

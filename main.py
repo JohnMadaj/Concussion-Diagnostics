@@ -13,28 +13,17 @@ from constants import *
 # from matplotlib import animation
 
 import names
+
+from dummy import *
 from gui.gui import GUI
 from gui.popup import Popup
 from organizer.organizer import Organizer
 
 
-def dummyValues():
-    return numpy.random.normal(1800, 1000), numpy.random.normal(60.0, 20)
 
 
-def namegenerator(num):
-    nameslist = []
-    for i in range(num):
-        nameslist.append(names.get_full_name())
-    return nameslist
 
 
-def createListOfDummyParticipants(num):
-    tempnameslist = namegenerator(num)
-    participantlist = []
-    for name in tempnameslist:
-        participantlist.append(Participant(name, 20, 180, 90, constants.Sex.MALE))
-    return participantlist
 
 
 if __name__ == '__main__':

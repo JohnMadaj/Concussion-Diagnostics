@@ -1,7 +1,7 @@
 from constants import *
 
 
-def areTheyConcussed(LAthreshold, AAthreshold, LA, AA):
+def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
     """
     :param LAthreshold:
     :param AAthreshold:
@@ -25,13 +25,26 @@ def areTheyConcussed(LAthreshold, AAthreshold, LA, AA):
     - blood oxygen bias??
 
     """
-    LAratio = LA / LAthreshold
-    AAratio = AA / AAthreshold
+    if LAthreshold and LA:
+        LAratio = LA / LAthreshold
+    else:
+        LAratio = 0
+    if AAthreshold and AA:
+        AAratio = AA / AAthreshold
+    else:
+        AAratio = 0
 
-    currentStatus = max([LAratio, AAratio])
-    if LA > LAthreshold or AA > AAthreshold:
-        return True, getStatus(currentStatus)
-    return False, getStatus(currentStatus)
+    if LAratio and AAratio:
+        currentStatus = max([LAratio, AAratio])
+        if LA > LAthreshold or AA > AAthreshold:
+            return True, getStatus(currentStatus)
+        return False, getStatus(currentStatus)
+
+    elif LAratio:
+        currentStatus = LAratio
+        if LA > LAthreshold:
+            return True, getStatus(currentStatus)
+        return False, getStatus(currentStatus)
 
 
 def getStatus(ratio):
