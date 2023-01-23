@@ -8,13 +8,23 @@ class Organizer:
         if len(self.participantList):
             self.selected_participant = participantList[0]
         else:
-            self.selected_participant = 0
+            self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
+        self.selected_index = 0
 
-    def select_new_participant(self, index):
-        self.selected_participant = self.participantList[index]
+    def select_new_participant(self, index=None):
+        if index is not None:
+            self.selected_participant = self.participantList[index]
+            self.selected_index = index
+
+        elif self.selected_index == (len(self.participantList) - 1):
+            self.selected_participant = self.participantList[0]
+            self.selected_index = 0
+        else:
+            self.selected_index += 1
+            self.selected_participant = self.participantList[self.selected_index]
 
     def get_selected_index(self):
-        return self.participantList[self.selected_participant]
+        return self.selected_index
 
     def __str__(self):
         prstr = ""

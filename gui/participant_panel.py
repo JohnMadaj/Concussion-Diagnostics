@@ -46,25 +46,29 @@ class MainPage(tk.Frame):
 
         # uncommented these lines
         self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
         self.rowconfigure(3, weight=1)
 
         self.Toplabel = tk.Label(self, text="Participant Name:", font=LARGE_FONT)
+        self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
         self.LAlabel = tk.Label(self, text="LA: 0 m/s^2", font=LARGE_FONT)
 
-        self.Toplabel.grid(row=0)
-        self.LAlabel.grid(row=1, padx=10, pady=10)
+        self.Toplabel.grid(row=0, columnspan=2)
+        self.StatusLabel.grid(row=1, columnspan=2)
+        self.LAlabel.grid(row=2, columnspan=2, padx=10, pady=10)
         #
         # button1 = ttk.Button(self, text="Graphs", command=quit)
         # button1.grid(row=1, sticky='nswe')
 
-        reset_button = ttk.Button(self, text="Reset", command=self.on_reset)
-        reset_button.grid(row=2, sticky='nswe')
-
+        reset_button = ttk.Button(self, text="Reset with New Participant", command=self.on_reset)
         button3 = ttk.Button(self, text="Exit", command=quit)
-        button3.grid(row=3, sticky='nswe')
+
+        reset_button.grid(row=3, column=0, sticky='nwse')
+        button3.grid(row=3, column=1, sticky='nsew')
 
 #############################################################
 # BELOW IS ADDED FOR IN-CLASS DEMONSTRATION################
@@ -76,26 +80,27 @@ class MainPage(tk.Frame):
         self.Toplabel.config(text="Participant " + self.org.selected_participant.__str__())
 
     def on_reset(self):
-        # while not self.org.selected_participant.concussed:
-        LA = dummyValues()
-        self.LAlabel.config(text="LA " + str(LA) + " m/s^2")
-        self.after(1000, self.on_reset) # ask the mainloop to call this method again in 1,000 milliseconds
+        self.org.select_new_participant()
+        self.refresh()
+
+    def refresh(self):
+        self.LA = dummyValues()
+        cbool, status = areTheyConcussed(LA=self.LA, LAthreshold=LA_GENERIC)
+        self.org.selected_participant.updateStatus(cbool, status)
+
+        self.update_labels()
+
+        self.after(1000, self.refresh) # ask the mainloop to call this method again in 1,000 milliseconds
+
+    def update_labels(self):
+        self.Toplabel.config(text="Participant " + self.org.selected_participant.__str__())
+        self.LAlabel.config(text="LA " + str(self.LA) + " m/s^2")
+        self.StatusLabel.config(text="Status: " + str(self.org.selected_participant.status))
+
 
 
 
 if __name__ == '__main__':
-
-    # org = Organizer(createListOfDummyParticipants(10))
-    # if not org.participantList:
-    #     quit()
-    # print(org.__str__())
-    #
-    # LA = dummyValues()
-    # temp_concussbool, temp_status = areTheyConcussed(LAthreshold=LA_GENERIC, LA=LA)
-    # org.selected_participant.updateStatus(temp_concussbool, temp_status)
-    #
-    # print("LA: %f m/s^2" % LA, "STATUS:", temp_status)
-    # print("\n")
 
     app = Main()
     app.geometry("1280x720")

@@ -11,7 +11,7 @@ class Participant:
         self.age = age
         self.height = height
         self.weight = weight
-        self.sex = sex
+        self.sex = constants.Sex(sex)
 
         self.status = constants.Status.GREEN
         self.concussed = False

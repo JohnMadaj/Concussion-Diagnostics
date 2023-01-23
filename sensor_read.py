@@ -1,6 +1,6 @@
 import serial
 
-arduinoData = serial.Serial("Port_#0001.Hub_#0001", 115200, timeout=1)
+arduinoData = serial.Serial("COM4", 115200, timeout=1)
 
 while True:
     while (arduinoData.inWaiting()==0):
