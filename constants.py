@@ -6,6 +6,9 @@ from enum import Enum
 import random
 import time
 import numpy
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
+NavigationToolbar2Tk)
 
 TIME_CONSTANT = 0.2
 

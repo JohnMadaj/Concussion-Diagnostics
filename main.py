@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
         time.sleep(.1)
 
-        AA, LA = dummyValues()
+        AA, LA = dummyValues(2)
 
         temp_concussbool, temp_status = areTheyConcussed(LA_GENERIC, AA_GENERIC, LA, AA)
         org.selected_participant.updateStatus(temp_concussbool, temp_status)

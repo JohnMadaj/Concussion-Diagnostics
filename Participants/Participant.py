@@ -16,6 +16,15 @@ class Participant:
         self.status = constants.Status.GREEN
         self.concussed = False
 
+        self.LA = []
+
+    def getlastLA(self):
+        return self.LA[-1]
+    def updateLA(self, val):
+        self.LA.append(val)
+        if len(self.LA) > 10:
+            self.LA = self.LA[1:]
+
     def concussedBool(self):
         return self.concussed
 
