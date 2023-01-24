@@ -22,7 +22,7 @@ class Participant:
         return self.LA[-1]
     def updateLA(self, val):
         self.LA.append(val)
-        if len(self.LA) > 10:
+        if len(self.LA) > 20:
             self.LA = self.LA[1:]
 
     def concussedBool(self):

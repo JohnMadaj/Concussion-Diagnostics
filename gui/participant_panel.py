@@ -110,7 +110,7 @@ class MainPage(tk.Frame):
         self.update_labels()
         self.plot()
 
-        self.after(1000, self.refresh) # ask the mainloop to call this method again in 1,000 milliseconds
+        self.after(500, self.refresh) # ask the mainloop to call this method again in 1,000 milliseconds
 
     def update_labels(self):
         self.Toplabel.config(text="Participant " + self.org.selected_participant.__str__())
