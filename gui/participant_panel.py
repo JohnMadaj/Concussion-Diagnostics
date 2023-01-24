@@ -1,3 +1,5 @@
+import math
+
 import serial
 
 import tkinter as tk
@@ -9,6 +11,8 @@ from dummy import *
 from constants import *
 
 LARGE_FONT = ("ariel", 20)
+
+arduinoData = serial.Serial("COM5", 115200, timeout=1)
 
 
 class Main(tk.Tk):
@@ -74,9 +78,9 @@ class MainPage(tk.Frame):
         reset_button.grid(row=4, column=0, sticky='nwse')
         button3.grid(row=4, column=1, sticky='nsew')
 
-#############################################################
-# BELOW IS ADDED FOR IN-CLASS DEMONSTRATION################
-########################################################
+        #############################################################
+        # BELOW IS ADDED FOR IN-CLASS DEMONSTRATION################
+        ########################################################
 
         if not self.org.participantList:
             quit()
@@ -103,14 +107,34 @@ class MainPage(tk.Frame):
         self.refresh()
 
     def refresh(self):
-        self.org.selected_participant.updateLA(dummyValues(1))
-        cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
-        self.org.selected_participant.updateStatus(cbool, status)
+        try:
+            while arduinoData.inWaiting() == 0:
+                pass
+            datapacket = arduinoData.readline()
+            datapacket = str(datapacket, 'utf-8')
+            splitpacket = datapacket.split(',')
 
-        self.update_labels()
-        self.plot()
+            x = float(splitpacket[0])
+            y = float(splitpacket[1])
+            z = float(splitpacket[2])
 
-        self.after(500, self.refresh) # ask the mainloop to call this method again in 1,000 milliseconds
+            self.org.selected_participant.updateLA(
+                math.sqrt(x * x + y * y + z * z))
+            cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=60)
+
+        except Exception as e:
+            # self.org.selected_participant.updateLA(dummyValues(1))
+            self.org.selected_participant.updateLA(10)
+            print("didnt work my guy my bro my homie")
+            cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+            status = e
+        finally:
+            self.org.selected_participant.updateStatus(cbool, status)
+
+            self.update_labels()
+            self.plot()
+
+        self.after(100, self.refresh)  # ask the mainloop to call this method again in 1,000 milliseconds
 
     def update_labels(self):
         self.Toplabel.config(text="Participant " + self.org.selected_participant.__str__())
@@ -118,10 +142,7 @@ class MainPage(tk.Frame):
         self.StatusLabel.config(text="Status: " + str(self.org.selected_participant.status))
 
 
-
-
 if __name__ == '__main__':
-
     app = Main()
     app.geometry("1280x720")
     app.mainloop()

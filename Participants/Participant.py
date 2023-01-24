@@ -29,7 +29,8 @@ class Participant:
         return self.concussed
 
     def updateStatus(self, concussbool, newstatus):
-        self.concussed = concussbool
+        if not self.concussed:
+            self.concussed = concussbool
         self.status = newstatus
 
     def __str__(self):
