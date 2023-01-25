@@ -20,6 +20,7 @@ class Participant:
 
     def getlastLA(self):
         return self.LA[-1]
+
     def updateLA(self, val):
         self.LA.append(val)
         if len(self.LA) > 20:

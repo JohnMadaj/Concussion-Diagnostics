@@ -8,9 +8,9 @@ import time
 import numpy
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
-NavigationToolbar2Tk)
+                                               NavigationToolbar2Tk)
 
-TIME_CONSTANT = 0.2
+TIME_CONSTANT = 80  # ms
 
 AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
@@ -48,7 +48,7 @@ class Age(Enum):
 # https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5384819/
 
 
-LA_GENERIC = 100.0
+LA_GENERIC = 80.0  # 100
 AA_GENERIC = 3000.0
 
 LA_YOUTH_ICE_HOCKEY = 31.80
