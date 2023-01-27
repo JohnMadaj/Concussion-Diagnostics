@@ -5,6 +5,9 @@ from ttkthemes import ThemedTk, THEMES
 import names
 from tkinter import *
 
+import organizer.organizer
+from gui.participant_panel import MainPage
+
 
 def namegenerator(num):
     nameslist = []
@@ -38,7 +41,9 @@ class GUI:
         e5 = Entry(master).grid(row=4, column=1)
         master.mainloop()
 
-    def __init__(self, nameslist):
+    def __init__(self, org=organizer.organizer.Organizer([])):
+        self.org = org
+
         # self.root = tk.Tk()
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
@@ -60,7 +65,7 @@ class GUI:
         self.root.toplabel.pack(padx=10, pady=10)
 
         self.create_menubar()
-        self.create_displayframe(nameslist)
+        self.create_displayframe()
         self.create_themebox()
         self.root.mainloop()
 
@@ -82,45 +87,37 @@ class GUI:
 
         # self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
-    def create_displayframe(self, participants_list):
+    def create_displayframe(self):
 
         buttonframe = tk.Frame(self.root)
-
-        # notebook = ttk.Notebook(buttonframe)
-        # notebook.pack()
-        #
-        # my_frame1 = Frame(notebook, width=500, height=100)
-        # my_frame2 = Frame(notebook, width=500, height=100)
-        #
-        # my_frame1.pack(fill="both")
-        # my_frame2.pack(fill="both")
-        #
-        # notebook.add(my_frame1, text="tabe 1")
-        # notebook.add(my_frame2, text="tab 2")
-
-
         buttonframe.columnconfigure(0, weight=1)
         buttonframe.columnconfigure(1, weight=3)
 
-        # sidemenu_notebook = ttk.Notebook(buttonframe)
-        # sidemenu_notebook.grid()
+
         sidemenu = []
-        for i, participant in enumerate(participants_list):
+        for i, participant in enumerate(self.org.participantList):
             sidemenu.append(
                 tk.Button(buttonframe, text=participant.name,
-                          font=self.font1, bg='#ffffff', activebackground='#4444ff'))
+                          font=self.font1, bg='#ffffff', activebackground='#4444ff',
+                          command=self.org.select_new_participant(i)))
             sidemenu[-1].grid(row=i, sticky="nswe")
-            # newframe = Frame(sidemenu_notebook, width=100, height = 100)
-            # newframe.grid()
-            # sidemenu_notebook.add(newframe, text=participant.name)
 
-
-        submenu = tk.Frame(buttonframe)
+        # submenu = tk.Frame(buttonframe)
+        submenu = MainPage(buttonframe, 0)
         submenu.grid(row=0, column=1, sticky="news", rowspan=16)
         submenu.config(background="grey")
 
-        for i in range(3):
-            submenu.columnconfigure(i, weight=1)
+        # self.frames = {}
+        # for fr in (MainPage,):
+        #     frame = fr(submenu, self)
+        #     self.frames[fr] = frame
+        #     frame.grid(row=0, column=0, sticky="nsew")
+        # self.show_frame(MainPage)
+
+
+
+        # for i in range(3):
+        #     submenu.columnconfigure(i, weight=1)
 
         #######################################################################
 
@@ -146,15 +143,16 @@ class GUI:
 
         # create root window
 
-        submenu.rowconfigure(1, weight=1)
-        tk.Label(submenu, text='Top left').grid(row=0, column=0, sticky='w')
-        tk.Label(submenu, text='Top center').grid(row=0, column=1)
-        tk.Label(submenu, text='Participant name', font=self.font1).grid(row=0, column=2, sticky='e')
-        tk.Label(submenu, text='center').grid(row=1, column=1)
-        tk.Label(submenu, text='Bottom left').grid(row=2, column=0, sticky='w')
-        tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
-        tk.Label(submenu, text='Bottom right').grid(row=2, column=2, sticky='e')
+        # submenu.rowconfigure(1, weight=1)
+        # tk.Label(submenu, text='Top left').grid(row=0, column=0, sticky='w')
+        # tk.Label(submenu, text='Top center').grid(row=0, column=1)
+        # tk.Label(submenu, text='Participant name', font=self.font1).grid(row=0, column=2, sticky='e')
+        # tk.Label(submenu, text='center').grid(row=1, column=1)
+        # tk.Label(submenu, text='Bottom left').grid(row=2, column=0, sticky='w')
+        # tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
+        # tk.Label(submenu, text='Bottom right').grid(row=2, column=2, sticky='e')
         buttonframe.pack(pady=50, fill='x', expand=1)
+
 
     # def show_message(self):
     #     if self.check_var.get():
@@ -189,6 +187,9 @@ class GUI:
             except:
                 pass
 
+    def show_frame(self, pointer):
+        frame = self.frames[pointer]
+        frame.tkraise()
 
 if __name__ == "__main__":
     GUI()

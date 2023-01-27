@@ -9,6 +9,9 @@ import numpy
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
                                                NavigationToolbar2Tk)
+import datetime as dt
+from matplotlib import animation
+import names
 
 TIME_CONSTANT = 80  # ms
 

@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43c0c863-5219-49fa-8a09-67b7aba30c34" name="Changes" comment="created popup.py which is called prior to creation of organizer and gui in main.&#10;gui now recieves organizer object to pull participant info from">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/participant_panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +50,7 @@
       <recent name="C:\Users\Jack\Documents\Capstone" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.demonstration">
+  <component name="RunManager" selected="Python.main">
     <configuration name="demonstration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,10 +158,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.demonstration" />
-        <item itemvalue="Python.participant_panel" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.gui" />
+        <item itemvalue="Python.demonstration" />
+        <item itemvalue="Python.participant_panel" />
         <item itemvalue="Python.sensor_read" />
       </list>
     </recent_temporary>

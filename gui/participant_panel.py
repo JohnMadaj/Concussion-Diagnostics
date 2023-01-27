@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from Diagnostic import areTheyConcussed
+from gui import gui
 from organizer.organizer import Organizer
 from dummy import *
 from constants import *
