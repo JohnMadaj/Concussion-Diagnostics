@@ -4,9 +4,12 @@ import tkinter.ttk as ttk
 from ttkthemes import ThemedTk, THEMES
 import names
 from tkinter import *
+from PIL import ImageTk, Image
 
 import organizer.organizer
 from gui.participant_panel import MainPage
+
+sage = '#9EAA55'
 
 
 def namegenerator(num):
@@ -54,15 +57,23 @@ class GUI:
         self.root.geometry("800x500")
         self.root.title("GUI")
         self.root.attributes('-fullscreen', True)
-        # self.root.configure(background='light gray')
+        self.root.configure(background=sage)
 
         self.closebtn = tk.Button(self.root, text="Close", font=self.font2, command=self.on_closing)
         # # passing show_message as function hence no parenthesis
         self.closebtn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
 
         self.root.toplabel = tk.Label(text="Concussion Diagnostics Software", font=self.font3)
-        self.root.toplabel.config(background="light gray")
-        self.root.toplabel.pack(padx=10, pady=10)
+        self.root.toplabel.config(background=sage)
+        self.root.toplabel.pack(padx=120, pady=20, anchor=NE)
+
+        self.image1 = Image.open(
+            r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\gui\logo_small.png")
+        self.image1.resize((100, 100), Image.ANTIALIAS)
+        test = ImageTk.PhotoImage(self.image1)
+        label1 = tk.Label(image=test)
+        label1.image = self.image1
+        label1.place(x=100, y=15)
 
         self.create_menubar()
         self.create_displayframe()
@@ -93,7 +104,6 @@ class GUI:
         buttonframe.columnconfigure(0, weight=1)
         buttonframe.columnconfigure(1, weight=3)
 
-
         sidemenu = []
         for i, participant in enumerate(self.org.participantList):
             sidemenu.append(
@@ -113,8 +123,6 @@ class GUI:
         #     self.frames[fr] = frame
         #     frame.grid(row=0, column=0, sticky="nsew")
         # self.show_frame(MainPage)
-
-
 
         # for i in range(3):
         #     submenu.columnconfigure(i, weight=1)
@@ -151,8 +159,7 @@ class GUI:
         # tk.Label(submenu, text='Bottom left').grid(row=2, column=0, sticky='w')
         # tk.Label(submenu, text='Bottom center').grid(row=2, column=1)
         # tk.Label(submenu, text='Bottom right').grid(row=2, column=2, sticky='e')
-        buttonframe.pack(pady=50, fill='x', expand=1)
-
+        buttonframe.pack(pady=0, fill='x', expand=1)
 
     # def show_message(self):
     #     if self.check_var.get():
@@ -190,6 +197,7 @@ class GUI:
     def show_frame(self, pointer):
         frame = self.frames[pointer]
         frame.tkraise()
+
 
 if __name__ == "__main__":
     GUI()
