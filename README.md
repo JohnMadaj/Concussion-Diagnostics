@@ -1,5 +1,7 @@
 # Concussion-Diagnostics
 
+![Preview](preview.png)
+
 Purpose: intake data from sensor hardware and use given information about participant to diagnose if they have been concussed, as well as store all of the metric data from this session.
 
 constants.py - stores all constants and values for algorithm (regularly check for numerical values and labels to move here)
