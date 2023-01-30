@@ -3,7 +3,8 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 
 Participant - base class
 """
-import constants
+from constants import *
+
 
 class Participant:
     def __init__(self, name, age, height, weight, sex):
@@ -11,9 +12,9 @@ class Participant:
         self.age = age
         self.height = height
         self.weight = weight
-        self.sex = constants.Sex(sex)
+        self.sex = Sex(sex)
 
-        self.status = constants.Status.GREEN
+        self.status = Status.GREEN
         self.concussed = False
 
         self.LA = []
@@ -23,7 +24,7 @@ class Participant:
 
     def updateLA(self, val):
         self.LA.append(val)
-        if len(self.LA) > 20:
+        if len(self.LA) > input_storage_limit:
             self.LA = self.LA[1:]
 
     def concussedBool(self):

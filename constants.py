@@ -2,6 +2,9 @@
 Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvodich, Justin Murphy
 
 """
+from tkinter import font
+
+import serial
 from enum import Enum
 import random
 import time
@@ -13,10 +16,31 @@ import datetime as dt
 from matplotlib import animation
 import names
 
+# you'll probably want to edit the two below
+COMPORT = "COM5"
+logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\gui\logo_small.png"
+
+try:
+    arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
+except Exception as e:
+    print(e)
+
+LARGE_FONT = ("Helvetica", 20)
+HEADER_FONT = ("Helvetica", 36)
+BUTTON_FONT = ("Helvetica", 16, "bold")
+
+font1 = ("Arial", 18)
+font2 = ("Times New Roman", 12)
+
+bg = "#bccbe8"
+sage = '#9EAA55'
+
+
 TIME_CONSTANT = 80  # ms
 
 AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
+input_storage_limit = 20
 
 
 class Status(Enum):
