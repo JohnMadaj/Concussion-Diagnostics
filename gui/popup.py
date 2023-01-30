@@ -10,12 +10,16 @@ class Popup:
                 self.root.destroy()
                 self.output = box
 
+        def run_default():
+            self.root.destroy()
+            self.output = 10
+
         def shortcut(event):
             if event.keysym == "Return":
                 run()
 
         self.root = tk.Tk()
-        self.root.geometry("400x200")
+        self.root.geometry("400x270")
         self.root.title("Concussion Diagnostics")
 
         label = tk.Label(self.root, text="Number of Participants")
@@ -27,6 +31,10 @@ class Popup:
         button = tk.Button(self.root, text="Run", command=run)
         button.pack(padx=10, pady=10, anchor="s")
 
+        default_button = tk.Button(self.root, text="Run Default (10)", command=run_default)
+        default_button.pack(anchor="s")
+
+        self.textbox.bind("<KeyPress>", shortcut)
         self.output = 0
         self.root.mainloop()
 

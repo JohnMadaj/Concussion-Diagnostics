@@ -18,7 +18,7 @@ import names
 
 # you'll probably want to edit the two below
 COMPORT = "COM5"
-logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\gui\logo_small.png"
+logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
 
 try:
     arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
@@ -50,11 +50,11 @@ class Status(Enum):
 
 def status_bg_from_status(stat):
     if stat == Status.RED:
-        return "red_menu_status.png"
+        return "graphics/red_menu_status.png"
     elif stat == Status.YELLOW:
-        return "yellow_menu_status.png"
+        return "graphics/yellow_menu_status.png"
     elif stat == Status.GREEN:
-        return r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\green_menu_status.png"
+        return r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\green_menu_status.png"
 
 
 yellow_intensity = 0.5

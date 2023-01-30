@@ -23,7 +23,10 @@ class GUI:
         self.yellow_status_bg = PhotoImage(file=status_bg_from_status(Status.YELLOW))
         self.red_status_bg = PhotoImage(file=status_bg_from_status(Status.RED))
 
-        font3 = font.Font(family="Helvetica", size=40, weight="bold")
+        self.button_accent = PhotoImage(file=r"graphics\button_accent.png")
+
+        self.font3 = font.Font(family="Helvetica", size=40, weight="bold")
+        self.font4 = font.Font(family="Arial", size=18,weight="bold")
 
         def create_window():
             self.root.geometry("800x500")
@@ -33,7 +36,7 @@ class GUI:
         create_window()
 
         self.close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
-        self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=font3)
+        self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=self.font3)
 
         def pack_basics():
             self.close_btn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
@@ -42,7 +45,7 @@ class GUI:
         pack_basics()
 
         # draw logo - cannot be separated into method
-        self.image1 = Image.open(r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\gui\logo_small.png")
+        self.image1 = Image.open(logo_path)
         self.image1.resize((100, 100), Image.ANTIALIAS)
         test = ImageTk.PhotoImage(self.image1)
         label1 = tk.Label(image=test)
@@ -87,9 +90,11 @@ class GUI:
                 sidemenu.append(
 
                     tk.Button(displayframe, text=participant.name,
-                              font=font1,
-                              image=self.get_bg_from_status(participant.status),
-                              compound=RIGHT,
+                              font=self.font4,
+                              foreground="white",
+                              image=self.button_accent,
+                              compound=CENTER,
+                              background=str(participant.status)[7:],
                               activebackground='#4444ff',
                               command=self.org.select_new_participant(i)))
                 sidemenu[-1].grid(column=0, row=i, sticky="nswe")

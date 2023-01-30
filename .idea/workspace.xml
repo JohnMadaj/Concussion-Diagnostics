@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43c0c863-5219-49fa-8a09-67b7aba30c34" name="Changes" comment="main.py is now god">
-      <change afterPath="$PROJECT_DIR$/button_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/green_menu_status.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/green_menu_status.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/logo_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/logo_small.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/popup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/popup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo_small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/red_menu_status.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/red_menu_status.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yellow_menu_status.png" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/yellow_menu_status.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +48,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics" />
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\gui" />
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\reference" />
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\requirements" />
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics" />
-      <recent name="C:\Users\Jack\Documents\Capstone" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
