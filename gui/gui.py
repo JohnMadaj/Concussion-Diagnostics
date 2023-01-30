@@ -19,6 +19,10 @@ class GUI:
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
 
+        self.green_status_bg = PhotoImage(file=status_bg_from_status(Status.GREEN))
+        self.yellow_status_bg = PhotoImage(file=status_bg_from_status(Status.YELLOW))
+        self.red_status_bg = PhotoImage(file=status_bg_from_status(Status.RED))
+
         font3 = font.Font(family="Helvetica", size=40, weight="bold")
 
         def create_window():
@@ -78,9 +82,15 @@ class GUI:
         def fill_sidemenu():
             sidemenu = []
             for i, participant in enumerate(self.org.participantList):
+                photo = PhotoImage(file=logo_path)
+
                 sidemenu.append(
+
                     tk.Button(displayframe, text=participant.name,
-                              font=font1, bg='#ffffff', activebackground='#4444ff',
+                              font=font1,
+                              image=self.get_bg_from_status(participant.status),
+                              compound=RIGHT,
+                              activebackground='#4444ff',
                               command=self.org.select_new_participant(i)))
                 sidemenu[-1].grid(column=0, row=i, sticky="nswe")
         fill_sidemenu()
@@ -168,6 +178,14 @@ class GUI:
                 self.root.set_theme(theme)
             except:
                 pass
+
+    def get_bg_from_status(self, status):
+        if status == Status.GREEN:
+            return self.green_status_bg
+        elif status == Status.YELLOW:
+            return self.yellow_status_bg
+        elif status == Status.RED:
+            return self.red_status_bg
 
     # def show_frame(self, pointer):
     #     frame = self.frames[pointer]

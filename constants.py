@@ -35,7 +35,6 @@ font2 = ("Times New Roman", 12)
 bg = "#bccbe8"
 sage = '#9EAA55'
 
-
 TIME_CONSTANT = 80  # ms
 
 AA_UNIT = "rad/s^2"
@@ -47,6 +46,15 @@ class Status(Enum):
     GREEN = 0
     YELLOW = 1
     RED = 2
+
+
+def status_bg_from_status(stat):
+    if stat == Status.RED:
+        return "red_menu_status.png"
+    elif stat == Status.YELLOW:
+        return "yellow_menu_status.png"
+    elif stat == Status.GREEN:
+        return r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\green_menu_status.png"
 
 
 yellow_intensity = 0.5
