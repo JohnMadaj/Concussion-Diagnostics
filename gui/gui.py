@@ -19,9 +19,9 @@ class GUI:
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
 
-        self.green_status_bg = PhotoImage(file=status_bg_from_status(Status.GREEN))
-        self.yellow_status_bg = PhotoImage(file=status_bg_from_status(Status.YELLOW))
-        self.red_status_bg = PhotoImage(file=status_bg_from_status(Status.RED))
+        # self.green_status_bg = PhotoImage(file=status_bg_from_status(Status.GREEN))
+        # self.yellow_status_bg = PhotoImage(file=status_bg_from_status(Status.YELLOW))
+        # self.red_status_bg = PhotoImage(file=status_bg_from_status(Status.RED))
 
         self.button_accent = PhotoImage(file=r"graphics\button_accent.png")
 
