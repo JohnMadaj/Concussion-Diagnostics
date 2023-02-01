@@ -92,7 +92,7 @@ class GUI:
                     tk.Button(displayframe, text=participant.name,
                               font=self.font4,
                               foreground="white",
-                              image=self.button_accent,
+                              # image=self.button_accent,
                               compound=CENTER,
                               background=str(participant.status)[7:],
                               activebackground='#4444ff',

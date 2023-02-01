@@ -2,6 +2,7 @@
 Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvodich, Justin Murphy
 
 """
+import os
 from tkinter import font
 
 import serial
@@ -18,7 +19,10 @@ import names
 
 # you'll probably want to edit the two below
 COMPORT = "COM5"
-logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
+
+# logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
+logo_path = r"graphics\logo_small.png"
+# logo_path = os.path.dirname(os.path.abspath("logo_small.png"))
 
 try:
     arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
