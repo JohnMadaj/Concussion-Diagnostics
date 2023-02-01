@@ -1,7 +1,5 @@
 import numpy as np
-from matplotlib import animation
 import matplotlib.pyplot as plt
-import datetime as dt
 from constants import *
 
 
@@ -37,10 +35,12 @@ class Figure:
         plt.title('LA')
         plt.ylabel(LA_UNIT)
 
+        self.runLoop()
+
     def setLA(self, LA):
         self.LA = LA
 
-    def runLoop(self, LA):
+    def runLoop(self):
         def animate(i, xs, ys):
             # Add x and y to lists
             self.xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
@@ -70,7 +70,8 @@ class Figure:
 
         plt.show()
 
-
+if __name__ == "__main__":
+    Figure()
 
 
 

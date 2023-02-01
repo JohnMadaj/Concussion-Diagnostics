@@ -7,6 +7,7 @@
     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/Figure.py" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Figure.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,28 @@
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.Figure">
+    <configuration name="Figure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Concussion-Diagnostics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/reference" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/Figure.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="button_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -58,27 +80,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/button_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="demonstration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Concussion-Diagnostics" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demonstration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -151,19 +152,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Figure" />
       <item itemvalue="Python.button_test" />
       <item itemvalue="Python.gui" />
-      <item itemvalue="Python.demonstration" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.popup" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Figure" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.popup" />
         <item itemvalue="Python.gui" />
         <item itemvalue="Python.button_test" />
-        <item itemvalue="Python.demonstration" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +180,7 @@
       </list>
     </option>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -261,39 +262,5 @@
     <MESSAGE value="main.py is now god" />
     <MESSAGE value="new commit" />
     <option name="LAST_COMMIT_MESSAGE" value="new commit" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1675265296592">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.816@0.0.1536.816" timestamp="1675265296592" />
-    <state x="436" y="8" key="CommitChangelistDialog2" timestamp="1675265168229">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="436" y="8" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1675265168229" />
-    <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1675265125626">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1675265125626" />
-    <state width="1515" height="208" key="GridCell.Tab.0.center" timestamp="1675265125626">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1675265125626" />
-    <state width="1515" height="208" key="GridCell.Tab.0.left" timestamp="1675265125626">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1675265125626" />
-    <state width="1515" height="208" key="GridCell.Tab.0.right" timestamp="1675265125626">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1675265125626" />
-    <state x="279" y="54" key="SettingsEditor" timestamp="1675265315018">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="279" y="54" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1675265315018" />
-    <state x="477" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1675265147856">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="477" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.816@0.0.1536.816" timestamp="1675265147856" />
   </component>
 </project>
