@@ -5,6 +5,7 @@ from Diagnostic import areTheyConcussed
 from organizer.organizer import Organizer
 from dummy import *
 from constants import *
+from gui.participant_panel_plot import ParticipantPanel_Plot
 
 # class Main(tk.Tk):
 #     def __init__(self, *args, **kwargs):
@@ -89,26 +90,7 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel.config(text="Participant ")
 
     def plot(self):
-        fig = Figure(figsize=(5, 5),
-                     dpi=100)
-        fig.set_animated(True)
-
-        y = self.org.selected_participant.LA
-
-        # adding the subplot
-        plot1 = fig.add_subplot(111)
-        plot1.set_xlim(right=20)
-        plot1.set_ylim(top=100)
-
-        # plotting the graph
-        plot1.plot(y)
-        canvas = FigureCanvasTkAgg(fig,
-                                   master=self)
-        canvas.draw()
-
-        canvas.get_tk_widget().grid(row=3,
-                                    columnspan=2,
-                                    sticky="news")
+        ParticipantPanel_Plot(self)
 
     def on_reset(self):
         self.running = True

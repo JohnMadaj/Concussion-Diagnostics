@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gui/participant_panel_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reference/Figure.py" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Figure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/participant_panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,8 +162,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Figure" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Figure" />
         <item itemvalue="Python.popup" />
         <item itemvalue="Python.gui" />
         <item itemvalue="Python.button_test" />
