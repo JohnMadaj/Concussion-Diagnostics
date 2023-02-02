@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     if not org.participantList:
         quit()
-    gui = GUI(org)
+    # gui = GUI(org)
     print(org.__str__())
     print(org.selected_participant)
 

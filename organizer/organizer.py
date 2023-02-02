@@ -1,4 +1,5 @@
 from Participants.Participant import Participant
+from gui.gui import GUI
 
 
 class Organizer:
@@ -10,6 +11,9 @@ class Organizer:
         else:
             self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
         self.selected_index = 0
+
+        # experimental code###
+        self.gui = GUI(self)
 
     def select_new_participant(self, index=None):
         if index is not None:

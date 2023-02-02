@@ -10,13 +10,15 @@ from enum import Enum
 import random
 import time
 import numpy
+import tkinter as tk
+
 
 import datetime as dt
 from matplotlib import animation
 import names
 
 # you'll probably want to edit the two below
-COMPORT = "COM5"
+COMPORT = "COM4"
 
 # logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
 logo_path = r"graphics\logo_small.png"

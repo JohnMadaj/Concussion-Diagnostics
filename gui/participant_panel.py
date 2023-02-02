@@ -2,7 +2,6 @@ import math
 import tkinter as tk
 
 from Diagnostic import areTheyConcussed
-from organizer.organizer import Organizer
 from dummy import *
 from constants import *
 from gui.participant_panel_plot import ParticipantPanel_Plot
@@ -36,10 +35,11 @@ from gui.participant_panel_plot import ParticipantPanel_Plot
 
 class ParticipantPanel(tk.Frame):
 
-    def __init__(self, parent, controller, organizer):
+    def __init__(self, parent, controller, master, organizer):
 
         # self.org = Organizer(createListOfDummyParticipants(10))
         self.org = organizer
+        self.master = master
         tk.Frame.__init__(self, parent)
         self.running = False
 
@@ -87,7 +87,7 @@ class ParticipantPanel(tk.Frame):
 
         if not self.org.participantList:
             quit()
-        self.Toplabel.config(text="Participant ")
+        self.Toplabel.config(text=self.org.selected_participant.__str__())
 
     def plot(self):
         ParticipantPanel_Plot(self)
@@ -128,15 +128,16 @@ class ParticipantPanel(tk.Frame):
         while arduinoData.inWaiting() == 0:
             pass
         datapacket = arduinoData.readline()
-        datapacket = str(datapacket, 'utf-8')
-        splitpacket = datapacket.split(',')
-
-        x = float(splitpacket[0])
-        y = float(splitpacket[1])
-        z = float(splitpacket[2])
-
-        self.org.selected_participant.updateLA(
-            math.sqrt(x * x + y * y + z * z))
+        datapacket = float(str(datapacket, 'utf-8'))
+        # splitpacket = datapacket.split(',')
+        #
+        # x = float(splitpacket[0])
+        # y = float(splitpacket[1])
+        # z = float(splitpacket[2])
+        #
+        # self.org.selected_participant.updateLA(
+        #     math.sqrt(x * x + y * y + z * z))
+        self.org.selected_participant.updateLA(datapacket)
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
 
     def if_no_input(self):

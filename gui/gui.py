@@ -1,4 +1,4 @@
-import tkinter as tk
+import random
 import tkinter.font as font
 import tkinter.ttk as ttk
 from ttkthemes import ThemedTk, THEMES
@@ -6,14 +6,14 @@ import names
 from tkinter import *
 from PIL import ImageTk, Image
 from constants import *
+from gui.SideMenu import SideMenu
 
-import organizer.organizer
 from gui.participant_panel import ParticipantPanel
 
 
 class GUI:
 
-    def __init__(self, org=organizer.organizer.Organizer([])):
+    def __init__(self, org):
         self.org = org
 
         self.root = ThemedTk(themebg=True)
@@ -52,10 +52,13 @@ class GUI:
         label1.image = self.image1
         label1.place(x=100, y=15)
 
+
+        self.running = True
         self.create_menubar()
         self.create_displayframe()
         self.create_themebox()
         self.root.mainloop()
+
 
     def create_menubar(self):
 
@@ -82,28 +85,15 @@ class GUI:
         displayframe.columnconfigure(0, weight=1)
         displayframe.columnconfigure(1, weight=3)
 
-        def fill_sidemenu():
-            sidemenu = []
-            for i, participant in enumerate(self.org.participantList):
-                photo = PhotoImage(file=logo_path)
-
-                sidemenu.append(
-
-                    tk.Button(displayframe, text=participant.name,
-                              font=self.font4,
-                              foreground="white",
-                              # image=self.button_accent,
-                              compound=CENTER,
-                              background=str(participant.status)[7:],
-                              activebackground='#4444ff',
-                              command=self.org.select_new_participant(i)))
-                sidemenu[-1].grid(column=0, row=i, sticky="nswe")
-        fill_sidemenu()
+        def call_sidemenu():
+            self.sidemenu = SideMenu(displayframe, 0, master=self.root, organizer=self.org)
+            self.sidemenu.grid(column=0, sticky="news")
+        call_sidemenu()
 
         def call_participant_panel():
-            submenu = ParticipantPanel(displayframe, 0, organizer=self.org)
-            submenu.grid(row=0, column=1, sticky="news", rowspan=16)
-            submenu.config(background="grey")
+            p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
+            p_panel.grid(row=0, column=1, sticky="news", rowspan=16)
+            p_panel.config(background="grey")
         call_participant_panel()
 
         displayframe.pack(pady=0, fill='x', expand=1)
@@ -192,9 +182,6 @@ class GUI:
         elif status == Status.RED:
             return self.red_status_bg
 
-    # def show_frame(self, pointer):
-    #     frame = self.frames[pointer]
-    #     frame.tkraise()
 
 
 if __name__ == "__main__":
