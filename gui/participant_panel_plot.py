@@ -23,5 +23,5 @@ class ParticipantPanel_Plot:
         canvas.draw()
 
         canvas.get_tk_widget().grid(row=3,
-                                    columnspan=2,
+                                    columnspan=1,
                                     sticky="news")

@@ -37,14 +37,14 @@ class ParticipantPanel(tk.Frame):
 
     def __init__(self, parent, controller, master, organizer):
 
-        # self.org = Organizer(createListOfDummyParticipants(10))
         self.org = organizer
         self.parent = parent
         tk.Frame.__init__(self, parent)
         self.running = False
+        self.random_vals_bool = False
 
         def build_grid():
-            self.columnconfigure(0, weight=1)
+            self.columnconfigure(0, weight=2)
             self.columnconfigure(1, weight=1)
 
             self.rowconfigure(0, weight=1)
@@ -57,6 +57,7 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
         self.LAlabel = tk.Label(self, text="LA: 0 m/s^2", font=LARGE_FONT)
+        self.blurb = tk.Label(self, text="info", font=LARGE_FONT)
 
         self.reset_button = tk.Button(self, font=BUTTON_FONT)
         self.exit_button = tk.Button(self, font=BUTTON_FONT, text="Exit",
@@ -67,6 +68,7 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel.grid(row=0, columnspan=2, sticky="news")
         self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
         self.LAlabel.grid(row=2, columnspan=2, sticky="news")
+        self.blurb.grid(row=3, column=1, sticky="news")
 
         self.connect_status_label = tk.Label(self.parent)
 
@@ -76,7 +78,7 @@ class ParticipantPanel(tk.Frame):
 
     def on_stop(self):
         self.running = False
-        self.reset_button.config(text="Reset with New Participant",
+        self.reset_button.config(text="Begin",
                                       command=self.on_reset,)
 
         if not self.org.participantList:
@@ -88,11 +90,11 @@ class ParticipantPanel(tk.Frame):
 
     def on_reset(self):
         self.running = True
-        # self.org.select_new_participant()
         self.reset_button.config(text="Stop", command=self.on_stop)
         self.refresh()
 
     def refresh(self):
+
         self.connect_status_label.place(x=400, y=200)
 
         cbool, status = 0, 0
@@ -113,6 +115,8 @@ class ParticipantPanel(tk.Frame):
         self.LAlabel.config(
             text="LA " + str(self.org.selected_participant.getlastLA()) + " m/s^2")
 
+        self.blurb.config(text=self.org.selected_participant.info())
+
         colorstatus = str(self.org.selected_participant.status)[7:]
 
         self.StatusLabel.config(text="Status: " + colorstatus,
@@ -132,12 +136,13 @@ class ParticipantPanel(tk.Frame):
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
 
     def if_no_input(self):
-        self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
-        self.org.selected_participant.updateLA(dummyValues(1))
-        # self.org.selected_participant.updateLA(10)
-        print("didnt work my guy my bro my homie")
+        if self.random_vals_bool:
+            self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
+            self.org.selected_participant.updateLA(dummyValues(1))
+        else:
+            self.connect_status_label.config(text="NO DEVICE CONNECTED")
+            self.org.selected_participant.updateLA(1)
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
-        # status = e
 
 
 def three_way_vector_magnitude(datapacket):

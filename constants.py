@@ -21,8 +21,9 @@ import names
 COMPORT = "COM4"
 
 # logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
-logo_path = r"graphics\logo_small.png"
+logo_path = r"graphics/logo_small.png"
 # logo_path = os.path.dirname(os.path.abspath("logo_small.png"))
+top_label_path = r"graphics/top_label.png"
 
 
 try:

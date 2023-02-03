@@ -9,7 +9,7 @@ class Clock():
                        background='purple',
                        foreground='white')
 
-        self.root.place(x=1100, y=15)
+        self.root.place(x=1230, y=15)
         self.time()
 
     def time(self):

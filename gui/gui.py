@@ -9,7 +9,7 @@ from constants import *
 from gui.SideMenu import SideMenu
 from gui.clock import Clock
 
-from gui.participant_panel import ParticipantPanel
+from gui.Participant_Panel import ParticipantPanel
 
 
 class GUI:
@@ -20,13 +20,11 @@ class GUI:
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
 
-        # self.green_status_bg = PhotoImage(file=status_bg_from_status(Status.GREEN))
-        # self.yellow_status_bg = PhotoImage(file=status_bg_from_status(Status.YELLOW))
-        # self.red_status_bg = PhotoImage(file=status_bg_from_status(Status.RED))
-
-        self.button_accent = PhotoImage(file=r"graphics\button_accent.png")
+        # self.button_accent = PhotoImage(file=r"graphics/button_accent.png")
 
         self.font3 = font.Font(family="Helvetica", size=40, weight="bold")
+
+        self.random_vals_bool = False
 
         def create_window():
             self.root.geometry("800x500")
@@ -35,29 +33,39 @@ class GUI:
             self.root.configure(background=sage)
         create_window()
 
-        self.close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
-        self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=self.font3)
+        # self.close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
+        # self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=self.font3)
 
-        def pack_basics():
-            self.close_btn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
-            self.top_label.config(background=sage)
-            self.top_label.pack(padx=120, pady=20, anchor=NE)
-        pack_basics()
+        # def pack_basics():
+            # self.close_btn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
+            # self.top_label.config(background=sage)
+            # self.top_label.pack(padx=120, pady=20, anchor=NE)
+        # pack_basics()
 
-        # draw logo - cannot be separated into method
-        self.image1 = Image.open(logo_path)
-        self.image1.resize((100, 100), Image.ANTIALIAS)
-        test = ImageTk.PhotoImage(self.image1)
-        label1 = tk.Label(image=test)
-        label1.image = self.image1
-        label1.place(x=100, y=15)
+        def draw_pictures():
+
+            self.image2 = Image.open(top_label_path)
+            self.test2 =ImageTk.PhotoImage(self.image2)
+            self.label2 = tk.Label(image=self.test2, background=sage)
+            self.label2.image = self.image2
+            self.label2.pack(padx=120, anchor=NE)
+
+            self.image1 = Image.open(logo_path)
+            self.image1.resize((100, 100), Image.ANTIALIAS)
+            self.test1 = ImageTk.PhotoImage(self.image1)
+            self.label1 = tk.Label(image=self.test1)
+            self.label1.image = self.image1
+            self.label1.place(x=80, y=15)
+
+        draw_pictures()
+
+        # self.close_btn.place(x=1110, y=15)
 
         self.sidemenu = SideMenu
         self.p_panel = ParticipantPanel
 
-        self.running = True
-        self.create_menubar()
         self.create_displayframe()
+        self.create_menubar()
         self.create_themebox()
         self.create_clock()
         self.refresh()
@@ -69,17 +77,22 @@ class GUI:
         menubar = tk.Menu(self.root)
         filemenu = tk.Menu(menubar, tearoff=0)
         actionmenu = tk.Menu(menubar, tearoff=0)
+        # close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
 
         def make_menubar_commands():
             filemenu.add_command(label="Open", font=font2)
             filemenu.add_separator()
             filemenu.add_command(label="Close", font=font2, command=exit)
 
-            actionmenu.add_command(label="This button doesnt do anything")
+            actionmenu.add_command(
+                label="Toggle Random Input on No Connection (%s)"
+                      % self.p_panel.random_vals_bool,
+                command=self.toggle_rvb, font=font2)
         make_menubar_commands()
 
         menubar.add_cascade(menu=filemenu, label="File")
         menubar.add_cascade(menu=actionmenu, label="Action")
+        menubar.add_command(label="Close", command=self.on_closing)
 
         self.root.config(menu=menubar)
 
@@ -96,7 +109,7 @@ class GUI:
 
         def call_participant_panel():
             self.p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
-            self.p_panel.grid(row=0, column=1, sticky="news", rowspan=16)
+            self.p_panel.grid(row=0, column=1, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
 
@@ -135,6 +148,11 @@ class GUI:
             return self.yellow_status_bg
         elif status == Status.RED:
             return self.red_status_bg
+
+    def toggle_rvb(self):
+        self.p_panel.random_vals_bool = not self.p_panel.random_vals_bool
+        self.create_menubar()
+
 
     def userinfo(self):
 

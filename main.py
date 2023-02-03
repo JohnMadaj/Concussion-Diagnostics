@@ -2,11 +2,7 @@
 Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvodich, Justin Murphy
 
 """
-from Diagnostic import areTheyConcussed
-from Participants.Participant import Participant
-from constants import *
 from dummy import *
-from gui.gui import GUI
 from gui.popup import Popup
 from organizer.organizer import Organizer
 
@@ -18,9 +14,6 @@ if __name__ == '__main__':
 
     if not org.participantList:
         quit()
-    # gui = GUI(org)
-    print(org.__str__())
-    print(org.selected_participant)
 
     # while True:
     #

@@ -35,6 +35,13 @@ class Participant:
             self.concussed = concussbool
         self.status = newstatus
 
+    def info(self):
+        info = "Info:\n" + str(self.sex)[4:] +\
+                      "\nAge: " + str(self.age) +\
+                      "\nHeight: " + str(self.height) +\
+                      "\nWeight: " + str(self.weight)
+        return info
+
     def __str__(self):
         if self.concussed:
             return "%s is concussed" % self.name
