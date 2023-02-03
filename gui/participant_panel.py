@@ -39,7 +39,7 @@ class ParticipantPanel(tk.Frame):
 
         # self.org = Organizer(createListOfDummyParticipants(10))
         self.org = organizer
-        self.master = master
+        self.parent = parent
         tk.Frame.__init__(self, parent)
         self.running = False
 
@@ -68,6 +68,8 @@ class ParticipantPanel(tk.Frame):
         self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
         self.LAlabel.grid(row=2, columnspan=2, sticky="news")
 
+        self.connect_status_label = tk.Label(self.parent)
+
         self.plot()
         # self.on_reset()
         self.on_stop()
@@ -91,6 +93,8 @@ class ParticipantPanel(tk.Frame):
         self.refresh()
 
     def refresh(self):
+        self.connect_status_label.place(x=400, y=200)
+
         cbool, status = 0, 0
         if self.running:
             try:
@@ -117,6 +121,7 @@ class ParticipantPanel(tk.Frame):
                                 font=LARGE_FONT)
 
     def calculate_input_magnitude(self):
+        self.connect_status_label.config(text="")
         while arduinoData.inWaiting() == 0:
             pass
         datapacket = arduinoData.readline()
@@ -127,6 +132,7 @@ class ParticipantPanel(tk.Frame):
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
 
     def if_no_input(self):
+        self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
         self.org.selected_participant.updateLA(dummyValues(1))
         # self.org.selected_participant.updateLA(10)
         print("didnt work my guy my bro my homie")

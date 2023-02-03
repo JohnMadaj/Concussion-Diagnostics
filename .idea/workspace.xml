@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/SideMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/SideMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/participant_panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
