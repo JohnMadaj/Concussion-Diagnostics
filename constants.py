@@ -24,6 +24,7 @@ COMPORT = "COM4"
 logo_path = r"graphics\logo_small.png"
 # logo_path = os.path.dirname(os.path.abspath("logo_small.png"))
 
+
 try:
     arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
 except Exception as e:

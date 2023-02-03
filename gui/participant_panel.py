@@ -58,32 +58,24 @@ class ParticipantPanel(tk.Frame):
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
         self.LAlabel = tk.Label(self, text="LA: 0 m/s^2", font=LARGE_FONT)
 
+        self.reset_button = tk.Button(self, font=BUTTON_FONT)
+        self.exit_button = tk.Button(self, font=BUTTON_FONT, text="Exit",
+                                     command=quit,)
+        self.reset_button.grid(row=4, column=0, sticky='nwse')
+        self.exit_button.grid(row=4, column=1, sticky='nsew')
+
         self.Toplabel.grid(row=0, columnspan=2, sticky="news")
         self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
         self.LAlabel.grid(row=2, columnspan=2, sticky="news")
 
         self.plot()
+        # self.on_reset()
         self.on_stop()
 
     def on_stop(self):
         self.running = False
-        self.reset_button = tk.Button(self,
-                                      text="Reset with New Participant",
-                                      command=self.on_reset,
-                                      font=BUTTON_FONT)
-
-        self.exit_button = tk.Button(self,
-                                     text="Exit",
-                                     command=quit,
-                                     font=BUTTON_FONT)
-
-        self.reset_button.grid(row=4,
-                               column=0,
-                               sticky='nwse')
-
-        self.exit_button.grid(row=4,
-                              column=1,
-                              sticky='nsew')
+        self.reset_button.config(text="Reset with New Participant",
+                                      command=self.on_reset,)
 
         if not self.org.participantList:
             quit()
@@ -94,7 +86,7 @@ class ParticipantPanel(tk.Frame):
 
     def on_reset(self):
         self.running = True
-        self.org.select_new_participant()
+        # self.org.select_new_participant()
         self.reset_button.config(text="Stop", command=self.on_stop)
         self.refresh()
 
@@ -108,7 +100,7 @@ class ParticipantPanel(tk.Frame):
             finally:
                 self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
-                self.plot()
+                # self.plot()
             self.after(TIME_CONSTANT, self.refresh)
 
     def update_labels(self):
@@ -128,15 +120,9 @@ class ParticipantPanel(tk.Frame):
         while arduinoData.inWaiting() == 0:
             pass
         datapacket = arduinoData.readline()
-        datapacket = float(str(datapacket, 'utf-8'))
-        # splitpacket = datapacket.split(',')
-        #
-        # x = float(splitpacket[0])
-        # y = float(splitpacket[1])
-        # z = float(splitpacket[2])
-        #
-        # self.org.selected_participant.updateLA(
-        #     math.sqrt(x * x + y * y + z * z))
+        datapacket = str(datapacket, 'utf-8')
+        datapacket = three_way_vector_magnitude(datapacket)
+
         self.org.selected_participant.updateLA(datapacket)
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
 
@@ -146,6 +132,16 @@ class ParticipantPanel(tk.Frame):
         print("didnt work my guy my bro my homie")
         return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
         # status = e
+
+
+def three_way_vector_magnitude(datapacket):
+        splitpacket = datapacket.split(',')
+
+        x = float(splitpacket[0])
+        y = float(splitpacket[1])
+        z = float(splitpacket[2])
+
+        return math.sqrt(x * x + y * y + z * z)
 
 
 if __name__ == '__main__':

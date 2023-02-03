@@ -26,6 +26,7 @@ class Organizer:
         else:
             self.selected_index += 1
             self.selected_participant = self.participantList[self.selected_index]
+        self.gui.p_panel.update_labels()
 
     def get_selected_index(self):
         return self.selected_index

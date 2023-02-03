@@ -7,6 +7,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 from constants import *
 from gui.SideMenu import SideMenu
+from gui.clock import Clock
 
 from gui.participant_panel import ParticipantPanel
 
@@ -26,7 +27,6 @@ class GUI:
         self.button_accent = PhotoImage(file=r"graphics\button_accent.png")
 
         self.font3 = font.Font(family="Helvetica", size=40, weight="bold")
-        self.font4 = font.Font(family="Arial", size=18,weight="bold")
 
         def create_window():
             self.root.geometry("800x500")
@@ -52,11 +52,15 @@ class GUI:
         label1.image = self.image1
         label1.place(x=100, y=15)
 
+        self.sidemenu = SideMenu
+        self.p_panel = ParticipantPanel
 
         self.running = True
         self.create_menubar()
         self.create_displayframe()
         self.create_themebox()
+        self.create_clock()
+        self.refresh()
         self.root.mainloop()
 
 
@@ -91,32 +95,46 @@ class GUI:
         call_sidemenu()
 
         def call_participant_panel():
-            p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
-            p_panel.grid(row=0, column=1, sticky="news", rowspan=16)
-            p_panel.config(background="grey")
+            self.p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
+            self.p_panel.grid(row=0, column=1, sticky="news", rowspan=16)
+            self.p_panel.config(background="grey")
         call_participant_panel()
 
         displayframe.pack(pady=0, fill='x', expand=1)
 
+    def refresh(self):
+        # refresh sidemenu
+        self.sidemenu.refresh()
+        # refresh participant panel
+        self.p_panel.refresh()
 
-        #######################################################################
+    def on_closing(self):
+        # if messagebox.askyesno(title="Are u sure?", message="???? are you?"):
+        print("Goodbye, come again!")
+        self.root.destroy()
 
-        #        lst = [(1, 'Raj', 'Mumbai', 19),
-        ##               (2, 'Aaryan', 'Pune', 18),
-        #               (3, 'Vaishnavi', 'Mumbai', 20),
-        #               (4, 'Rachna', 'Mumbai', 21),
-        ##               (5, 'Shubham', 'Delhi', 21)]
-        #        total_rows = len(lst)
-        #        total_columns = len(lst[0])
-        #
-        #       for i in range(total_rows):
-        #            for j in range(total_columns):
-        #               e = Entry(tk(), width=20, fg='blue',
-        #                             font=('Arial', 16, 'bold'))
-        #             submenu.append(
-        #                tk.Button(displayframe, text=e, font=font1, bg='#ffffff', activebackground='#4444ff'))
-        #           e.grid(row=i, column=j)
-        #          e.insert(0, lst[i][j])
+    def create_themebox(self):
+        tc = ttk.Combobox(self.root, values=THEMES)
+        tc.pack(anchor="sw", side=tk.LEFT)
+        tc.set("Change theme")
+        tc.bind("<<ComboboxSelected>>", lambda e: change_theme(tc.get()))
+
+        def change_theme(theme, e=None):
+            try:
+                self.root.set_theme(theme)
+            except:
+                pass
+
+    def create_clock(self):
+        Clock(self.root)
+
+    def get_bg_from_status(self, status):
+        if status == Status.GREEN:
+            return self.green_status_bg
+        elif status == Status.YELLOW:
+            return self.yellow_status_bg
+        elif status == Status.RED:
+            return self.red_status_bg
 
     def userinfo(self):
 
@@ -141,47 +159,25 @@ class GUI:
         e5 = Entry(master).grid(row=4, column=1)
         master.mainloop()
 
-    # def show_message(self):
-    #     if self.check_var.get():
-    #         messagebox.showinfo(title="Message", message="hitler had some good points")
-    #         print(self.num)
-    #         self.num +=1
-    #     else:
-    #         print(self.textbox.get('1.0', tk.END))
-    #
-    # def shortcut(self, event):
-    #     print(event)
-    #     if event.keysym == "Control_L":
-    #         print("You hit CTRL L")
-    #         self.show_message()
-    #     if event.keysym == "q":
-    #         self.on_closing()
 
-    def on_closing(self):
-        # if messagebox.askyesno(title="Are u sure?", message="???? are you?"):
-        print("Goodbye, come again!")
-        self.root.destroy()
+        #######################################################################
 
-    def create_themebox(self):
-        tc = ttk.Combobox(self.root, values=THEMES)
-        tc.pack(anchor="sw", side=tk.LEFT)
-        tc.set("Change theme")
-        tc.bind("<<ComboboxSelected>>", lambda e: change_theme(tc.get()))
-
-        def change_theme(theme, e=None):
-            try:
-                self.root.set_theme(theme)
-            except:
-                pass
-
-    def get_bg_from_status(self, status):
-        if status == Status.GREEN:
-            return self.green_status_bg
-        elif status == Status.YELLOW:
-            return self.yellow_status_bg
-        elif status == Status.RED:
-            return self.red_status_bg
-
+        #        lst = [(1, 'Raj', 'Mumbai', 19),
+        ##               (2, 'Aaryan', 'Pune', 18),
+        #               (3, 'Vaishnavi', 'Mumbai', 20),
+        #               (4, 'Rachna', 'Mumbai', 21),
+        ##               (5, 'Shubham', 'Delhi', 21)]
+        #        total_rows = len(lst)
+        #        total_columns = len(lst[0])
+        #
+        #       for i in range(total_rows):
+        #            for j in range(total_columns):
+        #               e = Entry(tk(), width=20, fg='blue',
+        #                             font=('Arial', 16, 'bold'))
+        #             submenu.append(
+        #                tk.Button(displayframe, text=e, font=font1, bg='#ffffff', activebackground='#4444ff'))
+        #           e.grid(row=i, column=j)
+        #          e.insert(0, lst[i][j])
 
 
 if __name__ == "__main__":
