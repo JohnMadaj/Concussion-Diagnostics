@@ -1,5 +1,6 @@
-@echo on
-cd "C:\Users\Jack\Documents\Capstone\"
-venv\Scripts\python.exe Concussion-Diagnostics\main.py
-pause
+@echo off
+::cd "C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics"
+%cd%
+..\venv\Scripts\python.exe main.py
+::pause
 exit

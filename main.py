@@ -10,10 +10,11 @@ from organizer.organizer import Organizer
 if __name__ == '__main__':
 
     p = Popup()
-    org = Organizer(createListOfDummyParticipants(p.output))
+    # participant_count, COMPORT = p.output
+    participant_count = p.output
+    org = Organizer(createListOfDummyParticipants(participant_count))
 
-    if not org.participantList:
-        quit()
+
 
     # while True:
     #

@@ -28,12 +28,11 @@ class GUI:
 
         def create_window():
             self.root.geometry("800x500")
-            self.root.title("GUI")
+            self.root.title(gui_name)
             self.root.attributes('-fullscreen', True)
             self.root.configure(background=sage)
         create_window()
 
-        # self.close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
         # self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=self.font3)
 
         # def pack_basics():
@@ -59,16 +58,18 @@ class GUI:
 
         draw_pictures()
 
-        # self.close_btn.place(x=1110, y=15)
 
         self.sidemenu = SideMenu
         self.p_panel = ParticipantPanel
+
+
 
         self.create_displayframe()
         self.create_menubar()
         self.create_themebox()
         self.create_clock()
         self.refresh()
+
         self.root.mainloop()
 
 
@@ -77,7 +78,6 @@ class GUI:
         menubar = tk.Menu(self.root)
         filemenu = tk.Menu(menubar, tearoff=0)
         actionmenu = tk.Menu(menubar, tearoff=0)
-        # close_btn = tk.Button(self.root, text="Close", font=font2, command=self.on_closing)
 
         def make_menubar_commands():
             filemenu.add_command(label="Open", font=font2)
@@ -100,30 +100,39 @@ class GUI:
 
         displayframe = tk.Frame(self.root)
         displayframe.columnconfigure(0, weight=1)
-        displayframe.columnconfigure(1, weight=3)
+        displayframe.columnconfigure(1, weight=2)
+        displayframe.columnconfigure(2, weight=3)
 
         def call_sidemenu():
+            self.sidemenu_canvas = tk.Canvas(displayframe)
             self.sidemenu = SideMenu(displayframe, 0, master=self.root, organizer=self.org)
             self.sidemenu.grid(column=0, sticky="news")
+            # self.sidemenu.pack(side="left")
+            # self.sidemenu = SideMenu(self.sidemenu_canvas, 0, master=self.root, organizer=self.org)
+            # t = Label(self.sidemenu_canvas, text="FUCK\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
+            # \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
+            # \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFUCK")
+            # t.pack(side="left")
+            self.sidemenu_canvas.grid(column=0, sticky="news")
         call_sidemenu()
+        # self.myscrollbar = Scrollbar(displayframe, orient="vertical")
+        # self.myscrollbar.grid(column=1, sticky="news", rowspan=8)
+        # self.myscrollbar.config(command=self.sidemenu_canvas.yview)
 
         def call_participant_panel():
             self.p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
-            self.p_panel.grid(row=0, column=1, sticky="new", rowspan=8)
+            self.p_panel.grid(row=0, column=2, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
 
         displayframe.pack(pady=0, fill='x', expand=1)
 
     def refresh(self):
-        # refresh sidemenu
         self.sidemenu.refresh()
-        # refresh participant panel
         self.p_panel.refresh()
 
     def on_closing(self):
-        # if messagebox.askyesno(title="Are u sure?", message="???? are you?"):
-        print("Goodbye, come again!")
+        print(closing_string)
         self.root.destroy()
 
     def create_themebox(self):
@@ -141,13 +150,13 @@ class GUI:
     def create_clock(self):
         Clock(self.root)
 
-    def get_bg_from_status(self, status):
-        if status == Status.GREEN:
-            return self.green_status_bg
-        elif status == Status.YELLOW:
-            return self.yellow_status_bg
-        elif status == Status.RED:
-            return self.red_status_bg
+    # def get_bg_from_status(self, status):
+    #     if status == Status.GREEN:
+    #         return self.green_status_bg
+    #     elif status == Status.YELLOW:
+    #         return self.yellow_status_bg
+    #     elif status == Status.RED:
+    #         return self.red_status_bg
 
     def toggle_rvb(self):
         self.p_panel.random_vals_bool = not self.p_panel.random_vals_bool

@@ -19,4 +19,4 @@ class SideMenu_Button(tk.Button):
                            command=self.on_press)
     def on_press(self):
         self.parent.org.select_new_participant(self.index)
-        print(self.participant.name)
+        # print(self.participant.name)

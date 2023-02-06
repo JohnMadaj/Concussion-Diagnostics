@@ -4,7 +4,7 @@ from gui.SideMenu_Button import SideMenu_Button
 
 class SideMenu(tk.Frame):
     def __init__(self, parent, controller, master, organizer):
-        self.button_accent = tk.PhotoImage(file=r"graphics/button_accent.png")
+        self.button_accent = tk.PhotoImage(file=button_accent_path)
 
         self.org = organizer  # organizer class
         self.master = master  # the TK window

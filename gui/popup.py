@@ -1,4 +1,4 @@
-import tkinter as tk
+from constants import *
 
 
 class Popup:
@@ -6,6 +6,9 @@ class Popup:
 
         def run():
             box = int(self.textbox.get('1.0', tk.END))
+            # com_box = int(self.com_box.get('1.0', tk.END))
+            # if com_box > 0:
+            #     COMPORT = com_box
             if int(box) > 0:
                 self.root.destroy()
                 self.output = box
@@ -26,7 +29,14 @@ class Popup:
         label.pack(padx=10, pady=10)
         self.textbox = tk.Text(self.root, height=1)
         self.textbox.bind("<KeyPress>", shortcut)
-        self.textbox.pack(padx=10, pady=50, anchor="center")
+        self.textbox.pack(padx=10, pady=0, anchor="center")
+
+        label2 = tk.Label(self.root, text="COM Port (change from default):")
+        label2.pack(padx=10, pady=10)
+        #
+        # self.com_box = tk.Text(self.root, height=1)
+        # self.com_box.bind("<KeyPress>", shortcut)
+        # self.com_box.pack(padx=10, pady=0, anchor="center")
 
         button = tk.Button(self.root, text="Run", command=run)
         button.pack(padx=10, pady=10, anchor="s")

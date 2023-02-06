@@ -23,7 +23,7 @@ class Participant:
         return self.LA[-1]
 
     def updateLA(self, val):
-        self.LA.append(val)
+        self.LA.append(round(val, 4))
         if len(self.LA) > input_storage_limit:
             self.LA = self.LA[1:]
 

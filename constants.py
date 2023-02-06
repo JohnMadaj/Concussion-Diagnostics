@@ -12,36 +12,24 @@ import time
 import numpy
 import tkinter as tk
 
-
 import datetime as dt
 from matplotlib import animation
 import names
 
-# you'll probably want to edit the two below
+from local_resources import *
+
+global COMPORT
 COMPORT = "COM4"
-
-# logo_path = r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\logo_small.png"
-logo_path = r"graphics/logo_small.png"
-# logo_path = os.path.dirname(os.path.abspath("logo_small.png"))
-top_label_path = r"graphics/top_label.png"
-
 
 try:
     arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
 except Exception as e:
     print(e)
 
-LARGE_FONT = ("Helvetica", 20)
-HEADER_FONT = ("Helvetica", 36)
-BUTTON_FONT = ("Helvetica", 16, "bold")
+simulate_on_startup = True
 
-font1 = ("Arial", 18)
-font2 = ("Times New Roman", 12)
-
-bg = "#bccbe8"
-sage = '#9EAA55'
-
-TIME_CONSTANT = 80  # ms
+TIME_CONSTANT = 40  # ms
+# TIME_CONSTANT = 500
 
 AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
@@ -54,17 +42,17 @@ class Status(Enum):
     RED = 2
 
 
-def status_bg_from_status(stat):
-    if stat == Status.RED:
-        return "graphics/red_menu_status.png"
-    elif stat == Status.YELLOW:
-        return "graphics/yellow_menu_status.png"
-    elif stat == Status.GREEN:
-        return r"C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\graphics\green_menu_status.png"
-
-
 yellow_intensity = 0.5
 red_intensity = 0.8
+
+
+def status_bg_from_status(stat):
+    if stat == Status.RED:
+        return red_menu_status_path
+    elif stat == Status.YELLOW:
+        return yellow_menu_status_path
+    elif stat == Status.GREEN:
+        return green_menu_status_path
 
 
 class Sex(Enum):

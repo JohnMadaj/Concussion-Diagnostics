@@ -6,6 +6,10 @@ class Organizer:
 
     def __init__(self, participantList):
         self.participantList = participantList
+
+        if not participantList:
+            quit()
+
         if len(self.participantList):
             self.selected_participant = participantList[0]
         else:
@@ -25,7 +29,11 @@ class Organizer:
         else:
             self.selected_index += 1
             self.selected_participant = self.participantList[self.selected_index]
-        self.gui.p_panel.update_labels()
+        # try:
+        #     # self.gui.p_panel.update_labels()
+        #     pass
+        # except Exception as e:
+        #     print(e)
 
     def get_selected_index(self):
         return self.selected_index

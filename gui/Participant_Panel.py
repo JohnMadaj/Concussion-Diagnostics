@@ -46,13 +46,18 @@ class ParticipantPanel(tk.Frame):
         def build_grid():
             self.columnconfigure(0, weight=2)
             self.columnconfigure(1, weight=1)
+            self.columnconfigure(2, weight=1)
 
             self.rowconfigure(0, weight=1)
             self.rowconfigure(1, weight=1)
             self.rowconfigure(2, weight=1)
             self.rowconfigure(3, weight=1)
             self.rowconfigure(4, weight=1)
+            self.rowconfigure(5, weight=4)
         build_grid()
+
+        # self.v = tk.Scrollbar(self)
+        # self.v.grid(column=2, rowspan=10)
 
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
@@ -72,9 +77,12 @@ class ParticipantPanel(tk.Frame):
 
         self.connect_status_label = tk.Label(self.parent)
 
-        self.plot()
-        # self.on_reset()
-        self.on_stop()
+        self.plot(3)
+        # self.plot(4)
+        if simulate_on_startup:
+            self.on_reset()
+        else:
+            self.on_stop()
 
     def on_stop(self):
         self.running = False
@@ -85,8 +93,8 @@ class ParticipantPanel(tk.Frame):
             quit()
         self.Toplabel.config(text=self.org.selected_participant.__str__())
 
-    def plot(self):
-        ParticipantPanel_Plot(self)
+    def plot(self, row):
+        ParticipantPanel_Plot(self, row)
 
     def on_reset(self):
         self.running = True
@@ -95,7 +103,7 @@ class ParticipantPanel(tk.Frame):
 
     def refresh(self):
 
-        self.connect_status_label.place(x=400, y=200)
+        self.connect_status_label.place(x=600, y=400)
 
         cbool, status = 0, 0
         if self.running:
@@ -106,7 +114,7 @@ class ParticipantPanel(tk.Frame):
             finally:
                 self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
-                # self.plot()
+                # self.plot(3)
             self.after(TIME_CONSTANT, self.refresh)
 
     def update_labels(self):

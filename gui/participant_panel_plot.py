@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
 
 
 class ParticipantPanel_Plot:
-    def __init__(self, master):
+    def __init__(self, master, row):
         fig = Figure(figsize=(5, 5),
                      dpi=100)
         fig.set_animated(True)
@@ -22,6 +22,6 @@ class ParticipantPanel_Plot:
                                    master=master)
         canvas.draw()
 
-        canvas.get_tk_widget().grid(row=3,
+        canvas.get_tk_widget().grid(row=row,
                                     columnspan=1,
                                     sticky="news")
