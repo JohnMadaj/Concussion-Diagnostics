@@ -26,9 +26,9 @@ try:
 except Exception as e:
     print(e)
 
-simulate_on_startup = True
+simulate_on_startup = False
 
-TIME_CONSTANT = 40  # ms
+TIME_CONSTANT = 20  # ms
 # TIME_CONSTANT = 500
 
 AA_UNIT = "rad/s^2"

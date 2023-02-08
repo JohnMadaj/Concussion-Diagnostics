@@ -17,6 +17,7 @@ class Participant:
         self.status = Status.GREEN
         self.concussed = False
 
+        self.time = []
         self.LA = []
 
     def getlastLA(self):
@@ -24,8 +25,11 @@ class Participant:
 
     def updateLA(self, val):
         self.LA.append(round(val, 4))
+        self.time.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
         if len(self.LA) > input_storage_limit:
             self.LA = self.LA[1:]
+        if len(self.time) > input_storage_limit:
+            self.time = self.time[1:]
 
     def concussedBool(self):
         return self.concussed

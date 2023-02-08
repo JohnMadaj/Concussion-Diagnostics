@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts">
-      <change afterPath="$PROJECT_DIR$/local_resources.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/blit_ex.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/chatGPTwrotethis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Participants/Participant.py" beforeDir="false" afterPath="$PROJECT_DIR$/Participants/Participant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/Participant_Panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/Participant_Panel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/SideMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/SideMenu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/SideMenu_Button.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/SideMenu_Button.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/participant_panel_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel_plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/popup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/popup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.bat" beforeDir="false" afterPath="$PROJECT_DIR$/main.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/organizer/organizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/organizer/organizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +37,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jack/Documents/Capstone/Concussion-Diagnostics&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/Jack/Documents/Navy_AI_Comp"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\reference" />
@@ -58,7 +52,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="Figure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="blit_ex" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -70,7 +64,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/Figure.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/blit_ex.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -79,7 +73,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="after" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="chatGPTwrotethis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -91,7 +85,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/after.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/chatGPTwrotethis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,7 +94,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,11 +102,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gui" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/gui.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/constants.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,7 +136,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="popup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="participant_panel_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -151,10 +145,10 @@
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gui" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/popup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/participant_panel_plot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,19 +158,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.after" />
-      <item itemvalue="Python.Figure" />
-      <item itemvalue="Python.gui" />
+      <item itemvalue="Python.blit_ex" />
+      <item itemvalue="Python.chatGPTwrotethis" />
+      <item itemvalue="Python.constants" />
+      <item itemvalue="Python.participant_panel_plot" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.popup" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.after" />
-        <item itemvalue="Python.Figure" />
-        <item itemvalue="Python.popup" />
-        <item itemvalue="Python.gui" />
+        <item itemvalue="Python.chatGPTwrotethis" />
+        <item itemvalue="Python.constants" />
+        <item itemvalue="Python.blit_ex" />
+        <item itemvalue="Python.participant_panel_plot" />
       </list>
     </recent_temporary>
   </component>

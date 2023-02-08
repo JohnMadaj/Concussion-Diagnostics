@@ -77,7 +77,7 @@ class ParticipantPanel(tk.Frame):
 
         self.connect_status_label = tk.Label(self.parent)
 
-        self.plot(3)
+        self.plot(3, 0)
         # self.plot(4)
         if simulate_on_startup:
             self.on_reset()
@@ -93,8 +93,8 @@ class ParticipantPanel(tk.Frame):
             quit()
         self.Toplabel.config(text=self.org.selected_participant.__str__())
 
-    def plot(self, row):
-        ParticipantPanel_Plot(self, row)
+    def plot(self, row, column):
+        self.pp_plot = ParticipantPanel_Plot(self.org, self.master, self, row, column)
 
     def on_reset(self):
         self.running = True
@@ -114,7 +114,9 @@ class ParticipantPanel(tk.Frame):
             finally:
                 self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
-                # self.plot(3)
+
+                self.pp_plot.refresh()
+
             self.after(TIME_CONSTANT, self.refresh)
 
     def update_labels(self):
