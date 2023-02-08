@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts">
       <change afterPath="$PROJECT_DIR$/reference/blit_ex.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/reference/chatGPTwrotethis.py" afterDir="false" />
@@ -12,6 +13,12 @@
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/Participant_Panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/Participant_Panel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/participant_panel_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel_plot.py" afterDir="false" />
+=======
+    <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/clock.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/clock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/popup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/popup.py" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +44,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "last_opened_file_path": "C:/Users/Jack/Documents/Navy_AI_Comp"
   }
 }]]></component>
+=======
+>>>>>>> origin/main
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\reference" />
@@ -94,6 +104,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +126,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> origin/main
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,6 +150,30 @@
       <method v="2" />
     </configuration>
     <configuration name="participant_panel_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+<<<<<<< HEAD
+=======
+      <module name="Concussion-Diagnostics" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gui" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/participant_panel_plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="popup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> origin/main
       <module name="Concussion-Diagnostics" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -158,19 +195,34 @@
       <method v="2" />
     </configuration>
     <list>
+<<<<<<< HEAD
       <item itemvalue="Python.blit_ex" />
       <item itemvalue="Python.chatGPTwrotethis" />
       <item itemvalue="Python.constants" />
       <item itemvalue="Python.participant_panel_plot" />
       <item itemvalue="Python.main" />
+=======
+      <item itemvalue="Python.after" />
+      <item itemvalue="Python.Figure" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.popup" />
+      <item itemvalue="Python.participant_panel_plot" />
+>>>>>>> origin/main
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+<<<<<<< HEAD
         <item itemvalue="Python.chatGPTwrotethis" />
         <item itemvalue="Python.constants" />
         <item itemvalue="Python.blit_ex" />
         <item itemvalue="Python.participant_panel_plot" />
+=======
+        <item itemvalue="Python.popup" />
+        <item itemvalue="Python.participant_panel_plot" />
+        <item itemvalue="Python.after" />
+        <item itemvalue="Python.Figure" />
+>>>>>>> origin/main
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -254,26 +306,8 @@
       <option name="project" value="LOCAL" />
       <updated>1674834249732</updated>
     </task>
-    <task id="LOCAL-00009" summary="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts">
-      <created>1675371775583</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1675371775583</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="uncommented some shit" />
@@ -285,7 +319,24 @@
     <MESSAGE value="created popup.py which is called prior to creation of organizer and gui in main.&#10;gui now recieves organizer object to pull participant info from" />
     <MESSAGE value="main.py is now god" />
     <MESSAGE value="new commit" />
-    <MESSAGE value="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="new commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1498" height="109" key="GridCell.Tab.0.bottom" timestamp="1675870199747">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1498" height="109" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1675870199747" />
+    <state width="1498" height="109" key="GridCell.Tab.0.center" timestamp="1675870199747">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1498" height="109" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1675870199747" />
+    <state width="1498" height="109" key="GridCell.Tab.0.left" timestamp="1675870199747">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1498" height="109" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1675870199747" />
+    <state width="1498" height="109" key="GridCell.Tab.0.right" timestamp="1675870199747">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1498" height="109" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1675870199747" />
   </component>
 </project>

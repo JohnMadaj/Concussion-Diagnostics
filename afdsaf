@@ -1,0 +1,165 @@
+[1mdiff --cc .idea/workspace.xml[m
+[1mindex bfefd6f,7d77995..0000000[m
+[1m--- a/.idea/workspace.xml[m
+[1m+++ b/.idea/workspace.xml[m
+[36m@@@ -4,14 -4,10 +4,21 @@@[m
+      <option name="autoReloadType" value="SELECTIVE" />[m
+    </component>[m
+    <component name="ChangeListManager">[m
+[32m++<<<<<<< HEAD[m
+[32m +    <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="reorganized sidemenu structure, added new classes to create sidemenu button functionality. Still need universal organizer and system clock so real updates happen on button press, but currently the buttons create printouts">[m
+[32m +      <change afterPath="$PROJECT_DIR$/reference/blit_ex.py" afterDir="false" />[m
+[32m +      <change afterPath="$PROJECT_DIR$/reference/chatGPTwrotethis.py" afterDir="false" />[m
+[32m +      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />[m
+[32m +      <change beforePath="$PROJECT_DIR$/Participants/Participant.py" beforeDir="false" afterPath="$PROJECT_DIR$/Participants/Participant.py" afterDir="false" />[m
+[32m +      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />[m
+[32m +      <change beforePath="$PROJECT_DIR$/gui/Participant_Panel.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/Participant_Panel.py" afterDir="false" />[m
+[32m +      <change beforePath="$PROJECT_DIR$/gui/participant_panel_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/participant_panel_plot.py" afterDir="false" />[m
+[32m++=======[m
+[32m+     <list default="true" id="b1224b57-128a-4718-a23d-ad253efb9436" name="Default Changelist" comment="">[m
+[32m+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />[m
+[32m+       <change beforePath="$PROJECT_DIR$/gui/clock.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/clock.py" afterDir="false" />[m
+[32m+       <change beforePath="$PROJECT_DIR$/gui/popup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/popup.py" afterDir="false" />[m
+[32m++>>>>>>> origin/main[m
+      </list>[m
+      <option name="SHOW_DIALOG" value="false" />[m
+      <option name="HIGHLIGHT_CONFLICTS" value="true" />[m
+[36m@@@ -37,11 -33,6 +44,14 @@@[m
+      <option name="hideEmptyMiddlePackages" value="true" />[m
+      <option name="showLibraryContents" value="true" />[m
+    </component>[m
+[32m++<<<<<<< HEAD[m
+[32m +  <component name="PropertiesComponent"><![CDATA[{[m
+[32m +  "keyToString": {[m
+[32m +    "last_opened_file_path": "C:/Users/Jack/Documents/Navy_AI_Comp"[m
+[32m +  }[m
+[32m +}]]></component>[m
+[32m++=======[m
+[32m++>>>>>>> origin/main[m
+    <component name="RecentsManager">[m
+      <key name="MoveFile.RECENT_KEYS">[m
+        <recent name="C:\Users\Jack\Documents\Capstone\Concussion-Diagnostics\reference" />[m
+[36m@@@ -85,28 -76,7 +95,29 @@@[m
+        <option name="IS_MODULE_SDK" value="true" />[m
+        <option name="ADD_CONTENT_ROOTS" value="true" />[m
+        <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m -      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/after.py" />[m
+[32m +      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reference/chatGPTwrotethis.py" />[m
+[32m +      <option name="PARAMETERS" value="" />[m
+[32m +      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[32m +      <option name="EMULATE_TERMINAL" value="false" />[m
+[32m +      <option name="MODULE_MODE" value="false" />[m
+[32m +      <option name="REDIRECT_INPUT" value="false" />[m
+[32m +      <option name="INPUT_FILE" value="" />[m
+[32m +      <method v="2" />[m
+[32m +    </configuration>[m
+[32m++<<<<<<< HEAD[m
+[32m +    <configuration name="constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">[m
+[32m +      <module name="Concussion-Diagnostics" />[m
+[32m +      <option name="INTERPRETER_OPTIONS" value="" />[m
+[32m +      <option name="PARENT_ENVS" value="true" />[m
+[32m +      <envs>[m
+[32m +        <env name="PYTHONUNBUFFERED" value="1" />[m
+[32m +      </envs>[m
+[32m +      <option name="SDK_HOME" value="" />[m
+[32m +      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />[m
+[32m +      <option name="IS_MODULE_SDK" value="true" />[m
+[32m +      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[32m +      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[32m +      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/constants.py" />[m
+        <option name="PARAMETERS" value="" />[m
+        <option name="SHOW_COMMAND_LINE" value="false" />[m
+        <option name="EMULATE_TERMINAL" value="false" />[m
+[36m@@@ -115,6 -85,6 +126,8 @@@[m
+        <option name="INPUT_FILE" value="" />[m
+        <method v="2" />[m
+      </configuration>[m
+[32m++=======[m
+[32m++>>>>>>> origin/main[m
+      <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">[m
+        <module name="Concussion-Diagnostics" />[m
+        <option name="INTERPRETER_OPTIONS" value="" />[m
+[36m@@@ -137,6 -107,27 +150,30 @@@[m
+        <method v="2" />[m
+      </configuration>[m
+      <configuration name="participant_panel_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+       <module name="Concussion-Diagnostics" />[m
+[32m+       <option name="INTERPRETER_OPTIONS" value="" />[m
+[32m+       <option name="PARENT_ENVS" value="true" />[m
+[32m+       <envs>[m
+[32m+         <env name="PYTHONUNBUFFERED" value="1" />[m
+[32m+       </envs>[m
+[32m+       <option name="SDK_HOME" value="" />[m
+[32m+       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gui" />[m
+[32m+       <option name="IS_MODULE_SDK" value="false" />[m
+[32m+       <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[32m+       <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[32m+       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui/participant_panel_plot.py" />[m
+[32m+       <option name="PARAMETERS" value="" />[m
+[32m+       <option name="SHOW_COMMAND_LINE" value="false" />[m
+[32m+       <option name="EMULATE_TERMINAL" value="false" />[m
+[32m+       <option name="MODULE_MODE" value="false" />[m
+[32m+       <option name="REDIRECT_INPUT" value="false" />[m
+[32m+       <option name="INPUT_FILE" value="" />[m
+[32m+       <method v="2" />[m
+[32m+     </configuration>[m
+[32m+     <configuration name="popup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">[m
+[32m++>>>>>>> origin/main[m
+        <module name="Concussion-Diagnostics" />[m
+        <option name="INTERPRETER_OPTIONS" value="" />[m
+        <option name="PARENT_ENVS" value="true" />[m
+[36m@@@ -158,19 -149,19 +195,34 @@@[m
+        <method v="2" />[m
+      </configuration>[m
+      <list>[m
+[32m++<<<<<<< HEAD[m
+[32m +      <item itemvalue="Python.blit_ex" />[m
+[32m +      <item itemvalue="Python.chatGPTwrotethis" />[m
+[32m +      <item itemvalue="Python.constants" />[m
+[32m +      <item itemvalue="Python.participant_panel_plot" />[m
+[32m +      <item itemvalue="Python.main" />[m
+[32m++=======[m
+[32m+       <item itemvalue="Python.after" />[m
+[32m+       <item itemvalue="Python.Figure" />[m
+[32m+       <item itemvalue="Python.main" />[m
+[32m+       <item itemvalue="Python.popup" />[m
+[32m+       <item itemvalue="Python.participant_panel_plot" />[m
+[32m++>>>>>>> origin/main[m
+      </list>[m
+      <recent_temporary>[m
+        <list>[m
+          <item itemvalue="Python.main" />[m
+[32m++<<<<<<< HEAD[m
+[32m +        <item itemvalue="Python.chatGPTwrotethis" />[m
+[32m +        <item itemvalue="Python.constants" />[m
+[32m +        <item itemvalue="Python.blit_ex" />[m
+[32m +        <item itemvalue="Python.participant_panel_plot" />[m
+[32m++=======[m
+[32m+         <item itemvalue="Python.popup" />[m
+[32m+         <item itemvalue="Python.participant_panel_plot" />[m
+[32m+         <item itemvalue="Python.after" />[m
+[32m+         <item itemvalue="Python.Figure" />[m
+[32m++>>>>>>> origin/main[m
+        </list>[m
+      </recent_temporary>[m
+    </component>[m
+[1mdiff --git a/Participants/__pycache__/Participant.cpython-310.pyc b/Participants/__pycache__/Participant.cpython-310.pyc[m
+[1mindex 3afcdf7..65ff102 100644[m
+Binary files a/Participants/__pycache__/Participant.cpython-310.pyc and b/Participants/__pycache__/Participant.cpython-310.pyc differ
+[1mdiff --git a/__pycache__/constants.cpython-310.pyc b/__pycache__/constants.cpython-310.pyc[m
+[1mindex 057d67f..7f916e0 100644[m
+Binary files a/__pycache__/constants.cpython-310.pyc and b/__pycache__/constants.cpython-310.pyc differ
+[1mdiff --git a/gui/__pycache__/clock.cpython-310.pyc b/gui/__pycache__/clock.cpython-310.pyc[m
+[1mindex 51332ae..6cc49ad 100644[m
+Binary files a/gui/__pycache__/clock.cpython-310.pyc and b/gui/__pycache__/clock.cpython-310.pyc differ
+[1mdiff --git a/gui/__pycache__/participant_panel.cpython-310.pyc b/gui/__pycache__/participant_panel.cpython-310.pyc[m
+[1mindex a959d83..0c1b497 100644[m
+Binary files a/gui/__pycache__/participant_panel.cpython-310.pyc and b/gui/__pycache__/participant_panel.cpython-310.pyc differ
+[1mdiff --git a/gui/__pycache__/participant_panel_plot.cpython-310.pyc b/gui/__pycache__/participant_panel_plot.cpython-310.pyc[m
+[1mindex d6418d2..48ee3b6 100644[m
+Binary files a/gui/__pycache__/participant_panel_plot.cpython-310.pyc and b/gui/__pycache__/participant_panel_plot.cpython-310.pyc differ
+[1mdiff --git a/gui/__pycache__/popup.cpython-310.pyc b/gui/__pycache__/popup.cpython-310.pyc[m
+[1mindex 784d92a..dae44b4 100644[m
+Binary files a/gui/__pycache__/popup.cpython-310.pyc and b/gui/__pycache__/popup.cpython-310.pyc differ
