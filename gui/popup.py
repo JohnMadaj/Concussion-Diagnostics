@@ -31,6 +31,7 @@ class Popup:
         self.textbox.bind("<KeyPress>", shortcut)
         self.textbox.pack(padx=10, pady=0, anchor="center")
 
+
         label2 = tk.Label(self.root, text="COM Port (change from default):")
         label2.pack(padx=10, pady=10)
         #

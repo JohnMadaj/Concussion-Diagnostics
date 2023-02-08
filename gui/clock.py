@@ -5,11 +5,11 @@ class Clock():
 
     def __init__(self, parent):
         # tk.Label.__init__(parent, font=('calibri', 40, 'bold'),
-        self.root = tk.Label(parent, font=('calibri', 16, 'bold'),
-                       background='purple',
+        self.root = tk.Label(parent, font=('calibri', 10, 'bold'),
+                       background='black',
                        foreground='white')
 
-        self.root.place(x=1230, y=15)
+        self.root.place(x=1450, y=10)
         self.time()
 
     def time(self):
