@@ -22,10 +22,10 @@ class ParticipantPanel_Plot:
         self.row = row
         self.column = column
         fig = Figure(figsize=(5, 5),
-                     dpi=70)
+                     dpi=100)
         # fig.set_animated(True)
 
-        y = self.org.selected_participant.LA
+        self.y = []
 
         # adding the subplot
         self.plot1 = fig.add_subplot(111)
@@ -41,12 +41,21 @@ class ParticipantPanel_Plot:
         self.canvas.get_tk_widget().grid(row=row,
                                     columnspan=1,
                                     sticky="news")
-    #     self.update()
-    #
+
+    # def updateY(self):
+
+
     def refresh(self):
+
+
         self.plot1.clear()
-        y = self.org.selected_participant.LA
-        self.plot1.plot(y)
+        # self.y.append(self.org.selected_participant.graph_helper())
+
+        self.y = self.org.selected_participant.graph_helper()
+
+        self.plot1.plot(self.y)
+        self.plot1.set_xlim(right=20)
+        self.plot1.set_ylim(top=100)
         self.canvas.draw()
 
         self.canvas.get_tk_widget().grid(row=self.row,

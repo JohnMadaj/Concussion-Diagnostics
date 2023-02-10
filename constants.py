@@ -33,7 +33,7 @@ TIME_CONSTANT = 20  # ms
 
 AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
-input_storage_limit = 20
+input_storage_limit = 10
 
 
 class Status(Enum):

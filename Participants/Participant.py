@@ -19,9 +19,24 @@ class Participant:
 
         self.time = []
         self.LA = []
+        self.LAThreshold = LA_GENERIC
+
+        self.y = []
 
     def getlastLA(self):
         return self.LA[-1]
+
+    def get_last_intensity(self):
+        return self.LA[-1] / self.LAThreshold
+
+    def graph_helper(self):
+        if self.LA[-1] / self.LAThreshold > yellow_intensity:
+            self.y.append(self.LA[-1])
+        else:
+            self.y.append(0)
+        if len(self.y) > input_storage_limit:
+            self.y = self.y[1:]
+        return self.y
 
     def updateLA(self, val):
         self.LA.append(round(val, 4))
@@ -30,6 +45,7 @@ class Participant:
             self.LA = self.LA[1:]
         if len(self.time) > input_storage_limit:
             self.time = self.time[1:]
+
 
     def concussedBool(self):
         return self.concussed
@@ -45,6 +61,8 @@ class Participant:
                       "\nHeight: " + str(self.height) +\
                       "\nWeight: " + str(self.weight)
         return info
+
+
 
     def __str__(self):
         if self.concussed:

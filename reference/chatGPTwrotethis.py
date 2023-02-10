@@ -10,7 +10,7 @@ class AnimatedGraph:
     def __init__(self, master, frame, row, column):
         self.master = master
         self.frame = frame
-        self.figure = plt.Figure(figsize=(2, 2), dpi=40)
+        self.figure = plt.Figure(figsize=(3, 5), dpi=200)
         self.ax = self.figure.add_subplot(111)
         self.x = []
         self.y = []
@@ -48,9 +48,10 @@ if __name__ == '__main__':
     frame.rowconfigure(0)
     frame.rowconfigure(1)
     frame.grid()
-    for _ in range(3):
-        AnimatedGraph(root, frame, _, 0).plot()
-        AnimatedGraph(root, frame, _, 1).plot()
+    # for _ in range(3):
+    #     AnimatedGraph(root, frame, _, 1).plot()
+    AnimatedGraph(root, frame, 0, 0).plot()
+
 
 
     root.mainloop()

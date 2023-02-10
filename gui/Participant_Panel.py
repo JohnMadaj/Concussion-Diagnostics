@@ -114,7 +114,6 @@ class ParticipantPanel(tk.Frame):
             finally:
                 self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
-
                 self.pp_plot.refresh()
 
             self.after(TIME_CONSTANT, self.refresh)
