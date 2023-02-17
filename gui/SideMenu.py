@@ -41,10 +41,10 @@ class SideMenu(tk.Frame):
             s = str(button.participant.status)[7:]
             self.sidemenu_list[i].config(background=s)
 
-            if s == "RED":
-                move_button = self.sidemenu_list[i]
-                self.sidemenu_list[i] = self.sidemenu_list[1]
-                self.sidemenu_list[1] = move_button
+            # if s == "RED":
+            #     move_button = self.sidemenu_list[i]
+            #     self.sidemenu_list[i] = self.sidemenu_list[1]
+            #     self.sidemenu_list[1] = move_button
 
         self.after(TIME_CONSTANT, self.refresh)
 

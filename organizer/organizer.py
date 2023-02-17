@@ -6,6 +6,7 @@ class Organizer:
 
     def __init__(self, participantList):
         self.participantList = participantList
+        self.visualize = True
 
         if not participantList:
             quit()

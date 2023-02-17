@@ -114,13 +114,14 @@ class ParticipantPanel(tk.Frame):
             finally:
                 self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
-                self.pp_plot.refresh()
+                if self.org.visualize:
+                    self.pp_plot.refresh()
 
             self.after(TIME_CONSTANT, self.refresh)
 
     def update_labels(self):
         self.Toplabel.config(
-            text="Participant " + self.org.selected_participant.__str__())
+            text="Participant " + self.org.selected_participant.concussed_State())
         self.LAlabel.config(
             text="LA " + str(self.org.selected_participant.getlastLA()) + " m/s^2")
 

@@ -50,6 +50,11 @@ class Participant:
     def concussedBool(self):
         return self.concussed
 
+    def concussed_State(self):
+        if self.concussed:
+            return "%s is concussed" % self.name
+        return "%s is not concussed" % self.name
+
     def updateStatus(self, concussbool, newstatus):
         if not self.concussed:
             self.concussed = concussbool
@@ -62,9 +67,5 @@ class Participant:
                       "\nWeight: " + str(self.weight)
         return info
 
-
-
     def __str__(self):
-        if self.concussed:
-            return "%s is concussed" % self.name
-        return "%s is not concussed" % self.name
+        return self.name

@@ -11,6 +11,7 @@ import random
 import time
 import numpy
 import tkinter as tk
+from tkinter import messagebox
 
 import datetime as dt
 from matplotlib import animation
@@ -33,7 +34,7 @@ TIME_CONSTANT = 20  # ms
 
 AA_UNIT = "rad/s^2"
 LA_UNIT = "m/s^2"
-input_storage_limit = 10
+input_storage_limit = 20
 
 
 class Status(Enum):

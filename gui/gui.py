@@ -6,6 +6,7 @@ import names
 from tkinter import *
 from PIL import ImageTk, Image
 from constants import *
+from gui.Device_Manager_Popup import Device_Manager_Popup
 from gui.SideMenu import SideMenu
 from gui.clock import Clock
 
@@ -88,6 +89,10 @@ class GUI:
                 label="Toggle Random Input on No Connection (%s)"
                       % self.p_panel.random_vals_bool,
                 command=self.toggle_rvb, font=font2)
+            actionmenu.add_command(
+                label="Device Manager",
+                command=self.device_manager, font=font2)
+
         make_menubar_commands()
 
         menubar.add_cascade(menu=filemenu, label="File")
@@ -163,6 +168,8 @@ class GUI:
         self.create_menubar()
 
 
+    def device_manager(self):
+        Device_Manager_Popup(self.org)
     def userinfo(self):
 
         master = Tk()
