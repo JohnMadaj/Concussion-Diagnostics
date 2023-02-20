@@ -12,6 +12,7 @@ import time
 import numpy
 import tkinter as tk
 from tkinter import messagebox
+from threading import Thread
 
 import datetime as dt
 from matplotlib import animation

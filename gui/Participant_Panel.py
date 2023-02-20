@@ -6,36 +6,10 @@ from dummy import *
 from constants import *
 from gui.participant_panel_plot import ParticipantPanel_Plot
 
-# class Main(tk.Tk):
-#     def __init__(self, *args, **kwargs):
-#         tk.Tk.__init__(self, *args, **kwargs)
-#         self.grid_rowconfigure(0, weight=1)  # this needed to be added
-#         self.grid_columnconfigure(0, weight=1)  # as did this
-#         self.title("GUI")
-#         self.attributes('-fullscreen', True)
-#         # self.configure(background=bg)
-#
-#         main_container = tk.Frame(self)
-#         main_container.grid(column=0, row=0, sticky="nsew")
-#         main_container.grid_rowconfigure(0, weight=1)
-#         main_container.grid_columnconfigure(0, weight=1)
-#
-#         self.frames = {}
-#
-#         for fr in (MainPage,):
-#             frame = fr(main_container, self)
-#             self.frames[fr] = frame
-#             frame.grid(row=0, column=0, sticky="nsew")
-#         self.show_frame(MainPage)
-#
-#     def show_frame(self, pointer):
-#         frame = self.frames[pointer]
-#         frame.tkraise()
-
 
 class ParticipantPanel(tk.Frame):
 
-    def __init__(self, parent, controller, master, organizer):
+    def __init__(self, parent, organizer):
 
         self.org = organizer
         self.parent = parent
@@ -56,8 +30,6 @@ class ParticipantPanel(tk.Frame):
             self.rowconfigure(5, weight=4)
         build_grid()
 
-        # self.v = tk.Scrollbar(self)
-        # self.v.grid(column=2, rowspan=10)
 
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
@@ -78,7 +50,6 @@ class ParticipantPanel(tk.Frame):
         self.connect_status_label = tk.Label(self.parent)
 
         self.plot(3, 0)
-        # self.plot(4)
         if simulate_on_startup:
             self.on_reset()
         else:
@@ -166,6 +137,6 @@ def three_way_vector_magnitude(datapacket):
 
 
 if __name__ == '__main__':
-    app = Main()
+    app = tk.Tk()
     app.geometry("1280x720")
     app.mainloop()

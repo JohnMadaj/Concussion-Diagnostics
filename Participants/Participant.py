@@ -3,11 +3,14 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 
 Participant - base class
 """
+import uuid
 from constants import *
+
 
 
 class Participant:
     def __init__(self, name, age, height, weight, sex):
+        self.id = uuid.uuid4()
         self.name = name
         self.age = age
         self.height = height
@@ -64,7 +67,8 @@ class Participant:
         info = "Info:\n" + str(self.sex)[4:] +\
                       "\nAge: " + str(self.age) +\
                       "\nHeight: " + str(self.height) +\
-                      "\nWeight: " + str(self.weight)
+                      "\nWeight: " + str(self.weight) #+\
+                      # "\nID: " + str(self.id)
         return info
 
     def __str__(self):

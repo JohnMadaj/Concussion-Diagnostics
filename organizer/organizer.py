@@ -19,6 +19,24 @@ class Organizer:
 
         self.gui = GUI(self)
 
+    # @TODO: This function is SLOW because it loops through list
+    # @TODO: I am almost positive the answer is that participant list should be a dict
+    def get_participant_from_ID(self, id):
+        for participant in self.participantList:
+            if participant.id == id:
+                return participant
+
+    def update_participant_by_ID(self, id, name, age, sex, height, weight):
+        for participant in self.participantList:
+            if participant.id == id:
+                participant.name = name
+                participant.age = age
+                participant.sex = sex
+                participant.height = height
+                participant.weight = weight
+                return
+
+
     def select_new_participant(self, index=None):
         if index is not None:
             self.selected_participant = self.participantList[index]

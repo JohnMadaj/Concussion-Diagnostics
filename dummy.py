@@ -39,7 +39,10 @@ def dummyValues(numvals):
 
 def createListOfDummyParticipants(num):
     tempnameslist = namegenerator(num)
+    # participantlist = {}
     participantlist = []
     for name in tempnameslist:
-        participantlist.append(Participant(name, agegenerator(), heightgenerator(), weightgenerator(), sexgenerator()))
+        temp = Participant(name, agegenerator(), heightgenerator(), weightgenerator(), sexgenerator())
+        # participantlist[temp.id] = temp
+        participantlist.append(temp)
     return participantlist

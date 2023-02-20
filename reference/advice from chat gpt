@@ -1,0 +1,47 @@
+It looks like the main time-consuming function in this code is calculate_input_magnitude() since it is reading input from the serial port and updating the participant's LA. This function has a while loop that could block the GUI and cause it to become unresponsive.
+
+To optimize this code with multithreading, you could move the calculate_input_magnitude() function to a separate thread. Here's an example of how you could do that:
+
+    Import the Thread class from the threading module:
+
+python
+
+from threading import Thread
+
+    Modify the refresh() method to start the calculate_input_magnitude() function in a new thread:
+
+python
+
+def refresh(self):
+    self.connect_status_label.place(x=600, y=400)
+
+    if self.running:
+        # Start the new thread
+        t = Thread(target=self.calculate_input_magnitude_thread)
+        t.start()
+
+    self.org.selected_participant.updateStatus(cbool, status)
+    self.update_labels()
+    if self.org.visualize:
+        self.pp_plot.refresh()
+
+    self.after(TIME_CONSTANT, self.refresh)
+
+    Create the calculate_input_magnitude_thread() method:
+
+python
+
+def calculate_input_magnitude_thread(self):
+    self.connect_status_label.config(text="")
+    while arduinoData.inWaiting() == 0:
+        pass
+    datapacket = arduinoData.readline()
+    datapacket = str(datapacket, 'utf-8')
+    datapacket = three_way_vector_magnitude(datapacket)
+
+    self.org.selected_participant.updateLA(datapacket)
+    cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+
+This method is very similar to the original calculate_input_magnitude() method, except that it doesn't return any values. Instead, it updates the participant's LA and concussion status directly.
+
+With these changes, the calculate_input_magnitude() function will run in a separate thread, so it won't block the GUI. This should make the GUI more responsive, especially if the input data takes a long time to arrive.

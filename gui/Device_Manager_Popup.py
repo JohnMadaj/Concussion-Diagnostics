@@ -13,24 +13,22 @@ class Device_Manager_Popup():
         self.org.visualize = False
 
         # Create Tkinter StringVar to store selected participant
-        self.selected_participant = tk.StringVar()
+        self.selected_participant_string = tk.StringVar()
 
         # Set default value for selected participant
-        self.selected_participant.set(self.org.selected_participant)
+        self.selected_participant_string.set(self.org.selected_participant)
 
         self.label = tk.Label(self.root, text="Select Participant to Configure")
         self.label.pack()
+
         # Create dropdown menu
-        dropdown = tk.OptionMenu(self.root, self.selected_participant, *self.org.participantList)
+        dropdown = tk.OptionMenu(self.root, self.selected_participant_string, *self.org.participantList,
+                                 command=lambda obj: on_select(obj))
         dropdown.pack()
 
         # Function to handle selection from dropdown menu
         def on_select(participant):
-            EditConfigurationsPopup(self.root, participant)
-
-        # Bind on_select function to selected_participant variable
-        self.selected_participant.trace("w", lambda name, index, mode,
-                                        sv=self.selected_participant: on_select(sv.get()))
+            EditConfigurationsPopup(self.root, self.org, participant)
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.root.mainloop()
@@ -41,41 +39,43 @@ class Device_Manager_Popup():
 
 
 class EditConfigurationsPopup:
-    def __init__(self, parent, participant, device_properties=0):
+    def __init__(self, parent, organizer, participant, device_properties=0):
         self.parent = parent
+        self.org = organizer
         self.participant = participant
         self.device_properties = str(device_properties)
         self.popup = tk.Toplevel(parent)
         self.popup.geometry("300x300")
-        self.popup.title(participant)
+        self.popup.title(self.participant.name)
         self.popup.wm_attributes("-topmost", 1)
 
-
         # Create labels and entries for participant info
+        # .insert => creates filled-in default values
+
         tk.Label(self.popup, text="Name:").grid(row=0, column=0)
         self.name_entry = tk.Entry(self.popup)
         self.name_entry.grid(row=0, column=1)
-        self.name_entry.insert(0, "name")
-
-        tk.Label(self.popup, text="Sex:").grid(row=1, column=0)
-        self.sex_entry = tk.Entry(self.popup)
-        self.sex_entry.grid(row=1, column=1)
-        self.sex_entry.insert(0, "sex")
+        self.name_entry.insert(0, self.participant.name)
 
         tk.Label(self.popup, text="Age:").grid(row=2, column=0)
         self.age_entry = tk.Entry(self.popup)
         self.age_entry.grid(row=2, column=1)
-        self.age_entry.insert(0, "age")
+        self.age_entry.insert(0, self.participant.age)
+
+        tk.Label(self.popup, text="Sex:").grid(row=1, column=0)
+        self.sex_entry = tk.Entry(self.popup)
+        self.sex_entry.grid(row=1, column=1)
+        self.sex_entry.insert(0, self.participant.sex)
 
         tk.Label(self.popup, text="Height:").grid(row=3, column=0)
         self.height_entry = tk.Entry(self.popup)
         self.height_entry.grid(row=3, column=1)
-        self.height_entry.insert(0, "height")
+        self.height_entry.insert(0, self.participant.height)
 
         tk.Label(self.popup, text="Weight:").grid(row=4, column=0)
         self.weight_entry = tk.Entry(self.popup)
         self.weight_entry.grid(row=4, column=1)
-        self.weight_entry.insert(0, "weight")
+        self.weight_entry.insert(0, self.participant.weight)
 
         self.divider = tk.Label(self.popup, text="")
         self.divider.grid(row=5, column=1)
@@ -101,10 +101,12 @@ class EditConfigurationsPopup:
         """
         # # Update participant info with values from entries
         # self.participant["name"] = self.name_entry.get()
-        # self.participant["sex"] = self.sex_entry.get()
-        # self.participant["age"] = self.age_entry.get()
-        # self.participant["height"] = self.height_entry.get()
-        # self.participant["weight"] = self.weight_entry.get()
+        self.org.update_participant_by_ID(self.participant.id, self.name_entry.get(),
+                                          self.age_entry.get(),
+                                          self.sex_entry.get(),
+                                          self.height_entry.get(),
+                                          self.weight_entry.get())
+
         #
         # # Update device properties with value from entry
         # self.device_properties["port"] = self.port_entry.get()

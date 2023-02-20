@@ -125,7 +125,7 @@ class GUI:
         # self.myscrollbar.config(command=self.sidemenu_canvas.yview)
 
         def call_participant_panel():
-            self.p_panel = ParticipantPanel(displayframe, 0, master=self.root, organizer=self.org)
+            self.p_panel = ParticipantPanel(parent=displayframe, organizer=self.org)
             self.p_panel.grid(row=0, column=2, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
@@ -154,14 +154,6 @@ class GUI:
 
     def create_clock(self):
         Clock(self.root)
-
-    # def get_bg_from_status(self, status):
-    #     if status == Status.GREEN:
-    #         return self.green_status_bg
-    #     elif status == Status.YELLOW:
-    #         return self.yellow_status_bg
-    #     elif status == Status.RED:
-    #         return self.red_status_bg
 
     def toggle_rvb(self):
         self.p_panel.random_vals_bool = not self.p_panel.random_vals_bool
