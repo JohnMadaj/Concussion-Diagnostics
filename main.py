@@ -3,31 +3,15 @@ Capstone 2022-23: Concussion Detector - Christopher Castle, John Madaj, Josh Uvo
 
 """
 from dummy import *
+from gui.gui import GUI
 from gui.popup import Popup
 from organizer.organizer import Organizer
+from gui.Device_Manager_Popup import Device_Manager_Popup
 
 
 if __name__ == '__main__':
 
-    p = Popup()
-    # participant_count, COMPORT = p.output
-    participant_count = p.output
-    org = Organizer(createListOfDummyParticipants(participant_count))
+    org = Organizer([])
+    p = Device_Manager_Popup(org, startupbool=True)
+    # org.create_gui()
 
-
-
-    # while True:
-    #
-    #     time.sleep(.1)
-    #
-    #     AA, LA = dummyValues(2)
-    #
-    #     temp_concussbool, temp_status = areTheyConcussed(LA_GENERIC, AA_GENERIC, LA, AA)
-    #     org.selected_participant.updateStatus(temp_concussbool, temp_status)
-    #
-    #     print("LA: %f m/s^2" % LA, "\nAA: %f rad/s" % AA, "STATUS:", temp_status)
-    #     print("\n")
-    #
-    #     if org.selected_participant.concussedBool():
-    #         print(org.selected_participant.__str__())
-    #         break

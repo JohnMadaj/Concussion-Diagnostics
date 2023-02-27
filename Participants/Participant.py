@@ -9,13 +9,15 @@ from constants import *
 
 
 class Participant:
-    def __init__(self, name, age, height, weight, sex):
+    def __init__(self, name=0, age=0, height=0, weight=0, sex=0, device_id=0):
         self.id = uuid.uuid4()
         self.name = name
         self.age = age
         self.height = height
         self.weight = weight
         self.sex = Sex(sex)
+
+        self.device_id = device_id
 
         self.status = Status.GREEN
         self.concussed = False
@@ -25,6 +27,14 @@ class Participant:
         self.LAThreshold = LA_GENERIC
 
         self.y = []
+
+    def populate(self, name, age, height, weight, device_id, sex=0):
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
+        # self.sex = Sex(sex)
+        self.device_id = device_id
 
     def getlastLA(self):
         return self.LA[-1]
@@ -67,8 +77,8 @@ class Participant:
         info = "Info:\n" + str(self.sex)[4:] +\
                       "\nAge: " + str(self.age) +\
                       "\nHeight: " + str(self.height) +\
-                      "\nWeight: " + str(self.weight) #+\
-                      # "\nID: " + str(self.id)
+                      "\nWeight: " + str(self.weight) +\
+                      "\nDevice ID: " + str(self.device_id)
         return info
 
     def __str__(self):

@@ -28,6 +28,7 @@ try:
 except Exception as e:
     print(e)
 
+# TODO: simulate_on_startup causes gui to hang indefinitely, refresh loop
 simulate_on_startup = False
 
 TIME_CONSTANT = 20  # ms

@@ -6,11 +6,13 @@ from constants import *
 from Participants.Participant import Participant
 
 
-def namegenerator(num):
-    nameslist = []
-    for i in range(num):
-        nameslist.append(names.get_full_name())
-    return nameslist
+def namegenerator(num=0):
+    if num:
+        nameslist = []
+        for i in range(num):
+            nameslist.append(names.get_full_name())
+        return nameslist
+    return names.get_full_name()
 
 def sexgenerator():
     return random.choice([Sex.MALE, Sex.FEMALE])
@@ -36,6 +38,8 @@ def dummyValues(numvals):
     else:
         return 0
 
+def randomDummy():
+    return Participant(namegenerator(), agegenerator(), heightgenerator(), weightgenerator(), sexgenerator())
 
 def createListOfDummyParticipants(num):
     tempnameslist = namegenerator(num)

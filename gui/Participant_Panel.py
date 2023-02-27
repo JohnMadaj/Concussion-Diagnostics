@@ -79,11 +79,11 @@ class ParticipantPanel(tk.Frame):
         cbool, status = 0, 0
         if self.running:
             try:
-                cbool, status = self.calculate_input_magnitude()
+                self.calculate_input_magnitude()
             except Exception as e:
-                cbool, status = self.if_no_input()
+                self.if_no_input()
             finally:
-                self.org.selected_participant.updateStatus(cbool, status)
+                # self.org.selected_participant.updateStatus(cbool, status)
                 self.update_labels()
                 if self.org.visualize:
                     self.pp_plot.refresh()
@@ -114,7 +114,8 @@ class ParticipantPanel(tk.Frame):
         datapacket = three_way_vector_magnitude(datapacket)
 
         self.org.selected_participant.updateLA(datapacket)
-        return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+        cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+        self.org.selected_participant.updateStatus(cbool, status)
 
     def if_no_input(self):
         if self.random_vals_bool:
@@ -123,7 +124,8 @@ class ParticipantPanel(tk.Frame):
         else:
             self.connect_status_label.config(text="NO DEVICE CONNECTED")
             self.org.selected_participant.updateLA(1)
-        return areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+        cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+        self.org.selected_participant.updateStatus(cbool, status)
 
 
 def three_way_vector_magnitude(datapacket):

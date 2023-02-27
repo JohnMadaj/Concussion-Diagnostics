@@ -7,9 +7,9 @@ class Organizer:
     def __init__(self, participantList):
         self.participantList = participantList
         self.visualize = True
-
-        if not participantList:
-            quit()
+        #
+        # if not participantList:
+        #     quit()
 
         if len(self.participantList):
             self.selected_participant = participantList[0]
@@ -17,6 +17,7 @@ class Organizer:
             self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
         self.selected_index = 0
 
+    def create_gui(self):
         self.gui = GUI(self)
 
     # @TODO: This function is SLOW because it loops through list
@@ -26,7 +27,7 @@ class Organizer:
             if participant.id == id:
                 return participant
 
-    def update_participant_by_ID(self, id, name, age, sex, height, weight):
+    def update_participant_by_ID(self, id, name, age, sex, height, weight, device_id):
         for participant in self.participantList:
             if participant.id == id:
                 participant.name = name
@@ -34,6 +35,7 @@ class Organizer:
                 participant.sex = sex
                 participant.height = height
                 participant.weight = weight
+                participant.device_id = device_id
                 return
 
 

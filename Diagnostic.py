@@ -8,7 +8,6 @@ def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
     :param LA:
     :param AA:
 
-
     :return: Concussion BOOL, Concussion STATUS (color)
 
     TODO: add sophistication to diagnostic:
@@ -34,17 +33,27 @@ def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
     else:
         AAratio = 0
 
+    currentStatus = 0
+    concussbool = False
+
     if LAratio and AAratio:
+        concussbool = False
         currentStatus = max([LAratio, AAratio])
+
         if LA > LAthreshold or AA > AAthreshold:
-            return True, getStatus(currentStatus)
-        return False, getStatus(currentStatus)
+            # return True, getStatus(currentStatus)
+            concussbool = True
+        # return False, getStatus(currentStatus)
 
     elif LAratio:
+        concussbool = False
         currentStatus = LAratio
         if LA > LAthreshold:
-            return True, getStatus(currentStatus)
-        return False, getStatus(currentStatus)
+            # return True, getStatus(currentStatus)
+            concussbool = True
+        # return False, getStatus(currentStatus)
+
+    return concussbool, getStatus(currentStatus)
 
 
 def getStatus(ratio):
