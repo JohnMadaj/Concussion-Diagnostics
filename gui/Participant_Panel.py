@@ -1,6 +1,4 @@
-import math
-import tkinter as tk
-
+import port_comm
 from Diagnostic import areTheyConcussed
 from dummy import *
 from constants import *
@@ -14,7 +12,6 @@ class ParticipantPanel(tk.Frame):
         self.org = organizer
         self.parent = parent
         tk.Frame.__init__(self, parent)
-        self.running = False
         self.random_vals_bool = False
 
         def build_grid():
@@ -28,8 +25,8 @@ class ParticipantPanel(tk.Frame):
             self.rowconfigure(3, weight=1)
             self.rowconfigure(4, weight=1)
             self.rowconfigure(5, weight=4)
-        build_grid()
 
+        build_grid()
 
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
@@ -38,14 +35,18 @@ class ParticipantPanel(tk.Frame):
 
         self.reset_button = tk.Button(self, font=BUTTON_FONT)
         self.exit_button = tk.Button(self, font=BUTTON_FONT, text="Exit",
-                                     command=quit,)
-        self.reset_button.grid(row=4, column=0, sticky='nwse')
-        self.exit_button.grid(row=4, column=1, sticky='nsew')
+                                     command=quit, )
 
-        self.Toplabel.grid(row=0, columnspan=2, sticky="news")
-        self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
-        self.LAlabel.grid(row=2, columnspan=2, sticky="news")
-        self.blurb.grid(row=3, column=1, sticky="news")
+        def grid_setup():
+            self.reset_button.grid(row=4, column=0, sticky='nwse')
+            self.exit_button.grid(row=4, column=1, sticky='nsew')
+
+            self.Toplabel.grid(row=0, columnspan=2, sticky="news")
+            self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
+            self.LAlabel.grid(row=2, columnspan=2, sticky="news")
+            self.blurb.grid(row=3, column=1, sticky="news")
+
+        grid_setup()
 
         self.connect_status_label = tk.Label(self.parent)
 
@@ -56,9 +57,9 @@ class ParticipantPanel(tk.Frame):
             self.on_stop()
 
     def on_stop(self):
-        self.running = False
+        self.parent.running = False
         self.reset_button.config(text="Begin",
-                                      command=self.on_reset,)
+                                 command=self.on_reset, )
 
         if not self.org.participantList:
             quit()
@@ -68,26 +69,18 @@ class ParticipantPanel(tk.Frame):
         self.pp_plot = ParticipantPanel_Plot(self.org, self.master, self, row, column)
 
     def on_reset(self):
-        self.running = True
-        self.reset_button.config(text="Stop", command=self.on_stop)
-        self.refresh()
+        if self.org.selected_participant != None:
+            self.parent.running = True
+            self.reset_button.config(text="Stop", command=self.on_stop)
+            self.refresh()
 
     def refresh(self):
-
         self.connect_status_label.place(x=600, y=400)
-
-        cbool, status = 0, 0
-        if self.running:
-            try:
-                self.calculate_input_magnitude()
-            except Exception as e:
-                self.if_no_input()
-            finally:
-                # self.org.selected_participant.updateStatus(cbool, status)
-                self.update_labels()
-                if self.org.visualize:
-                    self.pp_plot.refresh()
-
+        if self.parent.running:
+            self.pass_input_to_Participant()
+            self.update_labels()
+            if self.org.visualize:
+                self.pp_plot.refresh()
             self.after(TIME_CONSTANT, self.refresh)
 
     def update_labels(self):
@@ -105,19 +98,33 @@ class ParticipantPanel(tk.Frame):
                                 foreground="blue",
                                 font=LARGE_FONT)
 
-    def calculate_input_magnitude(self):
-        self.connect_status_label.config(text="")
-        while arduinoData.inWaiting() == 0:
-            pass
-        datapacket = arduinoData.readline()
-        datapacket = str(datapacket, 'utf-8')
-        datapacket = three_way_vector_magnitude(datapacket)
+    def pass_input_to_Participant(self):
+        def calculate_input_magnitude():
+            """
+            TODO: reciever-based calculation function, needs to move, id specific
+            :return:
+            """
+            self.connect_status_label.config(text="")
+            datapacket = port_comm.recieve_data(self.org.selected_participant.id)
+            self.org.selected_participant.updateLA(datapacket)
+            cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+            self.org.selected_participant.updateStatus(cbool, status)
+            # doesnt have a return right now but it will need one when it moves
+        # if self.parent.running:
+            """
+            TODO: Below is device input code, needs to go to receiver, id specific
+            """
+        try:
+            calculate_input_magnitude()
+        except Exception as e:
+            self.if_no_input()
 
-        self.org.selected_participant.updateLA(datapacket)
-        cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
-        self.org.selected_participant.updateStatus(cbool, status)
 
     def if_no_input(self):
+        """
+        TODO: simulation function, will be reduced
+        :return:
+        """
         if self.random_vals_bool:
             self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
             self.org.selected_participant.updateLA(dummyValues(1))
@@ -126,16 +133,6 @@ class ParticipantPanel(tk.Frame):
             self.org.selected_participant.updateLA(1)
         cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
         self.org.selected_participant.updateStatus(cbool, status)
-
-
-def three_way_vector_magnitude(datapacket):
-        splitpacket = datapacket.split(',')
-
-        x = float(splitpacket[0])
-        y = float(splitpacket[1])
-        z = float(splitpacket[2])
-
-        return math.sqrt(x * x + y * y + z * z)
 
 
 if __name__ == '__main__':

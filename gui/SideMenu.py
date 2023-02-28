@@ -26,29 +26,39 @@ class SideMenu(tk.Frame):
         self.v.grid(column=1,rowspan=10)
         # self.yscrollcommand = self.v.set
         # self.v.config(command=self.yview)
+    # def rebuild(self):
+    #     for i, participant in enumerate(self.org.participantList):
+
+
+    def make_button(self, index, participant):
+        self.sidemenu_list[index] = SideMenu_Button(self, participant, index)
+        self.sidemenu_list[index].grid(columnspan=1, sticky="nswe")
 
     def fill_sidemenu(self):
+        self.sidemenu_list = {}
         for i, participant in enumerate(self.org.participantList):
-            # photo = PhotoImage(file=logo_path)
+            self.make_button(i, participant)
 
-            # self.sidemenu_list.append()
-            self.sidemenu_list[i] = SideMenu_Button(self, participant, i)
-            self.sidemenu_list[i].grid(columnspan=1, sticky="nswe")
+    def manage_buttons(self):
+        # if len(self.sidemenu_list) != len(self.org.participantList):
+        #     self.rebuild()
+        # for i, participant in enumerate(self.org.participantList):
+        #     self.sidemenu_list[i] = participant
+        for i, button in enumerate(self.org.participantList):
+            button.grid_forget()
+            button.destroy()
+        self.fill_sidemenu()
+
 
     def refresh(self):
+        # self.fill_sidemenu()
         for i, button in self.sidemenu_list.items():
             # print(str(button.participant.status))
-            s = str(button.participant.status)[7:]
-            self.sidemenu_list[i].config(background=s)
-
-            # if s == "RED":
-            #     move_button = self.sidemenu_list[i]
-            #     self.sidemenu_list[i] = self.sidemenu_list[1]
-            #     self.sidemenu_list[1] = move_button
+            if button.participant.concussed:
+                self.sidemenu_list[i].config(background="red")
+            else:
+                s = str(button.participant.status)[7:]
+                self.sidemenu_list[i].config(background=s)
 
         self.after(TIME_CONSTANT, self.refresh)
-
-    # def create_scrollbar(self):
-    #     v = tk.Scrollbar(self)
-    #     v.config(command=self.yview)
 

@@ -4,10 +4,11 @@ from constants import *
 
 
 class Device_Manager_Popup():
-    def __init__(self, org, startupbool=False):
+    def __init__(self, org, parent=0, startupbool=False):
         self.org = org
+        self.parent = parent
         self.root = tk.Tk()
-        self.root.geometry("200x100")
+        self.root.geometry(popup_size)
         self.root.title("Device Manager")
         self.root.wm_attributes("-topmost", 2)
 
@@ -46,6 +47,8 @@ class Device_Manager_Popup():
         self.root.mainloop()
 
     def on_closing(self):
+        if self.parent:
+            self.parent.refresh_from_device_manager()
         self.org.visualize = True
         self.root.destroy()
         if self.startupbool:
@@ -59,7 +62,7 @@ class EditConfigurationsPopup:
         self.participant = participant
         self.device_properties = str(device_properties)
         self.popup = tk.Toplevel(parent)
-        self.popup.geometry("300x300")
+        self.popup.geometry(popup_size)
         self.popup.title(self.participant.name)
         self.popup.wm_attributes("-topmost", 1)
 
@@ -144,7 +147,7 @@ class EditConfigurationsPopup_AddParticipant:
         self.participant = Participant()
         self.device_properties = str(device_properties)
         self.popup = tk.Toplevel(parent)
-        self.popup.geometry("300x300")
+        self.popup.geometry(popup_size)
         self.popup.title("Add Participant")
         self.popup.wm_attributes("-topmost", 1)
 

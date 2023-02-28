@@ -13,12 +13,16 @@ import numpy
 import tkinter as tk
 from tkinter import messagebox
 from threading import Thread
+from playsound import playsound
+import pygame
 
 import datetime as dt
 from matplotlib import animation
 import names
 
 from local_resources import *
+
+pygame.mixer.init()# initialise the pygame
 
 global COMPORT
 COMPORT = "COM4"
@@ -30,6 +34,10 @@ except Exception as e:
 
 # TODO: simulate_on_startup causes gui to hang indefinitely, refresh loop
 simulate_on_startup = False
+
+def beep():
+    pygame.mixer.music.load(r"graphics/beep-beep-6151.mp3")
+    pygame.mixer.music.play(loops=0)
 
 TIME_CONSTANT = 20  # ms
 # TIME_CONSTANT = 500
@@ -96,3 +104,6 @@ LA_COLLEGE_FOOTBALL = 94.71
 AA_YOUTH_FOOTBALL = 3359.50
 AA_HS_FOOTBALL = 6174.22
 AA_COLLEGE_FOOTBALL = 4596.79
+
+if __name__ == '__main__':
+    beep()

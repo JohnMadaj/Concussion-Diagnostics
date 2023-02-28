@@ -17,14 +17,13 @@ class GUI:
 
     def __init__(self, org):
         self.org = org
+        self.org.select_new_participant()
+        self.running = False
 
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
 
-        # self.button_accent = PhotoImage(file=r"graphics/button_accent.png")
-
         self.font3 = font.Font(family="Helvetica", size=40, weight="bold")
-
         self.random_vals_bool = False
 
         def create_window():
@@ -33,14 +32,6 @@ class GUI:
             self.root.attributes('-fullscreen', True)
             self.root.configure(background=sage)
         create_window()
-
-        # self.top_label = tk.Label(self.root, text="Concussion Diagnostics Software", font=self.font3)
-
-        # def pack_basics():
-            # self.close_btn.pack(padx=10, pady=10, side=tk.TOP, anchor=tk.NE)
-            # self.top_label.config(background=sage)
-            # self.top_label.pack(padx=120, pady=20, anchor=NE)
-        # pack_basics()
 
         def draw_pictures():
 
@@ -56,20 +47,19 @@ class GUI:
             self.label1 = tk.Label(image=self.test1)
             self.label1.image = self.image1
             self.label1.place(x=80, y=15)
-
         draw_pictures()
-
 
         self.sidemenu = SideMenu
         self.p_panel = ParticipantPanel
 
+        def build_widgets():
+            self.create_displayframe()
+            self.create_menubar()
+            self.create_themebox()
+            self.create_clock()
+            self.refresh()
 
-
-        self.create_displayframe()
-        self.create_menubar()
-        self.create_themebox()
-        self.create_clock()
-        self.refresh()
+        build_widgets()
 
         self.root.mainloop()
 
@@ -85,6 +75,11 @@ class GUI:
             filemenu.add_separator()
             filemenu.add_command(label="Close", font=font2, command=exit)
 
+            # cmd_str = self.start_command()
+            # actionmenu.add_command(
+            #     label=cmd_str,
+            #     command=self.toggle_session
+            # )
             actionmenu.add_command(
                 label="Toggle Random Input on No Connection (%s)"
                       % self.p_panel.random_vals_bool,
@@ -100,6 +95,11 @@ class GUI:
         menubar.add_command(label="Close", command=self.on_closing)
 
         self.root.config(menu=menubar)
+    def start_command(self):
+        if self.running:
+            return "End Session"
+        else:
+            return "Start Session"
 
     def create_displayframe(self):
 
@@ -132,9 +132,18 @@ class GUI:
 
         displayframe.pack(pady=0, fill='x', expand=1)
 
+    def refresh_from_device_manager(self):
+        self.sidemenu.fill_sidemenu()
+        self.p_panel.refresh()
+
     def refresh(self):
         self.sidemenu.refresh()
         self.p_panel.refresh()
+
+    # def toggle_session(self):
+    #     self.running = not self.running
+    #     self.p_panel.refresh()
+    #     self.create_menubar()
 
     def on_closing(self):
         print(closing_string)
@@ -161,7 +170,7 @@ class GUI:
 
 
     def device_manager(self):
-        Device_Manager_Popup(self.org)
+        Device_Manager_Popup(self.org, self)
     def userinfo(self):
 
         master = Tk()

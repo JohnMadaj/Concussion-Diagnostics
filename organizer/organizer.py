@@ -14,7 +14,8 @@ class Organizer:
         if len(self.participantList):
             self.selected_participant = participantList[0]
         else:
-            self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
+            # self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
+            self.selected_participant = None
         self.selected_index = 0
 
     def create_gui(self):
