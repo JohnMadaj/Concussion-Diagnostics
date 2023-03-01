@@ -36,16 +36,16 @@ def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
     currentStatus = 0
     concussbool = False
 
-    if LAratio and AAratio:
-        concussbool = False
-        currentStatus = max([LAratio, AAratio])
+    # if LAratio and AAratio:
+    #     concussbool = False
+    #     currentStatus = max([LAratio, AAratio])
+    #
+    #     if LA > LAthreshold or AA > AAthreshold:
+    #         # return True, getStatus(currentStatus)
+    #         concussbool = True
+    #     # return False, getStatus(currentStatus)
 
-        if LA > LAthreshold or AA > AAthreshold:
-            # return True, getStatus(currentStatus)
-            concussbool = True
-        # return False, getStatus(currentStatus)
-
-    elif LAratio:
+    # elif LAratio:
         concussbool = False
         currentStatus = LAratio
         if LA > LAthreshold:
