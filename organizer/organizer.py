@@ -22,9 +22,17 @@ class Organizer:
     def recieve_data(self):
         # TODO: however the data is transmitted from receiver to organizer
         # assumes dict format {id: [measurement, bool]}
-        for device_id, data in recieve_data().items():
-            # print(device_id, data)
+        try:
+            while arduinoData.inWaiting() == 0:
+            datapacket = str(arduinoData.readline(), 'utf-8')
+            device_id = int(datapacket[0])
+            data = [float(datapacket[3:8]), bool(datapacket[:-1])]
+            print(data)
+            # for device_id, data in recieve_data().items():
+                # print(device_id, data)
             self.give_data_by_device_id(int(device_id), data)
+        except Exception as e:
+            pass
 
     def give_data_by_device_id(self, device_id, data):
         for participant in self.participantList:
