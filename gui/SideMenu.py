@@ -39,15 +39,15 @@ class SideMenu(tk.Frame):
         for i, participant in enumerate(self.org.participantList):
             self.make_button(i, participant)
 
-    def manage_buttons(self):
-        # if len(self.sidemenu_list) != len(self.org.participantList):
-        #     self.rebuild()
-        # for i, participant in enumerate(self.org.participantList):
-        #     self.sidemenu_list[i] = participant
-        for i, button in enumerate(self.org.participantList):
-            button.grid_forget()
-            button.destroy()
-        self.fill_sidemenu()
+    # def manage_buttons(self):
+    #     # if len(self.sidemenu_list) != len(self.org.participantList):
+    #     #     self.rebuild()
+    #     # for i, participant in enumerate(self.org.participantList):
+    #     #     self.sidemenu_list[i] = participant
+    #     for i, button in enumerate(self.org.participantList):
+    #         button.grid_forget()
+    #         button.destroy()
+    #     self.fill_sidemenu()
 
 
     def refresh(self):

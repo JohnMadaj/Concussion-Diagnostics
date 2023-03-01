@@ -1,5 +1,7 @@
-from Participants.Participant import Participant
+from ON_RECIEVER.recieve_data import recieve_data
+
 from gui.gui import GUI
+from constants import *
 
 
 class Organizer:
@@ -7,19 +9,37 @@ class Organizer:
     def __init__(self, participantList):
         self.participantList = participantList
         self.visualize = True
-        #
-        # if not participantList:
-        #     quit()
 
         if len(self.participantList):
             self.selected_participant = participantList[0]
         else:
-            # self.selected_participant = Participant("Empty Slot", 0, 0, 0, 0)
             self.selected_participant = None
         self.selected_index = 0
 
     def create_gui(self):
         self.gui = GUI(self)
+
+    def recieve_data(self):
+        # TODO: however the data is transmitted from receiver to organizer
+        # assumes dict format {id: [measurement, bool]}
+        for device_id, data in recieve_data().items():
+            # print(device_id, data)
+            self.give_data_by_device_id(int(device_id), data)
+
+    def give_data_by_device_id(self, device_id, data):
+        for participant in self.participantList:
+            if participant.device_id == device_id:
+                participant.updateLA(data[0])
+                participant.updateStatus(data[1],
+                                         self.getStatus(data[1]/participant.LAThreshold))
+
+    def getStatus(self, ratio):
+        if ratio >= red_intensity:
+            return Status(2)
+        elif ratio >= yellow_intensity:
+            return Status(1)
+        return Status(0)
+
 
     # @TODO: This function is SLOW because it loops through list
     # @TODO: I am almost positive the answer is that participant list should be a dict
@@ -65,3 +85,7 @@ class Organizer:
         for part in self.participantList:
             prstr = prstr + part.__str__() + "\n"
         return prstr
+
+    def on_closing(self):
+        print(closing_string)
+        quit()

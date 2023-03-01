@@ -1,14 +1,13 @@
-import port_comm
-from Diagnostic import areTheyConcussed
-from dummy import *
+
 from constants import *
 from gui.participant_panel_plot import ParticipantPanel_Plot
 
 
 class ParticipantPanel(tk.Frame):
 
-    def __init__(self, parent, organizer):
+    def __init__(self, parent, organizer, gui):
 
+        self.gui = gui
         self.org = organizer
         self.parent = parent
         tk.Frame.__init__(self, parent)
@@ -33,9 +32,13 @@ class ParticipantPanel(tk.Frame):
         self.LAlabel = tk.Label(self, text="LA: 0 m/s^2", font=LARGE_FONT)
         self.blurb = tk.Label(self, text="info", font=LARGE_FONT)
 
+
+
         self.reset_button = tk.Button(self, font=BUTTON_FONT)
         self.exit_button = tk.Button(self, font=BUTTON_FONT, text="Exit",
-                                     command=quit, )
+                                     command=self.org.on_closing, )
+
+
 
         def grid_setup():
             self.reset_button.grid(row=4, column=0, sticky='nwse')
@@ -77,7 +80,8 @@ class ParticipantPanel(tk.Frame):
     def refresh(self):
         self.connect_status_label.place(x=600, y=400)
         if self.parent.running:
-            self.pass_input_to_Participant()
+            # self.pass_input_to_Participant()
+            self.gui.call_recieve_data()
             self.update_labels()
             if self.org.visualize:
                 self.pp_plot.refresh()
@@ -98,41 +102,41 @@ class ParticipantPanel(tk.Frame):
                                 foreground="blue",
                                 font=LARGE_FONT)
 
-    def pass_input_to_Participant(self):
-        def calculate_input_magnitude():
-            """
-            TODO: reciever-based calculation function, needs to move, id specific
-            :return:
-            """
-            self.connect_status_label.config(text="")
-            datapacket = port_comm.recieve_data(self.org.selected_participant.id)
-            self.org.selected_participant.updateLA(datapacket)
-            cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
-            self.org.selected_participant.updateStatus(cbool, status)
-            # doesnt have a return right now but it will need one when it moves
-        # if self.parent.running:
-            """
-            TODO: Below is device input code, needs to go to receiver, id specific
-            """
-        try:
-            calculate_input_magnitude()
-        except Exception as e:
-            self.if_no_input()
+    # def pass_input_to_Participant(self):
+    #     def calculate_input_magnitude():
+    #         """
+    #         TODO: reciever-based calculation function, needs to move, id specific
+    #         :return:
+    #         """
+    #         self.connect_status_label.config(text="")
+    #         datapacket = port_comm.recieve_data(self.org.selected_participant.id)
+    #         self.org.selected_participant.updateLA(datapacket)
+    #         cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+    #         self.org.selected_participant.updateStatus(cbool, status)
+    #         # doesnt have a return right now but it will need one when it moves
+    #     # if self.parent.running:
+    #         """
+    #         TODO: Below is device input code, needs to go to receiver, id specific
+    #         """
+    #     try:
+    #         calculate_input_magnitude()
+    #     except Exception as e:
+    #         self.if_no_input()
 
 
-    def if_no_input(self):
-        """
-        TODO: simulation function, will be reduced
-        :return:
-        """
-        if self.random_vals_bool:
-            self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
-            self.org.selected_participant.updateLA(dummyValues(1))
-        else:
-            self.connect_status_label.config(text="NO DEVICE CONNECTED")
-            self.org.selected_participant.updateLA(1)
-        cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
-        self.org.selected_participant.updateStatus(cbool, status)
+    # def if_no_input(self):
+    #     """
+    #     TODO: simulation function, will be reduced
+    #     :return:
+    #     """
+    #     if self.random_vals_bool:
+    #         self.connect_status_label.config(text="NO DEVICE CONNECTED: RANDOM VALUES ASSIGNED")
+    #         self.org.selected_participant.updateLA(dummyValues(1))
+    #     else:
+    #         self.connect_status_label.config(text="NO DEVICE CONNECTED")
+    #         self.org.selected_participant.updateLA(1)
+    #     cbool, status = areTheyConcussed(LA=self.org.selected_participant.getlastLA(), LAthreshold=LA_GENERIC)
+    #     self.org.selected_participant.updateStatus(cbool, status)
 
 
 if __name__ == '__main__':

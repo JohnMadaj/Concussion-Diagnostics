@@ -13,5 +13,5 @@ if __name__ == '__main__':
 
     org = Organizer([])
     p = Device_Manager_Popup(org, startupbool=True)
-    # org.create_gui()
+
 

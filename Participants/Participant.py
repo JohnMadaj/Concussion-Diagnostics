@@ -17,7 +17,7 @@ class Participant:
         self.weight = weight
         self.sex = Sex(sex)
 
-        self.device_id = device_id
+        self.device_id = int(device_id)
 
         self.status = Status.GREEN
         self.concussed = False
@@ -34,15 +34,19 @@ class Participant:
         self.height = height
         self.weight = weight
         # self.sex = Sex(sex)
-        self.device_id = device_id
+        self.device_id = int(device_id)
 
     def getlastLA(self):
+        if not self.LA:
+            return 0
         return self.LA[-1]
 
     def get_last_intensity(self):
         return self.LA[-1] / self.LAThreshold
 
     def graph_helper(self):
+        if not self.LA:
+            return 0
         if self.LA[-1] / self.LAThreshold > yellow_intensity:
             self.y.append(self.LA[-1])
         else:

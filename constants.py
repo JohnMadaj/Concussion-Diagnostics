@@ -24,6 +24,8 @@ from local_resources import *
 
 pygame.mixer.init()# initialise the pygame
 
+
+
 global COMPORT
 COMPORT = "COM4"
 

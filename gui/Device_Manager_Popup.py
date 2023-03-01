@@ -47,8 +47,9 @@ class Device_Manager_Popup():
         self.root.mainloop()
 
     def on_closing(self):
-        if self.parent:
-            self.parent.refresh_from_device_manager()
+        # if self.parent:
+            # self.parent.refresh_from_device_manager()
+            # self.parent.refresh()
         self.org.visualize = True
         self.root.destroy()
         if self.startupbool:
@@ -127,7 +128,7 @@ class EditConfigurationsPopup:
                                           self.sex_entry.get(),
                                           self.height_entry.get(),
                                           self.weight_entry.get(),
-                                          self.port_entry.get())
+                                          int(self.port_entry.get()))
 
         #
         # # Update device properties with value from entry

@@ -71,7 +71,7 @@ class GUI:
         actionmenu = tk.Menu(menubar, tearoff=0)
 
         def make_menubar_commands():
-            filemenu.add_command(label="Open", font=font2)
+            filemenu.add_command(label="Open", font=font2, command=self.refresh)
             filemenu.add_separator()
             filemenu.add_command(label="Close", font=font2, command=exit)
 
@@ -92,7 +92,7 @@ class GUI:
 
         menubar.add_cascade(menu=filemenu, label="File")
         menubar.add_cascade(menu=actionmenu, label="Action")
-        menubar.add_command(label="Close", command=self.on_closing)
+        menubar.add_command(label="Close", command=self.org.on_closing)
 
         self.root.config(menu=menubar)
     def start_command(self):
@@ -125,7 +125,7 @@ class GUI:
         # self.myscrollbar.config(command=self.sidemenu_canvas.yview)
 
         def call_participant_panel():
-            self.p_panel = ParticipantPanel(parent=displayframe, organizer=self.org)
+            self.p_panel = ParticipantPanel(parent=displayframe, organizer=self.org, gui=self)
             self.p_panel.grid(row=0, column=2, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
@@ -137,17 +137,17 @@ class GUI:
         self.p_panel.refresh()
 
     def refresh(self):
+        self.call_recieve_data()
         self.sidemenu.refresh()
         self.p_panel.refresh()
+
+    def call_recieve_data(self):
+        self.org.recieve_data()
 
     # def toggle_session(self):
     #     self.running = not self.running
     #     self.p_panel.refresh()
     #     self.create_menubar()
-
-    def on_closing(self):
-        print(closing_string)
-        self.root.destroy()
 
     def create_themebox(self):
         tc = ttk.Combobox(self.root, values=THEMES)

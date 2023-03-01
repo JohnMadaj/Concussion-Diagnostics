@@ -30,7 +30,7 @@ def weightgenerator():
     return random.randrange(100, 250)
 
 
-def dummyValues(numvals):
+def dummyValues(numvals=1):
     if numvals == 2:
         return numpy.random.normal(1800, 1000), numpy.random.normal(60.0, 20)
     elif numvals == 1:

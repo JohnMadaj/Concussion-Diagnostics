@@ -53,12 +53,7 @@ def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
             concussbool = True
         # return False, getStatus(currentStatus)
 
-    return concussbool, getStatus(currentStatus)
+    return concussbool
 
 
-def getStatus(ratio):
-    if ratio >= red_intensity:
-        return Status(2)
-    elif ratio >= yellow_intensity:
-        return Status(1)
-    return Status(0)
+
