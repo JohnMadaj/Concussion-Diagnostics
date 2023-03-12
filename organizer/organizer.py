@@ -8,6 +8,8 @@ class Organizer:
 
     def __init__(self, participantList):
         self.participantList = participantList
+        self.participantDict = {p.id: p for p in self.participantList}
+
         self.visualize = True
 
         if len(self.participantList):
@@ -27,11 +29,12 @@ class Organizer:
             self.give_data_by_device_id(int(device_id), data)
 
     def give_data_by_device_id(self, device_id, data):
+        # TODO: Need a fast access/match for device id from participant
         for participant in self.participantList:
             if participant.device_id == device_id:
                 participant.updateLA(data[0])
                 participant.updateStatus(data[1],
-                                         self.getStatus(data[1]/participant.LAThreshold))
+                                         self.getStatus(data[1] / participant.LAThreshold))
 
     def getStatus(self, ratio):
         if ratio >= red_intensity:
@@ -40,25 +43,39 @@ class Organizer:
             return Status(1)
         return Status(0)
 
+    def add_participant(self, participant):
+        self.participantList.append(participant)
+        self.participantDict[participant.id] = participant
 
-    # @TODO: This function is SLOW because it loops through list
-    # @TODO: I am almost positive the answer is that participant list should be a dict
+
     def get_participant_from_ID(self, id):
-        for participant in self.participantList:
-            if participant.id == id:
-                return participant
+        # for participant in self.participantList:
+        #     if participant.id == id:
+        #         return participant
+        try:
+            return self.participantDict[id]
+        except Exception as e:
+            raise e
 
     def update_participant_by_ID(self, id, name, age, sex, height, weight, device_id):
-        for participant in self.participantList:
-            if participant.id == id:
-                participant.name = name
-                participant.age = age
-                participant.sex = sex
-                participant.height = height
-                participant.weight = weight
-                participant.device_id = device_id
-                return
-
+        # for participant in self.participantList:
+        #     if participant.id == id:
+        #         participant.name = name
+        #         participant.age = age
+        #         participant.sex = sex
+        #         participant.height = height
+        #         participant.weight = weight
+        #         participant.device_id = device_id
+        #         return
+        try:
+            self.participantDict[id].name = name
+            self.participantDict[id].age = age
+            self.participantDict[id].sex = sex
+            self.participantDict[id].height = height
+            self.participantDict[id].weight = weight
+            self.participantDict[id].device_id = device_id
+        except Exception as e:
+            raise e
 
     def select_new_participant(self, index=None):
         if index is not None:
@@ -88,4 +105,8 @@ class Organizer:
 
     def on_closing(self):
         print(closing_string)
+        for i in self.participantDict.values():
+            print(i.concussed, i.LA)
+        for i in self.participantList:
+            print(i.concussed, i.LA)
         quit()

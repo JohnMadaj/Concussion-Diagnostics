@@ -105,8 +105,8 @@ class GUI:
 
         displayframe = tk.Frame(self.root)
         displayframe.columnconfigure(0, weight=1)
-        displayframe.columnconfigure(1, weight=2)
-        displayframe.columnconfigure(2, weight=3)
+        # displayframe.columnconfigure(1, weight=2)
+        displayframe.columnconfigure(1, weight=3)
 
         def call_sidemenu():
             self.sidemenu_canvas = tk.Canvas(displayframe)
@@ -126,7 +126,7 @@ class GUI:
 
         def call_participant_panel():
             self.p_panel = ParticipantPanel(parent=displayframe, organizer=self.org, gui=self)
-            self.p_panel.grid(row=0, column=2, sticky="new", rowspan=8)
+            self.p_panel.grid(row=0, column=1, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
 

@@ -1,5 +1,21 @@
-FILES TO MOVE TO PERIPHERAL:
- Diagnostic.py
+TODO SPRING BREAK:
+Start/Stop phases need to be developed into separate modes:
+    1) Setup mode: Used prior to actual device start.
+        - Device Manager needs to display available devices to connect to as per receiver
+        - Receiver will communicate participant info TO PD upon device connection. This has to be done
+            prior to Tracking mode, in tracking mode the receiver will not talk to PD at all.
+    2 Tracking mode: This is the "game time" mode where measurements are actually computed and displayed.
+        - In this mode, PD talks to receiver, not other way around
+        - Devices cant be assigned in this mode, and participant info cant be changed with few exceptions.
+        - Both receiver and PD will need to know what mode they are in. (maybe PD doesnt need to know?)
 
-FILES TO MOVE TO RECIEVER:
+Diagnostic Algorithm (on PD) needs to be improved with presentable research at ASPIRE.
 
+Compliance/QoL features:
+- Device status/battery life needs to display on user software
+- Side menu buttons need to update alongside changes to participant list (additions/removals)
+- Assign a dictionary to organizer that links participant id to participant objects (for fast access),
+    meanwhile the participant LIST will still be maintained to display participants in order.
+    OR, JUST keep the dictionary organizer and force side menu to display in alphabetical order
+    (there might be reasons not to do this, look into the code).
+- Participant panel needs to be reorganized and given more display data (reference the mockup here)

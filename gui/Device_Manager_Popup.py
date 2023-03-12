@@ -213,8 +213,7 @@ class EditConfigurationsPopup_AddParticipant:
             weight= self.weight_entry.get(),
             device_id= self.port_entry.get()
         )
-
-        self.org.participantList.append(self.participant)
+        self.org.add_participant(self.participant)
 
         #
         # # Update device properties with value from entry
@@ -224,7 +223,7 @@ class EditConfigurationsPopup_AddParticipant:
         self.popup.destroy()
 
     def save_random(self):
-        self.org.participantList.append(dummy.randomDummy())
+        self.org.add_participant((dummy.randomDummy()))
         self.popup.destroy()
 
     def cancel(self):
