@@ -3,11 +3,11 @@ from gui.SideMenu_Button import SideMenu_Button
 
 
 class SideMenu(tk.Frame):
-    def __init__(self, parent, controller, master, organizer):
+    def __init__(self, parent, controller, gui, organizer):
         self.button_accent = tk.PhotoImage(file=button_accent_path)
 
         self.org = organizer  # organizer class
-        self.master = master  # the TK window
+        self.gui = gui # the GUI class
         self.parent = parent  # the frame being added to
         self.controller = controller
 
@@ -31,7 +31,7 @@ class SideMenu(tk.Frame):
 
 
     def make_button(self, index, participant):
-        self.sidemenu_list[index] = SideMenu_Button(self, participant, index)
+        self.sidemenu_list[index] = SideMenu_Button(self, participant, index, gui=self.gui)
         self.sidemenu_list[index].grid(columnspan=1, sticky="nswe")
 
     def fill_sidemenu(self):

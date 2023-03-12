@@ -6,6 +6,9 @@ from constants import *
 class Device_Manager_Popup():
     def __init__(self, org, parent=0, startupbool=False):
         self.org = org
+        if self.org.Active_Mode:
+            self.org.error_popup("Cannot edit device configurations in Active Mode, change to Setup mode first")
+            return
         self.parent = parent
         self.root = tk.Tk()
         self.root.geometry(popup_size)
@@ -67,9 +70,6 @@ class EditConfigurationsPopup:
         self.popup.title(self.participant.name)
         self.popup.wm_attributes("-topmost", 1)
 
-        # Create labels and entries for participant info
-        # .insert => creates filled-in default values
-
         tk.Label(self.popup, text="Name:").grid(row=0, column=0)
         self.name_entry = tk.Entry(self.popup)
         self.name_entry.grid(row=0, column=1)
@@ -122,13 +122,16 @@ class EditConfigurationsPopup:
         # self.participant["name"] = self.name_entry.get()
 
         # TODO: need a check for saving device ID to make sure that device ID isnt being used
-
-        self.org.update_participant_by_ID(self.participant.id, self.name_entry.get(),
-                                          self.age_entry.get(),
-                                          self.sex_entry.get(),
-                                          self.height_entry.get(),
-                                          self.weight_entry.get(),
-                                          int(self.port_entry.get()))
+        if self.port_entry.get() in self.org.device_id_connections.values():
+            return self.org.error_popup("A participant is already using this device ID")
+        self.org.update_participant_by_ID(id=self.participant.id,
+                                          name=self.name_entry.get(),
+                                          age=self.age_entry.get(),
+                                          sex=self.sex_entry.get(),
+                                          height=self.height_entry.get(),
+                                          weight=self.weight_entry.get(),
+                                          device_id=int(self.port_entry.get()))
+        self.org.device_id_connections[self.participant.id] = self.port_entry.get()
 
         #
         # # Update device properties with value from entry
@@ -213,14 +216,10 @@ class EditConfigurationsPopup_AddParticipant:
             weight= self.weight_entry.get(),
             device_id= self.port_entry.get()
         )
-        self.org.add_participant(self.participant)
-
-        #
-        # # Update device properties with value from entry
-        # self.device_properties["port"] = self.port_entry.get()
-
-        # Close popup
+        if not self.org.add_participant(self.participant):
+            return self.org.error_popup("A participant is already using this device ID")
         self.popup.destroy()
+        return
 
     def save_random(self):
         self.org.add_participant((dummy.randomDummy()))

@@ -6,6 +6,7 @@ import names
 from tkinter import *
 from PIL import ImageTk, Image
 from constants import *
+from gui.Connection_Viewer_Popup import Connection_Viewer_Popup
 from gui.Device_Manager_Popup import Device_Manager_Popup
 from gui.SideMenu import SideMenu
 from gui.clock import Clock
@@ -87,6 +88,10 @@ class GUI:
             actionmenu.add_command(
                 label="Device Manager",
                 command=self.device_manager, font=font2)
+            actionmenu.add_command(
+                label="View Device Connections",
+                command=self.connection_viewer, font=font2
+            )
 
         make_menubar_commands()
 
@@ -110,7 +115,7 @@ class GUI:
 
         def call_sidemenu():
             self.sidemenu_canvas = tk.Canvas(displayframe)
-            self.sidemenu = SideMenu(displayframe, 0, master=self.root, organizer=self.org)
+            self.sidemenu = SideMenu(displayframe, 0, gui=self, organizer=self.org)
             self.sidemenu.grid(column=0, sticky="news")
             # self.sidemenu.pack(side="left")
             # self.sidemenu = SideMenu(self.sidemenu_canvas, 0, master=self.root, organizer=self.org)
@@ -137,7 +142,8 @@ class GUI:
         self.p_panel.refresh()
 
     def refresh(self):
-        self.call_recieve_data()
+        if self.org.Active_Mode:
+            self.call_recieve_data()
         self.sidemenu.refresh()
         self.p_panel.refresh()
 
@@ -171,6 +177,9 @@ class GUI:
 
     def device_manager(self):
         Device_Manager_Popup(self.org, self)
+
+    def connection_viewer(self):
+        Connection_Viewer_Popup(self.org, self)
     def userinfo(self):
 
         master = Tk()
@@ -193,26 +202,6 @@ class GUI:
         e4 = Entry(master).grid(row=3, column=1)
         e5 = Entry(master).grid(row=4, column=1)
         master.mainloop()
-
-
-        #######################################################################
-
-        #        lst = [(1, 'Raj', 'Mumbai', 19),
-        ##               (2, 'Aaryan', 'Pune', 18),
-        #               (3, 'Vaishnavi', 'Mumbai', 20),
-        #               (4, 'Rachna', 'Mumbai', 21),
-        ##               (5, 'Shubham', 'Delhi', 21)]
-        #        total_rows = len(lst)
-        #        total_columns = len(lst[0])
-        #
-        #       for i in range(total_rows):
-        #            for j in range(total_columns):
-        #               e = Entry(tk(), width=20, fg='blue',
-        #                             font=('Arial', 16, 'bold'))
-        #             submenu.append(
-        #                tk.Button(displayframe, text=e, font=font1, bg='#ffffff', activebackground='#4444ff'))
-        #           e.grid(row=i, column=j)
-        #          e.insert(0, lst[i][j])
 
 
 if __name__ == "__main__":

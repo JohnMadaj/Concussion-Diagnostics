@@ -8,14 +8,19 @@ class Organizer:
     def __init__(self, participantList):
         self.participantList = participantList
         self.participantDict = {p.id: p for p in self.participantList}
+        self.device_id_connections = {p.id: p.device_id for p in self.participantList}
 
         self.visualize = True
+        self.Active_Mode = False
 
         if len(self.participantList):
             self.selected_participant = participantList[0]
         else:
             self.selected_participant = None
         self.selected_index = 0
+
+    def toggle_mode(self):
+        self.Active_Mode = not self.Active_Mode
 
     def create_gui(self):
         self.gui = GUI(self)
@@ -32,7 +37,7 @@ class Organizer:
             device_id = int(datapacket[0])
             concussbool = not not int(datapacket[2])
             data = [float(datapacket[1]), concussbool]
-            print(data)
+            # print(data)
             self.give_data_by_device_id(int(device_id), data)
         except Exception as e:
             print(e)
@@ -53,14 +58,15 @@ class Organizer:
         return Status(0)
 
     def add_participant(self, participant):
+        if participant.device_id in self.device_id_connections and participant.device_id !=0:
+            return False
         self.participantList.append(participant)
         self.participantDict[participant.id] = participant
+        self.device_id_connections[participant.id] = participant.device_id
+        return True
 
 
     def get_participant_from_ID(self, id):
-        # for participant in self.participantList:
-        #     if participant.id == id:
-        #         return participant
         try:
             return self.participantDict[id]
         except Exception as e:
@@ -119,3 +125,9 @@ class Organizer:
         for i in self.participantList:
             print(i.concussed, i.LA)
         quit()
+
+    def error_popup(self, error_msg):
+        root = tk.Tk()
+        root.wm_attributes("-topmost", 2)
+        root.withdraw()
+        messagebox.showerror("Error: ", error_msg)
