@@ -83,7 +83,7 @@ class ParticipantPanel(tk.Frame):
         self.connect_status_label.place(x=600, y=400)
         if self.org.Active_Mode:
             # self.pass_input_to_Participant()
-            self.gui.call_recieve_data()
+            self.gui.call_receive_data()
         self.update_labels()
         if self.org.Active_Mode:
             if self.org.visualize:

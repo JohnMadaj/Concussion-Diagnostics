@@ -50,3 +50,14 @@ def createListOfDummyParticipants(num):
         # participantlist[temp.id] = temp
         participantlist.append(temp)
     return participantlist
+
+def dummyDataPacket(): #d_id: LA.4f: bool(binary)
+    rec_str = ""
+    for i in range(4):
+        m = dummyValues()
+        b = 0
+        if m > 80:
+            b = 1
+        rec_str += "%s: %f: %d\n" % (str(i+1), m, b)
+    return rec_str[:-1]
+

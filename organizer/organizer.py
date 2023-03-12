@@ -1,4 +1,4 @@
-
+from dummy import dummyDataPacket
 from gui.gui import GUI
 from constants import *
 
@@ -7,8 +7,10 @@ class Organizer:
 
     def __init__(self, participantList):
         self.participantList = participantList
-        self.participantDict = {p.id: p for p in self.participantList}
-        self.device_id_connections = {p.id: p.device_id for p in self.participantList}
+        self.participantDict = {p.id: p
+                                for p in self.participantList}
+        self.device_id_connections = {p.id: p.device_id
+                                      for p in self.participantList}
 
         self.visualize = True
         self.Active_Mode = False
@@ -25,30 +27,45 @@ class Organizer:
     def create_gui(self):
         self.gui = GUI(self)
 
-    def recieve_data(self):
+    def receive_data(self):
         # TODO: however the data is transmitted from receiver to organizer
-        # assumes id: la: bool_digit
+        # assumes n lines of id: la: bool_digit\n
         try:
             # while arduinoData.inWaiting() == 0:
             #     pass
             # datapacket = str(arduinoData.readline(), 'utf-8')
-            datapacket = "2: 20.32: 1"
-            datapacket = datapacket.split(': ')
-            device_id = int(datapacket[0])
-            concussbool = not not int(datapacket[2])
-            data = [float(datapacket[1]), concussbool]
-            # print(data)
-            self.give_data_by_device_id(int(device_id), data)
+            # datapacket = "2: 20.32: 1"
+            datapacket = dummyDataPacket()
+
+            def process_data(datapacket):
+                datapacket = datapacket.split('\n')
+                for message in datapacket:
+                    print(message)
+                    message = message.split(': ')
+                    device_id = int(message[0])
+                    concussbool = not not int(message[2])
+                    data = [float(message[1]), concussbool]
+                    self.give_data_by_device_id(int(device_id), data)
+                print("\n")
+            process_data(datapacket)
         except Exception as e:
-            print(e)
+            print("organizer/receive_data error:", e)
 
     def give_data_by_device_id(self, device_id, data):
-        # TODO: Need a fast access/match for device id from participant
+        # # TODO: Need a fast access/match for device id from participant
         for participant in self.participantList:
             if participant.device_id == device_id:
                 participant.updateLA(data[0])
-                participant.updateStatus(data[1],
-                                         self.getStatus(data[1] / participant.LAThreshold))
+                participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
+        # if device_id not in self.device_id_connections.values():
+        #     return
+        # for id in self.device_id_connections:
+        #     if self.device_id_connections[id] == device_id:
+        #         p_id = id
+        # print(p_id)
+        # th = self.participantDict[p_id].LAThreshold
+        # self.participantDict[p_id].updateLA(data[0])
+        # self.participantDict[p_id].updateStatus(data[1], self.getStatus(data[1] / th))
 
     def getStatus(self, ratio):
         if ratio >= red_intensity:
@@ -73,15 +90,6 @@ class Organizer:
             raise e
 
     def update_participant_by_ID(self, id, name, age, sex, height, weight, device_id):
-        # for participant in self.participantList:
-        #     if participant.id == id:
-        #         participant.name = name
-        #         participant.age = age
-        #         participant.sex = sex
-        #         participant.height = height
-        #         participant.weight = weight
-        #         participant.device_id = device_id
-        #         return
         try:
             self.participantDict[id].name = name
             self.participantDict[id].age = age
@@ -120,10 +128,6 @@ class Organizer:
 
     def on_closing(self):
         print(closing_string)
-        for i in self.participantDict.values():
-            print(i.concussed, i.LA)
-        for i in self.participantList:
-            print(i.concussed, i.LA)
         quit()
 
     def error_popup(self, error_msg):

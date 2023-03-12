@@ -61,7 +61,6 @@ class GUI:
             self.refresh()
 
         build_widgets()
-
         self.root.mainloop()
 
 
@@ -76,11 +75,6 @@ class GUI:
             filemenu.add_separator()
             filemenu.add_command(label="Close", font=font2, command=exit)
 
-            # cmd_str = self.start_command()
-            # actionmenu.add_command(
-            #     label=cmd_str,
-            #     command=self.toggle_session
-            # )
             actionmenu.add_command(
                 label="Toggle Random Input on No Connection (%s)"
                       % self.p_panel.random_vals_bool,
@@ -100,34 +94,20 @@ class GUI:
         menubar.add_command(label="Close", command=self.org.on_closing)
 
         self.root.config(menu=menubar)
-    def start_command(self):
-        if self.running:
-            return "End Session"
-        else:
-            return "Start Session"
 
     def create_displayframe(self):
 
         displayframe = tk.Frame(self.root)
         displayframe.columnconfigure(0, weight=1)
-        # displayframe.columnconfigure(1, weight=2)
         displayframe.columnconfigure(1, weight=3)
 
         def call_sidemenu():
             self.sidemenu_canvas = tk.Canvas(displayframe)
             self.sidemenu = SideMenu(displayframe, 0, gui=self, organizer=self.org)
             self.sidemenu.grid(column=0, sticky="news")
-            # self.sidemenu.pack(side="left")
-            # self.sidemenu = SideMenu(self.sidemenu_canvas, 0, master=self.root, organizer=self.org)
-            # t = Label(self.sidemenu_canvas, text="FUCK\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
-            # \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
-            # \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFUCK")
-            # t.pack(side="left")
             self.sidemenu_canvas.grid(column=0, sticky="news")
         call_sidemenu()
-        # self.myscrollbar = Scrollbar(displayframe, orient="vertical")
-        # self.myscrollbar.grid(column=1, sticky="news", rowspan=8)
-        # self.myscrollbar.config(command=self.sidemenu_canvas.yview)
+
 
         def call_participant_panel():
             self.p_panel = ParticipantPanel(parent=displayframe, organizer=self.org, gui=self)
@@ -142,18 +122,13 @@ class GUI:
         self.p_panel.refresh()
 
     def refresh(self):
-        if self.org.Active_Mode:
-            self.call_recieve_data()
+        # if self.org.Active_Mode:
+        #     self.call_receive_data()
         self.sidemenu.refresh()
         self.p_panel.refresh()
 
-    def call_recieve_data(self):
-        self.org.recieve_data()
-
-    # def toggle_session(self):
-    #     self.running = not self.running
-    #     self.p_panel.refresh()
-    #     self.create_menubar()
+    def call_receive_data(self):
+        self.org.receive_data()
 
     def create_themebox(self):
         tc = ttk.Combobox(self.root, values=THEMES)
