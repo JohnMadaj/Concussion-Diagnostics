@@ -1,4 +1,3 @@
-from ON_RECIEVER.recieve_data import recieve_data
 
 from gui.gui import GUI
 from constants import *
@@ -23,10 +22,20 @@ class Organizer:
 
     def recieve_data(self):
         # TODO: however the data is transmitted from receiver to organizer
-        # assumes dict format {id: [measurement, bool]}
-        for device_id, data in recieve_data().items():
-            # print(device_id, data)
+        # assumes id: la: bool_digit
+        try:
+            # while arduinoData.inWaiting() == 0:
+            #     pass
+            # datapacket = str(arduinoData.readline(), 'utf-8')
+            datapacket = "2: 20.32: 1"
+            datapacket = datapacket.split(': ')
+            device_id = int(datapacket[0])
+            concussbool = not not int(datapacket[2])
+            data = [float(datapacket[1]), concussbool]
+            print(data)
             self.give_data_by_device_id(int(device_id), data)
+        except Exception as e:
+            print(e)
 
     def give_data_by_device_id(self, device_id, data):
         # TODO: Need a fast access/match for device id from participant

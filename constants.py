@@ -13,7 +13,7 @@ import numpy
 import tkinter as tk
 from tkinter import messagebox
 from threading import Thread
-from playsound import playsound
+#from playsound import playsound
 import pygame
 
 import datetime as dt
