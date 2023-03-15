@@ -37,19 +37,22 @@ class Organizer:
             while arduinoData.inWaiting() == 0:
                 pass
             datapacket = str(arduinoData.readline(), 'utf-8')
+        except Exception as e:
+            print("organizer/receive_data error:", e)
             # datapacket = "2: 20.32: 1"
-            # datapacket = dummyDataPacket()
+            datapacket = dummyDataPacket()
 
-            def process_data(datapacket):
-                datapacket = datapacket.split('\n')
-                for message in datapacket:
-                    print(message)
-                    message = message.split(': ')
-                    device_id = int(message[0])
-                    concussbool = not not int(message[2])
-                    data = [float(message[1]), concussbool]
-                    self.give_data_by_device_id(int(device_id), data)
-                # print("\n")
+        def process_data(datapacket):
+            datapacket = datapacket.split('\n')
+            for message in datapacket:
+                print(message)
+                message = message.split(': ')
+                device_id = int(message[0])
+                concussbool = not not int(message[2])
+                data = [float(message[1]), concussbool]
+                self.give_data_by_device_id(int(device_id), data)
+            # print("\n")
+        try:
             process_data(datapacket)
         except Exception as e:
             print("organizer/receive_data error:", e)

@@ -88,6 +88,10 @@ class GUI:
                 label="View Device Connections",
                 command=self.connection_viewer, font=font2
             )
+            actionmenu.add_command(
+                label="Toggle Visualizer (%s)" % self.org.visualize,
+                command=self.toggle_visualizer, font=font2
+            )
 
         make_menubar_commands()
 
@@ -157,28 +161,10 @@ class GUI:
 
     def connection_viewer(self):
         Connection_Viewer_Popup(self.org, self)
-    def userinfo(self):
 
-        master = Tk()
-        master.geometry("300x150")
-        master.title("Participants Information")
-        # command prompt needs to execute a loop to add info to user interface
-        button = Button(master, text="Add", bd='5', command=master.destroy)
-
-        button.grid(row=5, column=1)
-
-        Label(master, text='First Name').grid(row=0)
-        Label(master, text='Last Name').grid(row=1)
-        Label(master, text='Sex').grid(row=2)
-        Label(master, text='Age').grid(row=3)
-        Label(master, text='Weight').grid(row=4)
-
-        e1 = Entry(master).grid(row=0, column=1)
-        e2 = Entry(master).grid(row=1, column=1)
-        e3 = Entry(master).grid(row=2, column=1)
-        e4 = Entry(master).grid(row=3, column=1)
-        e5 = Entry(master).grid(row=4, column=1)
-        master.mainloop()
+    def toggle_visualizer(self):
+        self.org.visualize = not self.org.visualize
+        self.create_menubar()
 
 
 if __name__ == "__main__":
