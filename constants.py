@@ -41,7 +41,7 @@ def beep():
     pygame.mixer.music.load(r"graphics/beep-beep-6151.mp3")
     pygame.mixer.music.play(loops=0)
 
-TIME_CONSTANT = 20  # ms
+TIME_CONSTANT = 5  # ms
 # TIME_CONSTANT = 500
 
 AA_UNIT = "rad/s^2"

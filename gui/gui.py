@@ -18,6 +18,8 @@ class GUI:
 
     def __init__(self, org):
         self.org = org
+
+    def startup(self):
         self.org.select_new_participant()
         self.running = False
 

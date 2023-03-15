@@ -6,6 +6,7 @@ from constants import *
 class Organizer:
 
     def __init__(self, participantList):
+        self.gui = GUI(self)
         self.participantList = participantList
         self.participantDict = {p.id: p
                                 for p in self.participantList}
@@ -22,20 +23,22 @@ class Organizer:
         self.selected_index = 0
 
     def toggle_mode(self):
+        self.gui.root.destroy()
         self.Active_Mode = not self.Active_Mode
 
     def create_gui(self):
-        self.gui = GUI(self)
+        # self.gui = GUI(self)
+        self.gui.startup()
 
     def receive_data(self):
         # TODO: however the data is transmitted from receiver to organizer
         # assumes n lines of id: la: bool_digit\n
         try:
-            # while arduinoData.inWaiting() == 0:
-            #     pass
-            # datapacket = str(arduinoData.readline(), 'utf-8')
+            while arduinoData.inWaiting() == 0:
+                pass
+            datapacket = str(arduinoData.readline(), 'utf-8')
             # datapacket = "2: 20.32: 1"
-            datapacket = dummyDataPacket()
+            # datapacket = dummyDataPacket()
 
             def process_data(datapacket):
                 datapacket = datapacket.split('\n')
@@ -46,7 +49,7 @@ class Organizer:
                     concussbool = not not int(message[2])
                     data = [float(message[1]), concussbool]
                     self.give_data_by_device_id(int(device_id), data)
-                print("\n")
+                # print("\n")
             process_data(datapacket)
         except Exception as e:
             print("organizer/receive_data error:", e)
@@ -127,6 +130,11 @@ class Organizer:
         return prstr
 
     def on_closing(self):
+        ####
+        self.gui.root.destroy()
+        while True:
+            self.receive_data()
+
         print(closing_string)
         quit()
 
