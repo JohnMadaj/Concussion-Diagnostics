@@ -86,7 +86,7 @@ class ParticipantPanel(tk.Frame):
             self.gui.call_receive_data()
         self.update_labels()
         if self.org.Active_Mode:
-            if self.org.visualize:
+            if self.org.visualize and self.org.temp_visualize:
                 self.pp_plot.refresh()
             self.after(TIME_CONSTANT, self.refresh)
 

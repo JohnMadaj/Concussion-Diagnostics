@@ -14,6 +14,7 @@ class Organizer:
                                       for p in self.participantList}
 
         self.visualize = True
+        self.temp_visualize = True
         self.Active_Mode = False
 
         if len(self.participantList):

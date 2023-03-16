@@ -144,6 +144,13 @@ void setup(void)
   Serial.println("");
 }
 
+bool DiagnosticAlgorithm(float la, float la_threshold)
+{
+    if (la > la_threshold)
+        return 1
+    return 0
+}
+
 void loop(void)
 {
   /* Get a new sensor event */
@@ -152,10 +159,8 @@ void loop(void)
 
   myData.la = sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
 
-  myData.concussbool = 0;
-  if (myData.la > 80.0) {
-    myData.concussbool = 1;
-  }
+  myData.concussbool = DiagnosticAlgorithm(myData.la, 80);
+
 
   myData.identity = ident;
   //myData.issr = rssi;

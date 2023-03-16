@@ -18,7 +18,7 @@ class Device_Manager_Popup():
         self.startupbool = startupbool
 
         # Kills graph on manager startup to save performance
-        self.org.visualize = False
+        self.org.temp_visualize = False
 
         # Create Tkinter StringVar to store selected participant
         self.selected_participant_string = tk.StringVar()
@@ -53,7 +53,7 @@ class Device_Manager_Popup():
         # if self.parent:
             # self.parent.refresh_from_device_manager()
             # self.parent.refresh()
-        self.org.visualize = True
+        self.org.temp_visualize = True
         self.root.destroy()
         if self.startupbool:
             self.org.create_gui()
