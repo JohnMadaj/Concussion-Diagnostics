@@ -148,6 +148,21 @@ concussed_status = 1;
 good_status = 0;
 tolerance_severity = 0.5; //g //arbitrary
 
+float instant_acceleration_magnitude(){
+  bool measure_in_Gs = True;
+
+	/* Get a new sensor event */
+  sensors_event_t event;
+  accel.getEvent(&event);
+  
+  if (measure_in_Gs == true){
+	event.acceleration.x /= 9.8;
+	event.acceleration.y /= 9.8;
+	event.acceleration.z /= 9.8;
+  }
+  return sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
+}
+
 bool Status(float la, float la_threshold)
 {
     if (la > la_threshold)
@@ -171,7 +186,7 @@ bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float
 	
 	float momentary_threshold = initial_threshold;
 	
-	// Simple case: measurement is less than tolerance threshold, so don't bother testing
+	// Simple case: measurement is less than severity of tolerance threshold, so don't bother testing
 	if (instant_acceleration < tolerance_severity * momentary_threshold)
 		return good_status;
 	
@@ -190,28 +205,18 @@ bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float
 		
 		threshold = tolerance_curve(new_measurement_acceleration, current_time, initial_threshold);
 	}
+	return Status(new_measurement_acceleration, threshold);
 }
 
 
 
 float generic_threshold = 50.0;
-
+cd 
 void loop(void)
 {
-  bool measure_in_Gs = True;
-  /* Get a new sensor event */
-  sensors_event_t event;
-  accel.getEvent(&event);
-  
-  if (measure_in_Gs == true){
-	event.acceleration.x *= 9.8;
-	event.acceleration.y *= 9.8;
-	event.acceleration.z *= 9.8;
-  }
-
-  myData.la = sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
+  myData.la = instant_acceleration_magnitude();
 	
-  myData.concussbool = DiagnosticAlgorithm(myData.la, generic_threshold);
+  myData.concussbool = DiagnosticAlgorithm(myData.la, generic_threshold, tolerance_severity);
 
 
   myData.identity = ident;
