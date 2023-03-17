@@ -144,37 +144,74 @@ void setup(void)
   Serial.println("");
 }
 
-bool DiagnosticAlgorithm(float la, float la_threshold)
+concussed_status = 1;
+good_status = 0;
+tolerance_severity = 0.5; //g //arbitrary
+
+bool Status(float la, float la_threshold)
 {
     if (la > la_threshold)
-        return 1
-    return 0
+        return concussed_status;
+    return good_status;
 }
-// TODO IMPLEMENT
-// Function to calculate the acceleration threshold based on duration
-float calculateThreshold(float acceleration, float duration, float initialThreshold) {
+ 
+float tolerance_curve(float acceleration, float duration, float initialThreshold) {
     // Define the initial threshold and the time constant for the logarithmic decrease
 	float decay_rate = 100; //arbitrary
 	float timeConstant = decay_rate / acceleration;
     // Calculate the threshold using the formula: threshold = initialThreshold * exp(-duration/timeConstant)
     float threshold = initialThreshold * exp(-duration/timeConstant);
-
     // Return the maximum of the calculated threshold and the input acceleration
     //return fmax(threshold, acceleration);
 	//return fmin(threshold, acceleration);
 	return threshold;
 }
 
+bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float tolerance_severity){
+	
+	float momentary_threshold = initial_threshold;
+	
+	// Simple case: measurement is less than tolerance threshold, so don't bother testing
+	if (instant_acceleration < tolerance_severity * momentary_threshold)
+		return good_status;
+	
+	// Impact case: measurement warrants inspection using tolerance curve
+	float start_time = millis(); //initial time from first measurement
+	float current_time = millis();
+	while (current_time - start_time <= 15.0){
+		
+		//float new_measurement_acceleration = perform_measurement;//TODO
+		float new_measurement_acceleration = myData.la;
+		
+		float current_time = millis();
+		
+		if (new_measurement_acceleration < first_measurement) //acceleration decreased, so just measure once and be done with it
+			return Status(new_measurement_acceleration, threshold);
+		
+		threshold = tolerance_curve(new_measurement_acceleration, current_time, initial_threshold);
+	}
+}
+
+
+
+float generic_threshold = 50.0;
 
 void loop(void)
 {
+  bool measure_in_Gs = True;
   /* Get a new sensor event */
   sensors_event_t event;
   accel.getEvent(&event);
+  
+  if (measure_in_Gs == true){
+	event.acceleration.x *= 9.8;
+	event.acceleration.y *= 9.8;
+	event.acceleration.z *= 9.8;
+  }
 
   myData.la = sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
-
-  myData.concussbool = DiagnosticAlgorithm(myData.la, 80);
+	
+  myData.concussbool = DiagnosticAlgorithm(myData.la, generic_threshold);
 
 
   myData.identity = ident;
