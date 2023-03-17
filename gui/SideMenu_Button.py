@@ -12,7 +12,7 @@ class SideMenu_Button(tk.Button):
         self.gui = gui
         tk.Button.__init__(self, parent, text=participant.name,
                            font=self.font4,
-                           foreground="blue",
+                           foreground="white",
                            image=self.parent.button_accent,
                            compound=tk.CENTER,
                            background=str(participant.status)[7:],

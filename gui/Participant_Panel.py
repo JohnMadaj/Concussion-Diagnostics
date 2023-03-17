@@ -102,7 +102,7 @@ class ParticipantPanel(tk.Frame):
 
         self.StatusLabel.config(text="Status: " + colorstatus,
                                 background=colorstatus,
-                                foreground="blue",
+                                foreground="white",
                                 font=LARGE_FONT)
 
     # def pass_input_to_Participant(self):
