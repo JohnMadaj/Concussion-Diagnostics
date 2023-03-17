@@ -150,6 +150,21 @@ bool DiagnosticAlgorithm(float la, float la_threshold)
         return 1
     return 0
 }
+// TODO IMPLEMENT
+// Function to calculate the acceleration threshold based on duration
+float calculateThreshold(float acceleration, float duration, float initialThreshold) {
+    // Define the initial threshold and the time constant for the logarithmic decrease
+	float decay_rate = 100; //arbitrary
+	float timeConstant = decay_rate / acceleration;
+    // Calculate the threshold using the formula: threshold = initialThreshold * exp(-duration/timeConstant)
+    float threshold = initialThreshold * exp(-duration/timeConstant);
+
+    // Return the maximum of the calculated threshold and the input acceleration
+    //return fmax(threshold, acceleration);
+	//return fmin(threshold, acceleration);
+	return threshold;
+}
+
 
 void loop(void)
 {
