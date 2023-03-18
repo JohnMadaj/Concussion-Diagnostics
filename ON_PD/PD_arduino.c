@@ -144,22 +144,79 @@ void setup(void)
   Serial.println("");
 }
 
-bool DiagnosticAlgorithm(float la, float la_threshold)
-{
-    if (la > la_threshold)
-        return 1
-    return 0
-}
+concussed_status = 1;
+good_status = 0;
+tolerance_severity = 0.5; //g //arbitrary
 
-void loop(void)
-{
-  /* Get a new sensor event */
+float instant_acceleration_magnitude(){
+  bool measure_in_Gs = True;
+
+	/* Get a new sensor event */
   sensors_event_t event;
   accel.getEvent(&event);
+  
+  if (measure_in_Gs == true){
+	event.acceleration.x /= 9.8;
+	event.acceleration.y /= 9.8;
+	event.acceleration.z /= 9.8;
+  }
+  return sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
+}
 
-  myData.la = sqrt((event.acceleration.x*event.acceleration.x)+(event.acceleration.y*event.acceleration.y)+(event.acceleration.z*event.acceleration.z));
+bool Status(float la, float la_threshold)
+{
+    if (la > la_threshold)
+        return concussed_status;
+    return good_status;
+}
+ 
+float tolerance_curve(float acceleration, float duration, float initialThreshold) {
+    // Define the initial threshold and the time constant for the logarithmic decrease
+	float decay_rate = 100; //arbitrary
+	float timeConstant = decay_rate / acceleration;
+    // Calculate the threshold using the formula: threshold = initialThreshold * exp(-duration/timeConstant)
+    float threshold = initialThreshold * exp(-duration/timeConstant);
+    // Return the maximum of the calculated threshold and the input acceleration
+    //return fmax(threshold, acceleration);
+	//return fmin(threshold, acceleration);
+	return threshold;
+}
 
-  myData.concussbool = DiagnosticAlgorithm(myData.la, 80);
+bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float tolerance_severity){
+	
+	float momentary_threshold = initial_threshold;
+	
+	// Simple case: measurement is less than severity of tolerance threshold, so don't bother testing
+	if (instant_acceleration < tolerance_severity * momentary_threshold)
+		return good_status;
+	
+	// Impact case: measurement warrants inspection using tolerance curve
+	float start_time = millis(); //initial time from first measurement
+	float current_time = millis();
+	while (current_time - start_time <= 15.0){
+		
+		//float new_measurement_acceleration = perform_measurement;//TODO
+		float new_measurement_acceleration = myData.la;
+		
+		float current_time = millis();
+		
+		if (new_measurement_acceleration < first_measurement) //acceleration decreased, so just measure once and be done with it
+			return Status(new_measurement_acceleration, threshold);
+		
+		threshold = tolerance_curve(new_measurement_acceleration, current_time, initial_threshold);
+	}
+	return Status(new_measurement_acceleration, threshold);
+}
+
+
+
+float generic_threshold = 50.0;
+cd 
+void loop(void)
+{
+  myData.la = instant_acceleration_magnitude();
+	
+  myData.concussbool = DiagnosticAlgorithm(myData.la, generic_threshold, tolerance_severity);
 
 
   myData.identity = ident;
