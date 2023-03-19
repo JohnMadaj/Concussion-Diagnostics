@@ -23,6 +23,8 @@ class GUI:
         self.org.select_new_participant()
         self.running = False
 
+
+
         self.root = ThemedTk(themebg=True)
         self.root.set_theme('blue')
 
@@ -33,6 +35,8 @@ class GUI:
             self.root.geometry("800x500")
             self.root.title(gui_name)
             self.root.attributes('-fullscreen', True)
+
+            self.root.wm_attributes("-topmost", 2)
             self.root.configure(background=sage)
         create_window()
 
