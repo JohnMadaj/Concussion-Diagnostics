@@ -11,6 +11,10 @@
 
 Adafruit_ADXL375 accel = Adafruit_ADXL375(12345);
 
+int concussed_status = 1;
+int good_status = 0;
+float tolerance_severity = 0.5; //g //arbitrary
+
 void displayDataRate(void)
 {
   Serial.print  ("Data Rate:    ");
@@ -74,16 +78,17 @@ void displayDataRate(void)
 
 // Integer for identification (unique for each transmitter)
 int ident = 3;
-// Received Signal Strength Indicatior
-//int rssi = WiFi.RSSI();
 
-uint8_t broadcastAddress[] = {0xE8, 0x31, 0xCD, 0x63, 0x4E, 0x58};
+//E8:9F:6D:1F:8C:C8
+//uint8_t broadcastAddress[] = {0x94, 0xE6, 0x86, 0x49, 0x01, 0xE0};
+uint8_t broadcastAddress[] = {0xE8, 0x9F, 0x6D, 0x1F, 0x8C, 0xC8};
 
 // Define a data structure
 typedef struct struct_message{
   float la;
   int concussbool;
   int identity;
+  float batteryPercentage; 
   //int issr;
 } struct_message;
 
@@ -137,19 +142,19 @@ void setup(void)
   }
 
   // Range is fixed at +-200g
-
+  accel.setDataRate(ADXL343_DATARATE_3200_HZ);
   /* Display some basic information on this sensor */
   accel.printSensorDetails();
   displayDataRate();
   Serial.println("");
 }
 
-concussed_status = 1;
-good_status = 0;
-tolerance_severity = 0.5; //g //arbitrary
+// concussed_status = 1;
+// good_status = 0;
+// tolerance_severity = 0.5; //g //arbitrary
 
 float instant_acceleration_magnitude(){
-  bool measure_in_Gs = True;
+  bool measure_in_Gs = true;
 
 	/* Get a new sensor event */
   sensors_event_t event;
@@ -187,18 +192,21 @@ bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float
 	float momentary_threshold = initial_threshold;
 	
 	// Simple case: measurement is less than severity of tolerance threshold, so don't bother testing
-	if (instant_acceleration < tolerance_severity * momentary_threshold)
+	if (first_measurement < tolerance_severity * momentary_threshold)
 		return good_status;
 	
 	// Impact case: measurement warrants inspection using tolerance curve
 	float start_time = millis(); //initial time from first measurement
 	float current_time = millis();
+  float threshold = initial_threshold;
+  float new_measurement_acceleration;
+
 	while (current_time - start_time <= 15.0){
 		
 		//float new_measurement_acceleration = perform_measurement;//TODO
-		float new_measurement_acceleration = myData.la;
+		new_measurement_acceleration = myData.la;
 		
-		float current_time = millis();
+		current_time = millis();
 		
 		if (new_measurement_acceleration < first_measurement) //acceleration decreased, so just measure once and be done with it
 			return Status(new_measurement_acceleration, threshold);
@@ -208,19 +216,34 @@ bool DiagnosticAlgorithm(float first_measurement, float initial_threshold, float
 	return Status(new_measurement_acceleration, threshold);
 }
 
+float readBatteryPercentage() {
+  const int batteryPin = A13;
+  const float voltageDivider = 2.0; // Assuming a 2:1 voltage divider (2x 100k resistors)
+  const int adcResolution = 4095;
+  const float Vref = 3.3;
 
+  const float Vbat_min = 3.0;
+  const float Vbat_max = 4.2;
+
+  int rawADC = analogRead(batteryPin);
+  float voltage = (rawADC * Vref / adcResolution) * voltageDivider;
+
+  float batteryPercentage = (voltage - Vbat_min) / (Vbat_max - Vbat_min) * 100;
+  batteryPercentage = constrain(batteryPercentage, 0, 100); // Limit the percentage to the 0-100 range
+
+  return batteryPercentage;
+}
 
 float generic_threshold = 50.0;
-cd 
+//cd 
 void loop(void)
 {
   myData.la = instant_acceleration_magnitude();
 	
   myData.concussbool = DiagnosticAlgorithm(myData.la, generic_threshold, tolerance_severity);
 
-
   myData.identity = ident;
-  //myData.issr = rssi;
+  myData.batteryPercentage = readBatteryPercentage();
 
   // Send message via ESP-NOW
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
@@ -238,5 +261,5 @@ void loop(void)
   Serial.print(myData.la);
   Serial.println(myData.concussbool);
 
-  delay(100);
+  delay(250);
 }

@@ -27,7 +27,18 @@ pygame.mixer.init()# initialise the pygame
 
 
 global COMPORT
-COMPORT = "COM4"
+COMPORT = "COM5"
+
+# import serial
+# import serial.tools.list_ports
+#
+# def find_esp32_port():
+#     for port in serial.tools.list_ports.comports():
+#         if "/dev/ttyUSB" in port.name or "COM" in port.name:
+#             if "Adafruit ESP32 Huzzah32 Feather" in port.description:
+#                 return serial.Serial(port=port.device, baudrate=115200)
+#     raise IOError("ESP32 not found on any serial port")
+
 
 try:
     arduinoData = serial.Serial(COMPORT, 115200, timeout=1)
