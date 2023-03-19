@@ -29,7 +29,7 @@ class ParticipantPanel(tk.Frame):
 
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
-        self.LAlabel = tk.Label(self, text="LA: 0 m/s^2", font=LARGE_FONT)
+        self.LAlabel = tk.Label(self, text="G Force", font=LARGE_FONT)
         self.blurb = tk.Label(self, text="info", font=LARGE_FONT)
         self.blurb.config(text=self.org.selected_participant.info())
 
@@ -94,7 +94,7 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel.config(
             text="Participant " + self.org.selected_participant.concussed_State())
         self.LAlabel.config(
-            text="LA " + str(self.org.selected_participant.getlastLA()) + " m/s^2")
+            text=" " + str(self.org.selected_participant.getlastLA()) + " G's")
 
         self.blurb.config(text=self.org.selected_participant.info())
 

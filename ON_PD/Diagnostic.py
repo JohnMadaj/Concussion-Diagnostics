@@ -24,6 +24,16 @@ def areTheyConcussed(LAthreshold=0, AAthreshold=0, LA=0, AA=0):
     - blood oxygen bias??
 
     """
+    ### CODE FOR LINEAR ACCELERATION TO G FORCE
+    # def linear_accel_to_g_force(LA):
+    #     # Define gravitational constant
+    #     g = 9.80665  # meters per second squared
+    #
+    #     # Convert linear acceleration to g-force
+    #     g_force = LA / g
+    #
+    #     return g_force
+
     if LAthreshold and LA:
         LAratio = LA / LAthreshold
     else:
