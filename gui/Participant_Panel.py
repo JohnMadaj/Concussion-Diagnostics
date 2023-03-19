@@ -92,7 +92,7 @@ class ParticipantPanel(tk.Frame):
 
     def update_labels(self):
         self.Toplabel.config(
-            text="Participant " + self.org.selected_participant.concussed_State())
+            text=" " + self.org.selected_participant.concussed_State())
         self.LAlabel.config(
             text=" " + str(self.org.selected_participant.getlastLA()) + " G's")
 
