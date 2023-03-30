@@ -22,7 +22,7 @@ class ParticipantPanel_Plot:
         self.row = row
         self.column = column
         fig = Figure(figsize=(5, 5),
-                     dpi=100)
+                     dpi=10)
         # fig.set_animated(True)
 
         self.y = []

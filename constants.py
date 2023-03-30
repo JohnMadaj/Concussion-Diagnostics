@@ -22,12 +22,12 @@ import names
 
 from local_resources import *
 
-pygame.mixer.init()# initialise the pygame
+# pygame.mixer.init()# initialise the pygame
 
 
 
 global COMPORT
-COMPORT = "COM5"
+COMPORT = "COM12"
 
 # import serial
 # import serial.tools.list_ports
@@ -48,11 +48,11 @@ except Exception as e:
 # TODO: simulate_on_startup causes gui to hang indefinitely, refresh loop
 simulate_on_startup = False
 
-def beep():
-    pygame.mixer.music.load(r"graphics/beep-beep-6151.mp3")
-    pygame.mixer.music.play(loops=0)
+# def beep():
+#     pygame.mixer.music.load(r"graphics/beep-beep-6151.mp3")
+#     pygame.mixer.music.play(loops=0)
 
-TIME_CONSTANT = 5  # ms
+TIME_CONSTANT = 15  # ms
 # TIME_CONSTANT = 500
 
 AA_UNIT = "rad/s^2"

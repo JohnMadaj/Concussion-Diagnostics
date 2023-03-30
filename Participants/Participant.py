@@ -74,8 +74,8 @@ class Participant:
 
     def updateStatus(self, concussbool, newstatus):
         if not self.concussed:
-            if concussbool != self.concussed:
-                beep()
+            # if concussbool != self.concussed:
+            #     beep()
             self.concussed = concussbool
         self.status = newstatus
 

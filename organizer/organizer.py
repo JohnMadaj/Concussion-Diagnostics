@@ -52,27 +52,27 @@ class Organizer:
                 concussbool = not not int(message[2])
                 data = [float(message[1]), concussbool]
                 self.give_data_by_device_id(int(device_id), data)
+                # self.give_data_by_device_id(id, data)
+
             # print("\n")
         try:
             process_data(datapacket)
         except Exception as e:
             print("organizer/receive_data error:", e)
 
+    # def give_data_by_device_id_HARDCODE(self, device_id, data):
+    #     # TODO: Need a fast access/match for device id from participant
+    #     p1 =
+    #     participant.updateLA(data[0])
+    #     participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
+
     def give_data_by_device_id(self, device_id, data):
-        # # TODO: Need a fast access/match for device id from participant
+        # TODO: Need a fast access/match for device id from participant
         for participant in self.participantList:
             if participant.device_id == device_id:
                 participant.updateLA(data[0])
                 participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
-        # if device_id not in self.device_id_connections.values():
-        #     return
-        # for id in self.device_id_connections:
-        #     if self.device_id_connections[id] == device_id:
-        #         p_id = id
-        # print(p_id)
-        # th = self.participantDict[p_id].LAThreshold
-        # self.participantDict[p_id].updateLA(data[0])
-        # self.participantDict[p_id].updateStatus(data[1], self.getStatus(data[1] / th))
+
 
     def getStatus(self, ratio):
         if ratio >= red_intensity:
