@@ -46,12 +46,15 @@ class Organizer:
         def process_data(datapacket):
             datapacket = datapacket.split('\n')
             for message in datapacket:
-                print(message)
+                # print(message)
                 message = message.split(': ')
+
                 device_id = int(message[0])
                 concussbool = not not int(message[2])
                 data = [float(message[1]), concussbool]
-                self.give_data_by_device_id(int(device_id), data)
+                battery = int(message[3])
+
+                self.give_data_by_device_id(int(device_id), data, battery)
                 # self.give_data_by_device_id(id, data)
 
             # print("\n")
@@ -66,12 +69,13 @@ class Organizer:
     #     participant.updateLA(data[0])
     #     participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
 
-    def give_data_by_device_id(self, device_id, data):
+    def give_data_by_device_id(self, device_id, data, battery):
         # TODO: Need a fast access/match for device id from participant
         for participant in self.participantList:
             if participant.device_id == device_id:
                 participant.updateLA(data[0])
                 participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
+                participant.updateBattery(battery)
 
 
     def getStatus(self, ratio):
@@ -136,8 +140,8 @@ class Organizer:
     def on_closing(self):
         ####
         self.gui.root.destroy()
-        while True:
-            self.receive_data()
+        # while True:
+        #     self.receive_data()
 
         print(closing_string)
         quit()

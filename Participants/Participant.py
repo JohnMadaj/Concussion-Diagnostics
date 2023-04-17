@@ -22,6 +22,10 @@ class Participant:
         self.status = Status.GREEN
         self.concussed = False
 
+        self.battery = None
+        if self.device_id > 0:
+            self.battery = 0
+
         self.time = []
         self.LA = []
         self.LAThreshold = LA_GENERIC
@@ -63,6 +67,9 @@ class Participant:
         if len(self.time) > input_storage_limit:
             self.time = self.time[1:]
 
+    def updateBattery(self, battery):
+        self.battery = battery
+
 
     def concussedBool(self):
         return self.concussed
@@ -80,11 +87,16 @@ class Participant:
         self.status = newstatus
 
     def info(self):
-        info = "Info:\n" + str(self.sex)[4:] +\
-                      "\nAge: " + str(self.age) +\
-                      "\nHeight: " + str(self.height) +\
-                      "\nWeight: " + str(self.weight) +\
-                      "\nDevice ID: " + str(self.device_id)
+        info = "Info:\n" + str(self.sex)[4:] + \
+               "\nAge: " + str(self.age) + \
+               "\nHeight: " + str(self.height) + \
+               "\nWeight: " + str(self.weight) + \
+               "\nDevice ID: " + str(self.device_id)
+
+        if self.battery:
+            info+="\nBattery: %d %%" % self.battery
+        else:
+            info+="\nNot Connected"
         return info
 
     def __str__(self):

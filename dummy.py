@@ -58,6 +58,6 @@ def dummyDataPacket(): #d_id: LA.4f: bool(binary)
         b = 0
         if m > 80:
             b = 1
-        rec_str += "%s: %f: %d\n" % (str(i+1), m, b)
+        rec_str += "%s: %f: %d: %d\n" % (str(i+1), m, b, 50)
     return rec_str[:-1]
 
