@@ -30,6 +30,8 @@ class Participant:
         self.LA = []
         self.LAThreshold = LA_GENERIC
 
+        self.LA_PEAK = 0
+
         self.y = []
 
     def populate(self, name, age, height, weight, device_id, sex=0):
@@ -44,6 +46,10 @@ class Participant:
         if not self.LA:
             return 0
         return self.LA[-1]
+
+    def updatepeak(self):
+        self.LA_PEAK = max(self.LA)
+
 
     def get_last_intensity(self):
         return self.LA[-1] / self.LAThreshold
@@ -89,8 +95,8 @@ class Participant:
     def info(self):
         info = "Info:\n" + str(self.sex)[4:] + \
                "\nAge: " + str(self.age) + \
-               "\nHeight: " + str(self.height) + \
-               "\nWeight: " + str(self.weight) + \
+               "\nHeight: " + str(self.height) + " cm" + \
+               "\nWeight: " + str(self.weight) + " kg" + \
                "\nDevice ID: " + str(self.device_id)
 
         if self.battery:

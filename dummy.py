@@ -27,7 +27,7 @@ def heightgenerator():
 
 
 def weightgenerator():
-    return random.randrange(100, 250)
+    return random.randrange(50, 110)
 
 
 def dummyValues(numvals=1):

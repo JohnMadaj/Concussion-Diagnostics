@@ -76,6 +76,7 @@ class Organizer:
                 participant.updateLA(data[0])
                 participant.updateStatus(data[1], self.getStatus(data[0] / participant.LAThreshold))
                 participant.updateBattery(battery)
+                participant.updatepeak()
 
 
     def getStatus(self, ratio):

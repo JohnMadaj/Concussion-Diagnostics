@@ -22,7 +22,7 @@ class ParticipantPanel_Plot:
         self.row = row
         self.column = column
         fig = Figure(figsize=(5, 5),
-                     dpi=10)
+                     dpi=5)
         # fig.set_animated(True)
 
         self.y = []
@@ -33,7 +33,7 @@ class ParticipantPanel_Plot:
         self.plot1.set_ylim(top=100)
 
         # plotting the graph
-        self.plot1.plot(y)
+        self.plot1.plot(y, linewidth=3)
         self.canvas = FigureCanvasTkAgg(fig,
                                    master=self.frame)
         self.canvas.draw()
@@ -41,6 +41,7 @@ class ParticipantPanel_Plot:
         self.canvas.get_tk_widget().grid(row=row,
                                     columnspan=1,
                                     sticky="news")
+
 
     # def updateY(self):
 
@@ -53,7 +54,7 @@ class ParticipantPanel_Plot:
 
         self.y = self.org.selected_participant.graph_helper()
 
-        self.plot1.plot(self.y)
+        self.plot1.plot(self.y, linewidth=8)
         self.plot1.set_xlim(right=20)
         self.plot1.set_ylim(top=100)
         self.canvas.draw()
@@ -61,6 +62,7 @@ class ParticipantPanel_Plot:
         self.canvas.get_tk_widget().grid(row=self.row,
                                     column=self.column,
                                     sticky="news")
+
         # self.frame.after(TIME_CONSTANT, self.update())
 
 # class AnimatedGraph:

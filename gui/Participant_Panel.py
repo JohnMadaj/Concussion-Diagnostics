@@ -30,8 +30,11 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel = tk.Label(self, text="Participant Name:", font=HEADER_FONT)
         self.StatusLabel = tk.Label(self, text="Status:", font=LARGE_FONT)
         self.LAlabel = tk.Label(self, text="G Force", font=LARGE_FONT)
+        self.PeakLabel = tk.Label(self, text="Peak", font=LARGE_FONT)
         self.blurb = tk.Label(self, text="info", font=LARGE_FONT)
         self.blurb.config(text=self.org.selected_participant.info())
+
+        self.mLabel = tk.Label(self, text="LA\tPeak", font=LARGE_FONT)
 
 
 
@@ -43,19 +46,22 @@ class ParticipantPanel(tk.Frame):
 
 
         def grid_setup():
-            self.reset_button.grid(row=4, column=0, sticky='nwse')
-            self.exit_button.grid(row=4, column=1, sticky='nsew')
+            self.reset_button.grid(row=5, column=0, sticky='nwse')
+            self.exit_button.grid(row=5, column=1, sticky='nsew')
 
             self.Toplabel.grid(row=0, columnspan=2, sticky="news")
             self.StatusLabel.grid(row=1, columnspan=2, sticky="news")
-            self.LAlabel.grid(row=2, columnspan=2, sticky="news")
-            self.blurb.grid(row=3, column=1, sticky="news")
+            self.LAlabel.grid(row=3, column=0, sticky="news")
+            self.PeakLabel.grid(row=3, column=1, sticky="news")
+            self.blurb.grid(row=4, column=1, sticky="news")
+
+            self.mLabel.grid(row=2, columnspan=2, sticky="news")
 
         grid_setup()
 
         self.connect_status_label = tk.Label(self.parent)
 
-        self.plot(3, 0)
+        self.plot(4, 0)
         if simulate_on_startup:
             self.on_reset()
         else:
@@ -94,7 +100,9 @@ class ParticipantPanel(tk.Frame):
         self.Toplabel.config(
             text=" " + self.org.selected_participant.concussed_State())
         self.LAlabel.config(
-            text=" " + str(self.org.selected_participant.getlastLA()) + " G's")
+            text=" " + str(self.org.selected_participant.getlastLA()) + " g")
+        self.PeakLabel.config(
+            text="Peak: " + str(self.org.selected_participant.LA_PEAK) + " g")
 
         self.blurb.config(text=self.org.selected_participant.info())
 
