@@ -34,7 +34,12 @@ class TableFrame(tk.Frame):
             d_id = org.device_id_connections[p_id]
             if d_id == 0:
                 d_id = "(No Device)"
+                status = "NA"
+            else:
+                # print("battery: ", str(org.participantDict[p_id].battery))
+                status = str(org.participantDict[p_id].battery) + "%"
 
             tk.Label(self, text=org.participantDict[p_id].name).grid(row=current_row, column=0)
             tk.Label(self, text=d_id).grid(row=current_row, column=1)
+            tk.Label(self, text=status).grid(row=current_row, column=2)
             current_row += 1

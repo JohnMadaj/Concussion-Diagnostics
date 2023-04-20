@@ -1,5 +1,5 @@
 data = []
-with open("8ft_drop_test_results_1ms.txt", "r") as datapacket:
+with open("hammer_test_results_1ms.txt", "r") as datapacket:
     for message in datapacket:
         message = message.strip().split(': ')
         print(message)
@@ -186,4 +186,4 @@ ani = animation.FuncAnimation(fig, animate, frames=len(time_ms), interval=1)
 # writervideo = animation.FFMpegWriter(fps=60)
 writergif = animation.PillowWriter(fps=30)
 
-ani.save('drop.gif', writer=writergif)
+ani.save('hammer.gif', writer=writergif)
