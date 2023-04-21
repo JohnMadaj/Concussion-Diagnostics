@@ -16,14 +16,14 @@ class SideMenu(tk.Frame):
 
         self.sidemenu_list = {}
         self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
+        # self.columnconfigure(1, weight=1)
 
         self.running = False
         self.fill_sidemenu()
         # self.create_scrollbar()
 
-        self.v = tk.Scrollbar(self)
-        self.v.grid(column=1,rowspan=10)
+        # self.v = tk.Scrollbar(self)
+        # self.v.grid(column=1,rowspan=10)
         # self.yscrollcommand = self.v.set
         # self.v.config(command=self.yview)
     # def rebuild(self):
@@ -32,9 +32,13 @@ class SideMenu(tk.Frame):
 
     def make_button(self, index, participant):
         self.sidemenu_list[index] = SideMenu_Button(self, participant, index, gui=self.gui)
-        self.sidemenu_list[index].grid(columnspan=1, sticky="nswe")
+        self.sidemenu_list[index].grid(row=index, columnspan=1, sticky="nswe")
 
     def fill_sidemenu(self):
+        print(len(self.sidemenu_list))
+        for button in self.sidemenu_list:
+            print(button)
+            # button.destroy()
         self.sidemenu_list = {}
         for i, participant in enumerate(self.org.participantList):
             self.make_button(i, participant)

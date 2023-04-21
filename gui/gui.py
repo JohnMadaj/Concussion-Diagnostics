@@ -112,10 +112,10 @@ class GUI:
         displayframe.columnconfigure(1, weight=3)
 
         def call_sidemenu():
-            self.sidemenu_canvas = tk.Canvas(displayframe)
+            # self.sidemenu_canvas = tk.Canvas(displayframe)
             self.sidemenu = SideMenu(displayframe, 0, gui=self, organizer=self.org)
             self.sidemenu.grid(column=0, sticky="news")
-            self.sidemenu_canvas.grid(column=0, sticky="news")
+            # self.sidemenu_canvas.grid(column=0, sticky="news")
         call_sidemenu()
 
 
@@ -124,6 +124,12 @@ class GUI:
             self.p_panel.grid(row=0, column=1, sticky="new", rowspan=8)
             self.p_panel.config(background="grey")
         call_participant_panel()
+
+        def sidemenu_refresh_button():
+            self.sidemenu_r_b = Button(displayframe, text="Refresh Side Menu",
+                                       command=self.sidemenu.fill_sidemenu)
+            self.sidemenu_r_b.grid(row=10, column=0)
+        sidemenu_refresh_button()
 
         displayframe.pack(pady=0, fill='x', expand=1)
 

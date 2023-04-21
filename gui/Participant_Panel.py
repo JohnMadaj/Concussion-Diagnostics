@@ -12,11 +12,11 @@ class ParticipantPanel(tk.Frame):
         self.parent = parent
         tk.Frame.__init__(self, parent)
         self.random_vals_bool = False
+        self.colorstatus = "green"
 
         def build_grid():
             self.columnconfigure(0, weight=2)
             self.columnconfigure(1, weight=1)
-            self.columnconfigure(2, weight=1)
 
             self.rowconfigure(0, weight=1)
             self.rowconfigure(1, weight=1)
@@ -34,7 +34,10 @@ class ParticipantPanel(tk.Frame):
         self.blurb = tk.Label(self, text="info", font=LARGE_FONT)
         self.blurb.config(text=self.org.selected_participant.info())
 
-        self.mLabel = tk.Label(self, text="LA\tPeak", font=LARGE_FONT)
+
+        boldlabelfont = font.Font(family="Helvetica", size=20, weight="bold")
+        self.LabelOne = tk.Label(self, text="LA", font=boldlabelfont)
+        self.LabelTwo = tk.Label(self, text="Peak", font=boldlabelfont)
 
 
 
@@ -55,7 +58,9 @@ class ParticipantPanel(tk.Frame):
             self.PeakLabel.grid(row=3, column=1, sticky="news")
             self.blurb.grid(row=4, column=1, sticky="news")
 
-            self.mLabel.grid(row=2, columnspan=2, sticky="news")
+            self.LabelOne.grid(row=2, column=0, sticky="news")
+            self.LabelTwo.grid(row=2, column=1, sticky="news")
+
 
         grid_setup()
 
@@ -106,10 +111,10 @@ class ParticipantPanel(tk.Frame):
 
         self.blurb.config(text=self.org.selected_participant.info())
 
-        colorstatus = str(self.org.selected_participant.status)[7:]
+        self.colorstatus = str(self.org.selected_participant.status)[7:]
 
-        self.StatusLabel.config(text="Status: " + colorstatus,
-                                background=colorstatus,
+        self.StatusLabel.config(text="Status: " + self.colorstatus,
+                                background=self.colorstatus,
                                 foreground="white",
                                 font=LARGE_FONT)
 

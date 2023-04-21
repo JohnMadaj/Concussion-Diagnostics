@@ -1,3 +1,5 @@
+import tkinter
+
 import dummy
 from Participants.Participant import Participant
 from constants import *
@@ -108,9 +110,15 @@ class EditConfigurationsPopup:
         save_button = tk.Button(self.popup, text="Save", command=self.save)
         save_button.grid(row=7, column=0)
 
+        reset_concussion = tkinter.Button(self.popup, text="Reset Concussion Status",
+                                          command=self.participant.reset_c)
+        reset_concussion.grid(row=8, columnspan=2)
+
 
         cancel_button = tk.Button(self.popup, text="Cancel", command=self.cancel)
         cancel_button.grid(row=7, column=1)
+
+
 
     def save(self):
         """

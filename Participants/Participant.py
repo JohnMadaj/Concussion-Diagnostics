@@ -34,6 +34,9 @@ class Participant:
 
         self.y = []
 
+    def reset_c(self):
+        self.concussed = False
+
     def populate(self, name, age, height, weight, device_id, sex=0):
         self.name = name
         self.age = age
